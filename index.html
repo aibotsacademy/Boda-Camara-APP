@@ -1495,8 +1495,27 @@ function sealInner(r, t){ return '<span>JLO ATENAS</span><b>' + esc(CAPS[r.c].s)
 
 /* ---------- Google Analytics ----------
    Nunca se envían nombres, mensajes ni archivos: solo IDs de retos, capítulos y tipo de acción. */
+// Además, cada interacción con un capítulo envía un evento con el capítulo en el nombre
+// (ej. cap_11_un_dia_en_el_egeo). Así aparece directo en Informes > Participación > Eventos, sin configurar nada.
+var CHAPTER_EVENTS = {chapter_select:1, chapter_play:1, chapter_view_scenes:1, album_chapter_filter:1, reto_view:1, reto_accept:1, reto_complete:1};
+function chapterEventName(k){
+  if (!k || k === 'mix') return 'cap_00_sorprendeme';
+  var i = -1; CAPS.forEach(function(c, j){ if (c.k === k) i = j; });
+  if (i < 0) return '';
+  var c = CAPS[i];
+  var slug = c.n.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '');
+  return ('cap_' + (c.x ? '00' : pad2(i + 1)) + '_' + slug).slice(0, 40);
+}
 function track(ev, params){
-  try { if (typeof window.gtag === 'function') window.gtag('event', ev, params || {}); } catch(e){}
+  params = params || {};
+  try {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', ev, params);
+    if (CHAPTER_EVENTS[ev] && params.chapter){
+      var name = chapterEventName(params.chapter);
+      if (name) window.gtag('event', name, {accion:ev});
+    }
+  } catch(e){}
 }
 function retoParams(r){
   if (!r) return {};
