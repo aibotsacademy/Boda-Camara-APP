@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Álbum Fotos | Jenireé &amp; Leandro en Atenas</title>
-<meta name="description" content="Toma fotos o súbelas desde tu galería y míralas al instante en el álbum compartido de la boda de Jenireé y Leandro.">
-<meta property="og:title" content="Álbum Fotos| Jenireé & Leandro en Atenas">
-<meta property="og:description" content="Escanea, dispara y comparte. Todas las fotos de la boda en un solo álbum.">
+<title>Fotos & Retos | Jenireé &amp; Leandro</title>
+<meta name="description" content="Fotos, videos y retos: la historia de Jenireé y Leandro en Atenas, contada con quienes nos acompañan.">
+<meta property="og:title" content="Fotos & Retos | Jenireé & Leandro">
+<meta property="og:description" content="Escanea, graba y cumple retos. Cada foto y cada video es una escena de nuestra historia.">
 <meta property="og:image" content="https://bodalbum.theaihumans.com/picswedding.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -19,7 +19,7 @@
 :root{
   --egeo:#0B2A4A; --egeo-2:#12406F; --azul:#1A5FB4; --marmol:#F2F4F7; --papel:#FFFFFF;
   --oro:#C49A3A; --oro-claro:#E4C77F; --tinta:#0A1A2B; --gris:#5B6B7C;
-  --linea:rgba(11,42,74,.16); --error:#B3261E; --noche:#030B14;
+  --linea:rgba(11,42,74,.16); --error:#B3261E; --noche:#030B14; --rec:#E0433A;
   --display:'Marcellus', Georgia, 'Times New Roman', serif;
   --sign:'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif;
   --body:'Barlow', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
@@ -29,7 +29,7 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:var(--body);font-size:17px;line-height:1.6;color:var(--tinta);background:var(--marmol);overflow-x:hidden;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom,0px)}
 body.noscroll{overflow:hidden}
-img,svg{display:block;max-width:100%}
+img,svg,video{display:block;max-width:100%}
 a{color:inherit}
 button,input,select,textarea{font:inherit;color:inherit}
 [hidden]{display:none!important}
@@ -38,7 +38,25 @@ button,input,select,textarea{font:inherit;color:inherit}
 .wrap{max-width:1160px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
 .meander{height:24px;background:var(--meander) repeat-x;background-size:24px 24px}
 h2{font-family:var(--display);font-weight:400;font-size:clamp(36px,5vw,60px);line-height:1.05;letter-spacing:-.005em}
-.lead{font-size:clamp(18px,1.6vw,20px);max-width:56ch}
+.lead{font-size:clamp(18px,1.6vw,20px);max-width:58ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--sign);font-weight:600;font-size:20px;letter-spacing:.02em;padding:13px 26px;border-radius:10px;border:2px solid transparent;text-decoration:none;cursor:pointer;transition:transform .15s ease,background .2s ease}
+.btn:active{transform:translateY(1px)}
+.btn svg{width:22px;height:22px}
+.btn-oro{background:var(--oro);color:var(--egeo)}
+.btn-oro:hover{background:var(--oro-claro)}
+.btn-line{border-color:rgba(255,255,255,.4);color:#fff;background:transparent}
+.btn-line:hover{border-color:#fff}
+.btn-dark{background:var(--egeo);color:#fff}
+.btn-soft{background:#fff;color:var(--egeo);border-color:var(--linea)}
+.linkbtn{background:none;border:0;padding:4px 0;color:var(--azul);font-family:var(--sign);font-weight:600;font-size:17px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+
+/* ---------- Sello de pasaporte (solo en pantalla, nunca en el archivo) ---------- */
+.seal{position:absolute;right:8px;bottom:8px;width:60px;height:60px;border-radius:50%;border:2px solid var(--oro-claro);box-shadow:inset 0 0 0 3px transparent,inset 0 0 0 4.5px var(--oro-claro);background:rgba(3,11,20,.38);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);color:var(--oro-claro);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.05;transform:rotate(-12deg);pointer-events:none;font-family:var(--sign);font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.45)}
+.seal span{font-size:7.5px;letter-spacing:.04em}
+.seal b{font-size:10.5px;font-weight:700;margin:2px 0;max-width:48px;overflow:hidden;white-space:nowrap}
+.seal.big{width:92px;height:92px;right:auto;left:auto;bottom:auto}
+.seal.big span{font-size:11px}
+.seal.big b{font-size:15px;max-width:74px}
 
 /* ---------- Tablero de llegadas ---------- */
 .board{background:#071D34;color:#fff;padding:14px 0 16px;padding-top:calc(14px + env(safe-area-inset-top,0px))}
@@ -58,17 +76,6 @@ h2{font-family:var(--display);font-weight:400;font-size:clamp(36px,5vw,60px);lin
 .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(46px,7.2vw,96px);line-height:.98;letter-spacing:-.01em;margin:14px 0 22px;text-wrap:balance}
 .hero .lead{color:rgba(255,255,255,.84)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 22px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--sign);font-weight:600;font-size:20px;letter-spacing:.02em;padding:13px 26px;border-radius:10px;border:2px solid transparent;text-decoration:none;cursor:pointer;transition:transform .15s ease,background .2s ease}
-.btn:active{transform:translateY(1px)}
-.btn svg{width:22px;height:22px}
-.btn-oro{background:var(--oro);color:var(--egeo)}
-.btn-oro:hover{background:var(--oro-claro)}
-.btn-line{border-color:rgba(255,255,255,.4);color:#fff;background:transparent}
-.btn-line:hover{border-color:#fff}
-.btn-dark{background:var(--egeo);color:#fff}
-.btn-dark:hover{background:var(--egeo-2)}
-.btn-soft{background:#fff;color:var(--egeo);border-color:var(--linea)}
-.btn[disabled]{opacity:.6;cursor:progress}
 .hero-status{font-family:var(--sign);font-size:19px;color:rgba(255,255,255,.75)}
 .hero-status b{color:#fff;font-weight:600;font-variant-numeric:tabular-nums}
 .hero-temple{position:relative;z-index:1;margin-top:clamp(40px,6vw,80px);color:rgba(228,199,127,.55);width:min(860px,92%);margin-left:auto;margin-right:auto}
@@ -109,28 +116,81 @@ h2{font-family:var(--display);font-weight:400;font-size:clamp(36px,5vw,60px);lin
 .barcode svg{width:100%;height:46px;fill:var(--tinta)}
 .barcode p{font-family:var(--sign);font-weight:600;font-size:16px;letter-spacing:.12em;text-align:center;margin-top:4px}
 
+/* ---------- La historia (capítulos y retos) ---------- */
+.historia{background:var(--egeo);color:#fff;padding:clamp(64px,9vw,120px) 0}
+.hist-top{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,6vw,80px);align-items:start}
+.historia .lead{color:rgba(255,255,255,.8);margin-top:16px}
+.rt-global{margin:28px 0 22px}
+.rt-global p{font-family:var(--sign);font-size:20px}
+.rt-global b{font-weight:700;color:var(--oro-claro);font-size:30px;font-variant-numeric:tabular-nums}
+.rt-bar{height:8px;border-radius:8px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:8px}
+.rt-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--oro),var(--oro-claro));transition:width 1s}
+.rt-me{display:flex;gap:16px;align-items:center;padding:16px 18px;border:1px solid rgba(255,255,255,.14);border-radius:16px;background:rgba(255,255,255,.04);margin-bottom:22px}
+.rt-me-name{font-family:var(--display);font-size:22px;line-height:1.15}
+.rt-me-txt{font-family:var(--sign);font-size:16px;color:rgba(255,255,255,.72)}
+.rt-me>div{flex:1;min-width:0}
+.rt-me .rt-bar{height:6px}
+.rt-me .rt-bar i{background:#fff}
+.rt-label{font-family:var(--sign);font-weight:600;font-size:15px;color:var(--oro-claro);letter-spacing:.03em}
+.chap.is-priv{border-color:#C2506F;background:linear-gradient(160deg,rgba(176,58,91,.22),rgba(255,255,255,.03))}
+.chap.is-priv .chap-n{color:#FFB3C6}
+.chap.is-priv .chap-bar i{background:#D9667F}
+.chap.is-priv .chap-strip p{border-color:rgba(255,179,198,.4);color:#FFD6E0}
+.rt-board{background:#fff;color:var(--tinta);border-radius:20px;padding:22px 22px 12px}
+.rt-board h3{font-family:var(--sign);font-weight:600;font-size:20px;color:var(--egeo);margin-bottom:10px}
+.rt-board ol{list-style:none}
+.rt-board li{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:10px 8px;border-bottom:1px solid var(--linea)}
+.rt-board li:last-child{border-bottom:0}
+.rt-board .rk{font-family:var(--sign);font-weight:700;font-size:20px;color:var(--gris);text-align:center}
+.rt-board li:nth-child(-n+3) .rk{color:var(--oro)}
+.rt-board li b{font-weight:600;color:var(--egeo);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rt-board li.me{background:#FBF5E6;border-radius:10px}
+.rt-board .rs{font-family:var(--sign);font-size:15px;color:var(--gris);text-align:right;line-height:1.2}
+.rt-board .rs strong{display:block;color:var(--egeo);font-size:18px}
+.rt-empty{color:var(--gris);padding:6px 0 12px}
+.chapters{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;margin-top:clamp(48px,7vw,80px)}
+.chap{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);border-radius:18px;padding:20px 20px 16px;display:flex;flex-direction:column;gap:8px}
+.chap-n{font-family:var(--sign);font-weight:600;font-size:15px;color:var(--oro-claro)}
+.chap h3{font-family:var(--display);font-weight:400;font-size:28px;line-height:1.1}
+.chap-s{color:rgba(255,255,255,.75);font-size:15.5px;line-height:1.5}
+.chap-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:6px 0 4px;min-height:58px}
+.chap-strip p{grid-column:1/-1;font-size:14px;color:rgba(255,255,255,.5);border:1px dashed rgba(255,255,255,.2);border-radius:10px;padding:14px;text-align:center}
+.chap-th{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.08)}
+.chap-th img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s}
+.chap-th img.ok{opacity:1}
+.chap-th.is-video::after{content:'▶';position:absolute;right:5px;bottom:3px;font-size:11px;color:#fff;text-shadow:0 1px 3px #000}
+.chap-prog{display:flex;justify-content:space-between;gap:10px;font-family:var(--sign);font-size:15px;color:rgba(255,255,255,.7)}
+.chap-prog b{color:#fff;font-weight:700}
+.chap-bar{height:4px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden}
+.chap-bar i{display:block;height:100%;background:var(--oro)}
+.chap-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:4px}
+.chap-actions .linkbtn{color:var(--oro-claro);font-size:16px}
+
 /* ---------- Álbum ---------- */
 .album{padding:clamp(64px,9vw,120px) 0;background:var(--marmol)}
 .album-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 40px;margin-bottom:34px}
 .album-head .lead{margin-top:14px;color:#34465A}
 .album-tools{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
 .chips{display:inline-flex;background:#fff;border:1.5px solid var(--linea);border-radius:12px;padding:4px}
-.chip{border:0;background:transparent;font-family:var(--sign);font-weight:600;font-size:18px;color:var(--gris);padding:8px 18px;border-radius:9px;cursor:pointer}
+.chip{border:0;background:transparent;font-family:var(--sign);font-weight:600;font-size:18px;color:var(--gris);padding:8px 16px;border-radius:9px;cursor:pointer}
 .chip[aria-pressed=true]{background:var(--egeo);color:#fff}
+.chap-sel{border:1.5px solid var(--linea);border-radius:10px;padding:9px 12px;background:#fff;font-family:var(--sign);font-weight:600;font-size:17px;color:var(--egeo);max-width:100%}
 .live{font-family:var(--sign);font-size:16px;color:var(--gris);display:flex;align-items:center;gap:8px}
-.live i{width:8px;height:8px;border-radius:50%;background:var(--oro);box-shadow:0 0 0 0 rgba(196,154,58,.6);animation:pulse 2.4s infinite}
+.live i{width:8px;height:8px;border-radius:50%;background:var(--oro);animation:pulse 2.4s infinite}
 .live.off i{background:var(--error);animation:none}
-@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(196,154,58,0)}100%{box-shadow:0 0 0 0 rgba(196,154,58,0)}}
+@keyframes pulse{70%{box-shadow:0 0 0 9px rgba(196,154,58,0)}0%{box-shadow:0 0 0 0 rgba(196,154,58,.6)}}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
 .photo{display:block;width:100%;background:#fff;border:1px solid var(--linea);border-radius:6px;padding:7px 7px 9px;text-align:left;cursor:pointer;box-shadow:0 14px 26px -22px rgba(11,42,74,.7);transition:transform .15s ease}
 .photo:hover{transform:translateY(-2px)}
-.ph-img{display:block;aspect-ratio:4/5;overflow:hidden;background:#E3E8EF;border-radius:3px}
+.ph-img{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;background:#1A2B3E;border-radius:3px}
 .ph-img img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s}
 .ph-img img.ok{opacity:1}
+.ph-play{position:absolute;left:8px;top:8px;background:rgba(3,11,20,.65);color:#fff;border-radius:999px;padding:2px 10px;font-family:var(--sign);font-weight:600;font-size:14px}
 .ph-meta{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:7px;font-family:var(--sign)}
 .ph-meta b{font-weight:600;font-size:17px;color:var(--egeo);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ph-meta time{font-size:14px;color:var(--gris);flex:none;font-variant-numeric:tabular-nums}
-.ph-cap{display:block;font-size:14px;color:#34465A;line-height:1.35;margin-top:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ph-ch{display:block;font-family:var(--sign);font-weight:600;font-size:13px;color:var(--oro);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ph-cap{font-size:14px;color:#34465A;line-height:1.35;margin-top:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .photo.is-mine .ph-meta b{color:var(--oro)}
 .empty{border:2px dashed var(--linea);border-radius:18px;padding:clamp(28px,5vw,56px);text-align:center;background:#fff}
 .empty p{font-family:var(--display);font-size:clamp(24px,3vw,32px);color:var(--egeo);line-height:1.2;max-width:24ch;margin:0 auto 20px}
@@ -144,7 +204,6 @@ h2{font-family:var(--display);font-weight:400;font-size:clamp(36px,5vw,60px);lin
 .info-item svg{width:34px;height:34px;color:var(--azul);margin-bottom:12px}
 .info-item h3{font-family:var(--sign);font-weight:600;font-size:23px;color:var(--egeo);margin-bottom:6px}
 .info-item p{color:#34465A;font-size:16px}
-
 footer{background:var(--egeo);color:#fff;text-align:center;padding:0 0 48px}
 footer .meander{margin-bottom:44px}
 footer .names{font-family:var(--display);font-size:clamp(32px,4vw,46px)}
@@ -155,21 +214,19 @@ footer p{color:rgba(255,255,255,.7);font-family:var(--sign);font-size:19px;margi
 .cam-view{position:absolute;inset:0;background:radial-gradient(90% 60% at 50% 38%,#0F2C4B 0%,var(--noche) 72%)}
 .cam-view video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .cam-view video.mirror{transform:scaleX(-1)}
-.cam-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(3,11,20,.6) 0,rgba(3,11,20,0) 150px),linear-gradient(0deg,rgba(3,11,20,.75) 0,rgba(3,11,20,0) 250px)}
-.cam-frame{position:absolute;top:calc(96px + env(safe-area-inset-top,0px));bottom:calc(196px + env(safe-area-inset-bottom,0px));left:18px;right:18px;pointer-events:none;opacity:.7}
+.cam-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(3,11,20,.6) 0,rgba(3,11,20,0) 150px),linear-gradient(0deg,rgba(3,11,20,.78) 0,rgba(3,11,20,0) 300px)}
+.cam-frame{position:absolute;top:calc(96px + env(safe-area-inset-top,0px));bottom:calc(250px + env(safe-area-inset-bottom,0px));left:18px;right:18px;pointer-events:none;opacity:.7}
 .cam-frame i{position:absolute;width:26px;height:26px;border:2px solid var(--oro-claro)}
 .cam-frame i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0;border-top-left-radius:12px}
 .cam-frame i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0;border-top-right-radius:12px}
 .cam-frame i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0;border-bottom-left-radius:12px}
 .cam-frame i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0;border-bottom-right-radius:12px}
-.cam-stamp{position:absolute;right:34px;bottom:calc(214px + env(safe-area-inset-bottom,0px));width:76px;height:76px;border-radius:50%;border:2px solid var(--oro-claro);box-shadow:inset 0 0 0 4px transparent,inset 0 0 0 5.5px var(--oro-claro);color:var(--oro-claro);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-12deg);pointer-events:none;text-align:center;line-height:1;opacity:.85;text-shadow:0 1px 4px rgba(0,0,0,.4)}
-.cam-stamp b{font-family:var(--display);font-weight:400;font-size:14px;margin:3px 0}
-.cam-stamp span{font-family:var(--sign);font-weight:600;font-size:9px}
+body.recording .cam-frame i{border-color:var(--rec)}
 .cam-count{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:clamp(120px,30vw,220px);color:#fff;text-shadow:0 6px 30px rgba(0,0,0,.5);pointer-events:none}
 .cam-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
 .cam-flash.go{animation:flash .45s ease-out}
 @keyframes flash{0%{opacity:.9}100%{opacity:0}}
-.cam-msg{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:120px 28px 220px;text-align:center}
+.cam-msg{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:120px 28px 260px;text-align:center}
 .cam-msg h2{font-family:var(--display);font-weight:400;font-size:clamp(28px,6vw,38px);line-height:1.12;max-width:16ch}
 .cam-msg p{max-width:34ch;color:rgba(255,255,255,.78);font-size:16px}
 .cam-msg-actions{display:grid;gap:10px;margin-top:8px;width:min(320px,100%)}
@@ -177,12 +234,17 @@ footer p{color:rgba(255,255,255,.7);font-family:var(--sign);font-size:19px;margi
 .cam-brand{font-family:var(--display);font-size:22px;line-height:1.1;text-shadow:0 2px 12px rgba(0,0,0,.4)}
 .cam-brand small{display:block;font-family:var(--sign);font-weight:500;font-size:15px;color:var(--oro-claro);margin-top:3px}
 .cam-tools{display:flex;gap:10px}
-.cam-icon{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(3,11,20,.35);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;display:grid;place-items:center;cursor:pointer;padding:0;transition:background .2s,color .2s,border-color .2s}
+.cam-icon{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.28);background:rgba(3,11,20,.35);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;display:grid;place-items:center;cursor:pointer;padding:0;font-size:22px;line-height:1;transition:background .2s,color .2s,border-color .2s}
 .cam-icon svg{width:22px;height:22px}
 .cam-icon[aria-pressed=true]{background:var(--oro);border-color:var(--oro);color:var(--egeo)}
 .cam-icon.lg{width:54px;height:54px}
 .cam-icon.lg svg{width:26px;height:26px}
+.cam-rec{position:absolute;left:50%;top:calc(82px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:rgba(3,11,20,.62);font-family:var(--sign);font-weight:600;font-size:18px;font-variant-numeric:tabular-nums}
+.cam-rec i{width:10px;height:10px;border-radius:50%;background:var(--rec);animation:blink 1s steps(1) infinite}
 .cam-bottom{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 22px calc(16px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:1fr auto 1fr;align-items:center;row-gap:12px}
+.cam-modes{grid-column:1/-1;justify-self:center;display:flex;gap:4px;padding:3px;border-radius:999px;background:rgba(3,11,20,.42);border:1px solid rgba(255,255,255,.18);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.cam-mode{border:0;background:transparent;color:rgba(255,255,255,.8);font-family:var(--sign);font-weight:600;font-size:16px;padding:5px 18px;border-radius:999px;cursor:pointer}
+.cam-mode[aria-checked=true]{background:#fff;color:var(--egeo)}
 .cam-album{justify-self:start;display:flex;align-items:center;gap:10px;background:none;border:0;color:#fff;cursor:pointer;padding:0;text-align:left}
 .cam-thumb{width:54px;height:54px;border-radius:12px;border:2px solid rgba(255,255,255,.85);overflow:hidden;background:rgba(255,255,255,.1);display:grid;place-items:center;flex:none}
 .cam-thumb img{width:100%;height:100%;object-fit:cover}
@@ -190,37 +252,51 @@ footer p{color:rgba(255,255,255,.7);font-family:var(--sign);font-size:19px;margi
 .cam-album-lbl{font-family:var(--sign);font-weight:600;font-size:16px;line-height:1.15;max-width:9ch}
 .cam-bottom .cam-icon.lg{justify-self:end}
 .shutter{width:84px;height:84px;border-radius:50%;border:4px solid #fff;background:transparent;display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:0 0 0 1px rgba(228,199,127,.55),0 8px 30px rgba(0,0,0,.35)}
-.shutter i{width:66px;height:66px;border-radius:50%;background:#fff;transition:transform .12s,background .2s}
-.shutter:active i{transform:scale(.88);background:var(--oro-claro)}
+.shutter i{width:66px;height:66px;border-radius:50%;background:#fff;transition:transform .12s,background .2s,width .2s,height .2s,border-radius .2s}
+.shutter:active i{transform:scale(.88)}
+.shutter.is-video i{background:var(--rec)}
+body.recording .shutter i{width:30px;height:30px;border-radius:7px}
 .shutter[disabled]{opacity:.3}
-.cam-gallery{grid-column:1/-1;justify-self:center;display:flex;align-items:center;gap:8px;background:none;border:0;color:rgba(255,255,255,.85);font-family:var(--sign);font-weight:600;font-size:17px;cursor:pointer;padding:6px 10px}
+.cam-row{grid-column:1/-1;justify-self:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 12px}
+.cam-play{position:relative;isolation:isolate;display:flex;align-items:center;gap:10px;height:50px;padding:0 20px 0 7px;border-radius:999px;border:0;background:linear-gradient(180deg,rgba(18,64,111,.92),rgba(11,42,74,.92));color:#fff;font-family:var(--sign);font-weight:700;font-size:21px;letter-spacing:.02em;cursor:pointer;box-shadow:0 8px 26px rgba(196,154,58,.35);animation:nudge 3.2s ease-in-out infinite}
+.cam-play small{font-size:15px;font-weight:600;color:var(--oro-claro);font-variant-numeric:tabular-nums}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+.cam-play::before{content:'';position:absolute;inset:-3px;z-index:-1;border-radius:999px;padding:3px;background:conic-gradient(from var(--a),var(--oro) 0%,#FFF6DA 12%,var(--oro-claro) 22%,rgba(196,154,58,.25) 45%,var(--oro) 70%,#FFF6DA 82%,var(--oro) 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:spin 2.4s linear infinite}
+.cam-play::after{content:'';position:absolute;inset:-3px;z-index:-2;border-radius:999px;animation:halo 2.2s ease-out infinite}
+@keyframes spin{to{--a:360deg}}
+@keyframes halo{0%{box-shadow:0 0 0 0 rgba(228,199,127,.75)}75%,100%{box-shadow:0 0 0 18px rgba(228,199,127,0)}}
+@keyframes nudge{0%,86%,100%{transform:none}90%{transform:scale(1.07)}94%{transform:scale(.98)}}
+.cam-hint{position:absolute;left:50%;bottom:calc(100% + 12px);transform:translateX(-50%);white-space:nowrap;background:var(--oro);color:var(--egeo);border-radius:10px;padding:6px 12px;font-family:var(--sign);font-weight:700;font-size:15px;box-shadow:0 8px 20px rgba(0,0,0,.35);pointer-events:none;animation:bob 1.4s ease-in-out infinite}
+.cam-hint::after{content:'';position:absolute;left:50%;top:100%;margin-left:-7px;border:7px solid transparent;border-top-color:var(--oro)}
+@keyframes bob{50%{transform:translate(-50%,-6px)}}
+.cam-gallery{display:flex;align-items:center;gap:8px;background:none;border:0;color:rgba(255,255,255,.85);font-family:var(--sign);font-weight:600;font-size:17px;cursor:pointer;padding:6px 10px}
 .cam-gallery svg{width:20px;height:20px}
+body.recording .cam-modes,body.recording .cam-album,body.recording #camFlip,body.recording .cam-row,body.recording .cam-quest,body.recording .cam-tools{visibility:hidden}
 .cam-review{position:absolute;inset:0;z-index:4;background:var(--noche);display:flex;flex-direction:column}
 .cam-review-img{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px 0}
-.cam-review-img img{max-width:100%;max-height:100%;border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.6)}
+.cam-review-img img,.cam-review-img video{max-width:100%;max-height:100%;border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.6);background:#000}
 .cam-review-bar{padding:16px 18px calc(18px + env(safe-area-inset-bottom,0px));display:grid;gap:10px;max-width:620px;width:100%;margin:0 auto}
 .cam-review-bar input{width:100%;border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#fff;border-radius:12px;padding:13px 14px;font-size:17px}
 .cam-review-bar input::placeholder{color:rgba(255,255,255,.5)}
 .cam-review-bar input:focus{outline:none;border-color:var(--oro-claro)}
 .cam-review-bar .row{display:grid;grid-template-columns:1fr 1.4fr;gap:10px;margin-top:4px}
-@media (max-width:400px){ .cam-album-lbl{display:none} }
+.review-reto{font-family:var(--sign);font-weight:600;font-size:16px;color:var(--oro-claro);text-align:center}
+.review-priv,.q-priv{font-size:14.5px;line-height:1.4;border-radius:12px;padding:10px 12px;background:rgba(122,31,61,.35);border:1px solid #C2506F;color:#FFE3EA;text-align:left}
+.q-priv{margin-top:14px;background:#FCEFF3;color:#6B1733;border-color:#E8A9BB}
 
-/* ---------- Dinámica de retos ---------- */
-.cam-row{grid-column:1/-1;justify-self:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 12px}
-.cam-play{display:flex;align-items:center;gap:9px;height:44px;padding:0 16px 0 6px;border-radius:999px;border:1px solid rgba(228,199,127,.7);background:rgba(3,11,20,.42);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font-family:var(--sign);font-weight:600;font-size:17px;cursor:pointer}
-.cam-play small{font-size:15px;color:var(--oro-claro);font-variant-numeric:tabular-nums}
+/* ---------- Dinámica: reto activo, tarjeta y pasaporte ---------- */
 .q-ring{--p:0;width:32px;height:32px;border-radius:50%;background:conic-gradient(var(--oro) calc(var(--p)*1%),rgba(255,255,255,.18) 0);display:grid;place-items:center;flex:none}
 .q-ring b{width:calc(100% - 7px);height:calc(100% - 7px);border-radius:50%;background:var(--noche);display:grid;place-items:center;font-family:var(--sign);font-weight:700;font-size:14px;color:var(--oro-claro)}
 .q-ring.big{width:64px;height:64px}
 .q-ring.big b{width:calc(100% - 10px);height:calc(100% - 10px);font-size:24px}
-.retos .q-ring b{background:var(--egeo)}
-.cam-quest{position:absolute;left:50%;top:calc(80px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:6px;width:max-content;max-width:calc(100% - 32px);padding:6px 6px 6px 14px;border-radius:14px;background:rgba(3,11,20,.62);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--oro)}
+.historia .q-ring b{background:var(--egeo)}
+.cam-quest{position:absolute;left:50%;top:calc(82px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:3;display:flex;align-items:center;gap:6px;width:max-content;max-width:calc(100% - 32px);padding:6px 6px 6px 14px;border-radius:14px;background:rgba(3,11,20,.62);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--oro)}
 .cam-quest .qp{background:none;border:0;color:#fff;text-align:left;cursor:pointer;padding:2px 0;min-width:0}
 .cam-quest small{display:block;font-family:var(--sign);font-weight:600;font-size:13px;color:var(--oro-claro)}
 .cam-quest span{display:block;font-family:var(--display);font-size:17px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cam-quest .qx{width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;font-size:20px;line-height:1;cursor:pointer;flex:none}
-.quest{position:absolute;inset:0;z-index:5;background:rgba(3,11,20,.88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);overflow-y:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 18px calc(22px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:18px}
-.q-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;max-width:460px;width:100%;margin:0 auto}
+.quest{position:absolute;inset:0;z-index:5;background:rgba(3,11,20,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);overflow-y:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 18px calc(22px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:16px}
+.q-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;max-width:480px;width:100%;margin:0 auto}
 .q-player{display:flex;gap:14px;align-items:center;flex:1;min-width:0}
 .q-player>div{flex:1;min-width:0}
 .q-lvlname{font-family:var(--display);font-size:22px;line-height:1.1}
@@ -228,10 +304,23 @@ footer p{color:rgba(255,255,255,.7);font-family:var(--sign);font-size:19px;margi
 .q-bar{height:5px;border-radius:5px;background:rgba(255,255,255,.14);overflow:hidden;margin-top:6px}
 .q-bar i{display:block;height:100%;width:0;background:var(--oro);transition:width .6s}
 .q-next{font-family:var(--sign);font-size:14px;color:var(--oro-claro);margin-top:4px}
-.q-body{max-width:460px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:16px;flex:1;justify-content:center}
+.q-prog{max-width:480px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;padding:12px 14px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(255,255,255,.04)}
+.q-prog p{font-family:var(--sign);font-size:14px;color:rgba(255,255,255,.7);line-height:1.25}
+.q-prog b{display:block;font-size:18px;color:#fff;font-variant-numeric:tabular-nums}
+.q-prog .q-bar i{background:linear-gradient(90deg,var(--oro),var(--oro-claro))}
+.q-prog .me .q-bar i{background:#fff}
+.q-prog-ch{grid-column:1/-1;font-family:var(--sign);font-size:14.5px;color:var(--oro-claro)}
+.q-chaps-wrap{max-width:480px;width:100%;margin:0 auto}
+.q-chaps-wrap p{font-family:var(--sign);font-weight:600;font-size:15px;color:rgba(255,255,255,.7);margin-bottom:6px}
+.q-chaps{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.q-chaps::-webkit-scrollbar{display:none}
+.q-chaps button{flex:none;border:1px solid rgba(255,255,255,.22);background:transparent;color:#fff;border-radius:999px;padding:6px 14px;font-family:var(--sign);font-weight:600;font-size:15px;cursor:pointer;white-space:nowrap}
+.q-chaps button[aria-pressed=true]{background:var(--oro);border-color:var(--oro);color:var(--egeo)}
+.q-body{max-width:480px;width:100%;margin:0 auto;display:flex;flex-direction:column;gap:16px;flex:1;justify-content:center}
 .qcard{background:#fff;color:var(--tinta);border-radius:22px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.5)}
 .qcard-band{display:flex;justify-content:space-between;gap:10px;padding:12px 20px;background:var(--egeo);color:#fff;font-family:var(--sign);font-weight:600;font-size:16px}
-.qcard-band span:first-child{color:var(--oro-claro)}
+.qcard-band span:first-child{color:var(--oro-claro);flex:none}
+.qcard-band span:last-child{text-align:right}
 .qcard.r2 .qcard-band{background:linear-gradient(90deg,var(--egeo),var(--azul))}
 .qcard.r3 .qcard-band{background:linear-gradient(90deg,#8C6A1F,var(--oro),#E9D08E);color:var(--egeo)}
 .qcard.r3 .qcard-band span:first-child{color:var(--egeo)}
@@ -239,7 +328,24 @@ footer p{color:rgba(255,255,255,.7);font-family:var(--sign);font-size:19px;margi
 .qcard-body{padding:22px 22px 24px}
 .qcard-body h2{font-size:clamp(28px,7vw,36px);color:var(--egeo);line-height:1.08;text-wrap:balance}
 .qcard-body p{color:#34465A;margin-top:10px;font-size:16px}
-.qcard-body .qcard-pts{display:inline-block;margin-top:16px;font-family:var(--sign);font-weight:700;font-size:20px;color:var(--oro);border:1.5px solid var(--oro);border-radius:8px;padding:1px 12px}
+.qcard-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.qcard-tags span{font-family:var(--sign);font-weight:700;font-size:18px;color:var(--oro);border:1.5px solid var(--oro);border-radius:8px;padding:1px 12px}
+.qcard-tags span.vid{color:#fff;background:var(--rec);border-color:var(--rec)}
+.qcard-tags span.priv{color:#fff;background:#B03A5B;border-color:#B03A5B}
+.q-gate{max-width:480px;width:100%;margin:0 auto;flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.q-gate-card{background:#fff;color:var(--tinta);border-radius:22px;overflow:hidden;box-shadow:0 0 0 2px #B03A5B,0 30px 60px rgba(0,0,0,.5);animation:qpop .5s cubic-bezier(.2,1.3,.4,1)}
+.q-gate-band{padding:12px 20px;background:linear-gradient(90deg,#4A0F24,#7A1F3D,#B03A5B);color:#FFD6E0;font-family:var(--sign);font-weight:700;font-size:16px;letter-spacing:.04em}
+.q-gate-body{padding:22px 22px 24px}
+.q-gate-body h2{font-size:clamp(30px,7vw,38px);color:#6B1733;line-height:1.05}
+.q-gate-body>p{color:#34465A;margin-top:10px;font-size:16px}
+.q-gate-body ul{margin:14px 0 0 20px;display:grid;gap:8px;color:#34465A;font-size:15.5px;line-height:1.4}
+.q-gate-body li::marker{color:#B03A5B}
+.btn-vino{background:#B03A5B;color:#fff}
+.btn-vino:hover{background:#C2506F}
+.qcard.priv .qcard-band{background:linear-gradient(90deg,#4A0F24,#7A1F3D,#B03A5B)}
+.qcard.priv .qcard-band span:first-child{color:#FFD6E0}
+.q-chaps button.priv{border-color:#C2506F}
+.q-chaps button.priv[aria-pressed=true]{background:#B03A5B;border-color:#B03A5B;color:#fff}
 .qcard.pop{animation:qpop .5s cubic-bezier(.2,1.3,.4,1)}
 @keyframes qpop{from{transform:scale(.86) rotate(-2deg);opacity:0}to{transform:none;opacity:1}}
 .q-actions{display:grid;gap:10px}
@@ -248,50 +354,25 @@ footer p{color:rgba(255,255,255,.7);font-family:var(--sign);font-size:19px;margi
 .q-all{justify-self:center;color:var(--oro-claro)}
 .q-listhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .q-listhead h2{font-size:30px}
-.q-cat{font-family:var(--sign);font-weight:600;font-size:19px;color:var(--oro-claro);margin:16px 0 8px;display:flex;justify-content:space-between}
+.q-cat{font-family:var(--sign);font-weight:600;font-size:19px;color:var(--oro-claro);margin:16px 0 8px;display:flex;justify-content:space-between;gap:10px}
 .q-cat span{color:rgba(255,255,255,.6);font-variant-numeric:tabular-nums}
 .q-grid{display:grid;gap:8px}
 .qitem{display:grid;grid-template-columns:52px 1fr;align-items:center;gap:12px;width:100%;text-align:left;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px 12px 8px 8px;color:#fff;cursor:pointer;font-size:15.5px;line-height:1.3}
 .qi-mark{height:36px;border-radius:9px;display:grid;place-items:center;font-family:var(--sign);font-weight:700;font-size:15px;color:var(--oro-claro);border:1.5px solid rgba(228,199,127,.45)}
 .qitem.r3 .qi-mark{background:rgba(196,154,58,.2)}
+.qitem em{font-style:normal;font-family:var(--sign);font-weight:600;font-size:13px;color:#FF8A80;margin-left:6px}
 .qitem.done{opacity:.62;cursor:default}
 .qitem.done .qi-mark{background:var(--oro);color:var(--egeo);border-color:var(--oro)}
 .qwin{position:fixed;inset:0;z-index:95;display:grid;place-items:center;pointer-events:none;padding:20px}
 .qwin-card{background:var(--egeo);color:#fff;border:2px solid var(--oro);border-radius:24px;padding:26px 28px 24px;text-align:center;max-width:340px;box-shadow:0 30px 80px rgba(0,0,0,.55);animation:qwin .6s cubic-bezier(.2,1.4,.4,1)}
 @keyframes qwin{from{transform:scale(.6);opacity:0}}
-.qwin-medal{width:96px;height:96px;margin:0 auto 12px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#F1DDA4,var(--oro) 60%,#8C6A1F);display:grid;place-items:center;font-family:var(--sign);font-weight:700;font-size:30px;color:var(--egeo);box-shadow:0 0 0 6px rgba(228,199,127,.25)}
+.qwin-card .seal{position:relative;right:auto;bottom:auto;margin:0 auto 14px;width:104px;height:104px;animation:stampin .55s .15s cubic-bezier(.2,1.6,.4,1) both}
+.qwin-card .seal span{font-size:11px}
+.qwin-card .seal b{font-size:17px;max-width:84px}
+@keyframes stampin{from{transform:rotate(-30deg) scale(1.8);opacity:0}to{transform:rotate(-12deg) scale(1);opacity:1}}
 .qwin-k{font-family:var(--sign);font-weight:600;font-size:17px;color:var(--oro-claro)}
 .qwin-card h3{font-family:var(--display);font-weight:400;font-size:26px;line-height:1.15;margin:6px 0 8px}
 .qwin-card p:last-child{font-family:var(--sign);font-size:17px;color:rgba(255,255,255,.82)}
-.retos{background:var(--egeo);color:#fff;padding:clamp(64px,9vw,120px) 0}
-.retos-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,6vw,80px);align-items:start}
-.retos .lead{color:rgba(255,255,255,.8);margin-top:16px}
-.rt-global{margin:28px 0 22px}
-.rt-global p{font-family:var(--sign);font-size:20px}
-.rt-global b{font-weight:700;color:var(--oro-claro);font-size:30px;font-variant-numeric:tabular-nums}
-.rt-bar{height:8px;border-radius:8px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:8px}
-.rt-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--oro),var(--oro-claro));transition:width 1s}
-.rt-me{display:flex;gap:16px;align-items:center;padding:16px 18px;border:1px solid rgba(255,255,255,.14);border-radius:16px;background:rgba(255,255,255,.04);margin-bottom:22px}
-.rt-me-name{font-family:var(--display);font-size:22px;line-height:1.15}
-.rt-me-txt{font-family:var(--sign);font-size:16px;color:rgba(255,255,255,.72)}
-.rt-open h3,.rt-board h3{font-family:var(--sign);font-weight:600;font-size:20px;color:var(--oro-claro);margin:30px 0 12px}
-.rt-chips{display:flex;flex-wrap:wrap;gap:8px}
-.rt-chips button{border:1px solid rgba(228,199,127,.45);background:transparent;color:#fff;border-radius:999px;padding:7px 14px;font-size:15px;cursor:pointer;text-align:left}
-.rt-chips button b{color:var(--oro-claro);font-family:var(--sign);margin-left:6px}
-.rt-board{background:#fff;color:var(--tinta);border-radius:20px;padding:22px 22px 12px}
-.rt-board h3{color:var(--egeo);margin-top:0}
-.rt-board ol{list-style:none}
-.rt-board li{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:10px 8px;border-bottom:1px solid var(--linea)}
-.rt-board li:last-child{border-bottom:0}
-.rt-board .rk{font-family:var(--sign);font-weight:700;font-size:20px;color:var(--gris);text-align:center}
-.rt-board li:nth-child(-n+3) .rk{color:var(--oro)}
-.rt-board li b{font-weight:600;color:var(--egeo);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.rt-board li.me{background:#FBF5E6;border-radius:10px}
-.rt-board .rs{font-family:var(--sign);font-size:15px;color:var(--gris);text-align:right;line-height:1.2}
-.rt-board .rs strong{display:block;color:var(--egeo);font-size:18px}
-.rt-empty{color:var(--gris);padding:6px 0 12px}
-.ph-ch{display:block;font-family:var(--sign);font-weight:600;font-size:13px;color:var(--oro);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-@media (max-width:980px){ .retos-grid{grid-template-columns:1fr} }
 
 /* ---------- Cinta de subida ---------- */
 .tray{position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));margin:0 auto;max-width:460px;z-index:80;background:#fff;border:2px solid var(--oro);border-radius:16px;padding:12px 14px;box-shadow:0 18px 40px rgba(0,0,0,.28)}
@@ -299,22 +380,21 @@ body.cam-open .tray{top:calc(78px + env(safe-area-inset-top,0px));bottom:auto}
 .tray-head{display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:var(--sign);font-size:18px;color:var(--egeo)}
 .tray-head b{font-weight:600}
 .tray-items{display:flex;gap:8px;margin-top:8px;overflow-x:auto}
-.tray-items span{position:relative;flex:none;width:46px;height:46px;border-radius:6px;overflow:hidden;background:var(--marmol)}
-.tray-items img{width:100%;height:100%;object-fit:cover}
+.tray-items span{position:relative;flex:none;width:46px;height:46px;border-radius:6px;overflow:hidden;background:var(--egeo);color:#fff;display:grid;place-items:center;font-family:var(--sign);font-weight:700;font-size:13px}
+.tray-items img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .tray-items span::after{content:'';position:absolute;inset:0;background:rgba(11,42,74,.45)}
+.tray-items span em{position:relative;z-index:1;font-style:normal}
 .tray-items span.uploading::after{background:linear-gradient(90deg,rgba(11,42,74,.55) 0 40%,rgba(11,42,74,.2) 50%,rgba(11,42,74,.55) 60% 100%);background-size:250% 100%;animation:sweep 1.2s linear infinite}
 .tray-items span.done::after{background:rgba(196,154,58,.25);border:3px solid var(--oro);border-radius:6px}
 .tray-items span.error::after{background:rgba(179,38,30,.55)}
 @keyframes sweep{from{background-position:100% 0}to{background-position:-150% 0}}
-.linkbtn{background:none;border:0;padding:4px 0;color:var(--azul);font-family:var(--sign);font-weight:600;font-size:17px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:90;background:var(--egeo);color:#fff;border-radius:999px;padding:10px 20px;font-family:var(--sign);font-weight:600;font-size:17px;box-shadow:0 10px 30px rgba(0,0,0,.3);max-width:92vw;text-align:center}
-body.cam-open .toast{bottom:calc(200px + env(safe-area-inset-bottom,0px))}
+body.cam-open .toast{bottom:calc(260px + env(safe-area-inset-bottom,0px))}
 
 /* ---------- Modales ---------- */
-.modal{position:fixed;inset:0;z-index:75;background:rgba(5,16,30,.8);display:flex;align-items:center;justify-content:center;padding:20px}
+.modal{position:fixed;inset:0;z-index:76;background:rgba(5,16,30,.8);display:flex;align-items:center;justify-content:center;padding:20px}
 .namecard{background:#fff;border-radius:20px;overflow:hidden;width:100%;max-width:440px;box-shadow:0 30px 60px rgba(0,0,0,.45)}
-.namecard .pass-top{margin:0}
-.namecard .pass-band{margin:0}
+.namecard .pass-top,.namecard .pass-band{margin:0}
 .namecard-body{padding:22px 24px 24px;display:grid;gap:14px}
 .form-title{font-family:var(--display);font-size:clamp(28px,3vw,34px);line-height:1.1;color:var(--egeo);font-weight:400}
 .namecard-body p{color:#34465A;font-size:16px;margin-top:-6px}
@@ -322,13 +402,14 @@ body.cam-open .toast{bottom:calc(200px + env(safe-area-inset-bottom,0px))}
 .namecard-body input{width:100%;border:1.5px solid var(--linea);border-radius:10px;padding:13px 14px;font-size:18px;margin-top:6px}
 .namecard-body input:focus{outline:none;border-color:var(--azul);box-shadow:0 0 0 4px rgba(26,95,180,.14)}
 .namecard-actions{display:grid;gap:8px}
-
 .lb{position:fixed;inset:0;z-index:72;background:rgba(3,11,20,.96);color:#fff;display:flex;flex-direction:column}
 .lb-top{display:flex;justify-content:space-between;align-items:center;padding:calc(12px + env(safe-area-inset-top,0px)) 16px 8px;font-family:var(--sign);font-size:17px;color:rgba(255,255,255,.7)}
 .lb-x{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;font-size:26px;line-height:1;cursor:pointer}
 .lb-stage{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 12px;touch-action:pan-y}
-.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;user-select:none;-webkit-user-drag:none}
-.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:30px;line-height:1;cursor:pointer}
+.lb-stage img,.lb-stage video{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;user-select:none;-webkit-user-drag:none}
+.lb-stage iframe{--ar:.5625;border:0;border-radius:6px;background:#000;aspect-ratio:var(--ar);width:min(100%,calc((100vh - 230px) * var(--ar)));max-height:100%}
+.lb-stage .seal.big{top:10px;right:22px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:30px;line-height:1;cursor:pointer}
 .lb-nav.prev{left:12px}.lb-nav.next{right:12px}
 .lb-meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:14px 24px;padding:14px 18px calc(18px + env(safe-area-inset-bottom,0px));max-width:1000px;width:100%;margin:0 auto}
 .lb-meta b{display:block;font-family:var(--display);font-weight:400;font-size:26px;line-height:1.1}
@@ -336,7 +417,6 @@ body.cam-open .toast{bottom:calc(200px + env(safe-area-inset-bottom,0px))}
 .lb-meta p{color:rgba(255,255,255,.82);margin-top:4px;max-width:52ch}
 .lb-actions{display:flex;gap:10px;flex-wrap:wrap}
 .lb-actions .btn{font-size:17px;padding:9px 18px}
-
 .demo-banner{position:fixed;left:12px;right:12px;margin:0 auto;width:fit-content;top:calc(10px + env(safe-area-inset-top,0px));background:#fff;color:var(--egeo);border:2px solid var(--oro);border-radius:999px;padding:6px 16px;font-size:14px;z-index:60;box-shadow:0 10px 30px rgba(0,0,0,.2);max-width:92vw;text-align:center}
 
 /* ---------- Pantalla del salón (?modo=pantalla) ---------- */
@@ -354,6 +434,7 @@ body.mode-screen .flap i{font-size:clamp(18px,1.8vw,30px)}
 .scr-slide img{position:absolute;inset:3%;width:94%;height:94%;object-fit:contain;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))}
 .scr-slide.on img{animation:kb 9s ease-out both}
 @keyframes kb{from{transform:scale(1.04)}to{transform:scale(1)}}
+.scr-vid{position:absolute;left:32px;top:24px;z-index:2;background:rgba(3,11,20,.65);border-radius:999px;padding:6px 16px;font-family:var(--sign);font-weight:600;font-size:20px}
 .scr-side{display:flex;flex-direction:column;gap:22px;padding:28px 32px 28px 8px;justify-content:center}
 .scr-card{background:#fff;color:var(--tinta);border-radius:20px;overflow:hidden}
 .scr-card .pass-top{margin:0;padding:14px 20px}
@@ -375,8 +456,7 @@ body.mode-qr{background:#E9ECF1}
 body.mode-qr #app,body.mode-qr .board,body.mode-qr .demo-banner{display:none}
 body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;gap:20px;padding:40px 16px 60px}
 .qr-card{width:100%;max-width:520px;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(11,42,74,.5);text-align:center}
-.qr-card .pass-top{margin:0}
-.qr-card .pass-band{margin:0}
+.qr-card .pass-top,.qr-card .pass-band{margin:0}
 .qr-card-body{padding:28px 34px 34px}
 .qr-card h1{font-family:var(--display);font-weight:400;font-size:40px;line-height:1.05;color:var(--egeo)}
 .qr-card-body>p{color:#34465A;margin:12px auto 22px;max-width:34ch}
@@ -394,7 +474,7 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
 /* ---------- Responsive ---------- */
 @media (min-width:760px){ .grid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:20px} }
 @media (max-width:980px){
-  .hero-inner{grid-template-columns:1fr}
+  .hero-inner,.hist-top{grid-template-columns:1fr}
   body.mode-screen .screen{grid-template-columns:1fr;grid-template-rows:1fr auto}
   .scr-side{flex-direction:row;padding:14px 20px 20px}
   .scr-card,.scr-qr{flex:1}
@@ -411,8 +491,13 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
   .hero-cta .btn{flex:1 1 100%}
   .ph-meta b{font-size:15px}
   .ph-cap{font-size:13px}
-  .lb-nav{display:none}
+  .seal{width:50px;height:50px}
+  .seal span{font-size:6.5px}
+  .seal b{font-size:9px;max-width:40px}
+  .lb-nav{width:40px;height:40px;font-size:24px;background:rgba(3,11,20,.55)}
+  .lb-stage .seal.big{width:72px;height:72px}
 }
+@media (max-width:400px){ .cam-album-lbl{display:none} }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .hero-temple path{stroke-dashoffset:0}
@@ -430,11 +515,11 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
 </head>
 <body>
 
-<!-- Tablero de llegadas: las fotos más recientes -->
+<!-- Tablero de llegadas -->
 <header class="board" aria-label="Tablero de llegadas del álbum">
   <p class="sr-only" id="boardSr">Álbum compartido de la boda de Jenireé y Leandro en Atenas.</p>
   <div class="wrap board-grid" id="boardGrid" aria-hidden="true">
-    <span class="board-h">Hora</span><span class="board-h">Pasajero</span><span class="board-h c-flight">Foto</span><span class="board-h">Estado</span>
+    <span class="board-h">Hora</span><span class="board-h">Pasajero</span><span class="board-h c-flight">Escena</span><span class="board-h">Estado</span>
   </div>
 </header>
 
@@ -444,45 +529,43 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
   <div class="wrap hero-inner">
     <div class="hero-copy">
       <p class="hero-kicker">Jenireé &amp; Leandro en Atenas, octubre de 2026</p>
-      <h1>Álbum de a bordo</h1>
-      <p class="lead">Lo que ves desde tu asiento también es parte de la boda. Toma fotos con la cámara o súbelas desde tu galería: aparecen al instante en el álbum que compartimos con todos los invitados.</p>
+      <h1>Nuestra historia en Atenas</h1>
+      <p class="lead">La escribimos con ustedes. Desde las maletas hasta el último baile, cada foto y cada video que compartes es una escena de la historia, y cada reto cumplido pone un sello en tu pasaporte.</p>
       <div class="hero-cta">
         <button class="btn btn-oro" type="button" id="heroCam">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
           Volver a la cámara
         </button>
-        <button class="btn btn-line" type="button" id="heroUpload">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.5"/></svg>
-          Subir de mi galería
-        </button>
+        <button class="btn btn-line" type="button" id="heroPlay">Jugar un reto</button>
+        <button class="btn btn-line" type="button" id="heroUpload">Subir de mi galería</button>
       </div>
       <p class="hero-status" id="heroStatus">Abriendo el álbum…</p>
     </div>
     <div class="pass-wrap" id="heroPassWrap">
-      <article class="pass" id="heroPass" aria-label="Tu pase de abordar del álbum">
+      <article class="pass" id="heroPass" aria-label="Tu pase de abordar">
         <div class="pass-main">
           <header class="pass-top"><span class="pass-brand">JLO<small>Wedding Air</small></span><span class="pass-kind">Pase de abordar</span></header>
           <div class="pass-band"></div>
           <div class="route">
-            <div><b>CAM</b><span>Tu cámara</span></div>
+            <div><b>SJO</b><span>Costa Rica</span></div>
             <div class="route-mid" data-plane></div>
-            <div class="to"><b>ALB</b><span>Álbum</span></div>
+            <div class="to"><b>ATH</b><span>Atenas</span></div>
           </div>
           <dl class="fields">
             <div><dt>Pasajero <button type="button" class="pass-edit" id="nameEdit">Cambiar</button></dt><dd id="pName">Tu nombre aquí</dd></div>
             <div><dt>Vuelo</dt><dd>JLO 2026</dd></div>
-            <div><dt>Destino</dt><dd>Atenas</dd></div>
-            <div><dt>Retos</dt><dd id="pRetos">0</dd></div>
-            <div><dt>Fotos a bordo</dt><dd id="pTotal">0</dd></div>
+            <div><dt>Escenas</dt><dd id="pScenes">0</dd></div>
             <div><dt>Pasajeros</dt><dd id="pGuests">0</dd></div>
-            <div><dt>Estado</dt><dd id="pState">Abordando</dd></div>
+            <div><dt>Fotos</dt><dd id="pPhotos">0</dd></div>
+            <div><dt>Videos</dt><dd id="pVideos">0</dd></div>
+            <div><dt>Tus aportes</dt><dd id="pMine">0</dd></div>
           </dl>
           <div class="pass-mark" data-parthenon></div>
         </div>
         <aside class="pass-stub">
-          <dl class="stub-seat"><dt>Tus fotos</dt><dd id="pMine">0</dd></dl>
-          <dl class="stub-gate"><dt>Puerta</dt><dd>Álbum compartido</dd></dl>
-          <div class="barcode" data-barcode="JLO-FOTOS"></div>
+          <dl class="stub-seat"><dt>Tus sellos</dt><dd id="pSeals">0</dd></dl>
+          <dl class="stub-gate"><dt>Nivel</dt><dd id="pLevel">Pasajero</dd></dl>
+          <div class="barcode" data-barcode="JLO-HISTORIA"></div>
         </aside>
       </article>
     </div>
@@ -491,22 +574,24 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
   <div class="hero-ground" aria-hidden="true"></div>
 </section>
 
-<!-- Dinámica de retos -->
-<section class="retos" id="retos" aria-labelledby="retosTitle">
-  <div class="wrap retos-grid">
-    <div>
-      <h2 id="retosTitle">Dinámica de retos</h2>
-      <p class="lead">Hay <span data-retos-total></span> retos repartidos entre el viaje, Atenas, la ceremonia y la fiesta. Cada foto que cumple uno suma puntos para ti y avanza el marcador de todos.</p>
-      <div class="rt-global"><p><b id="rtGlobal">0</b> de <span data-retos-total></span> retos cumplidos entre todos</p><div class="rt-bar"><i id="rtGlobalBar"></i></div></div>
-      <div class="rt-me"><span class="q-ring big" id="rtRing"><b id="rtLvl">1</b></span><div><p class="rt-me-name" id="rtMeName"></p><p class="rt-me-txt" id="rtMeTxt"></p></div></div>
-      <button class="btn btn-oro" type="button" id="rtPlay">Jugar un reto</button>
-      <div class="rt-open" id="rtOpenWrap"><h3>Todavía nadie los cumple</h3><div class="rt-chips" id="rtOpen"></div></div>
+<!-- La historia -->
+<section class="historia" id="historia" aria-labelledby="histTitle">
+  <div class="wrap">
+    <div class="hist-top">
+      <div>
+        <h2 id="histTitle">La historia, capítulo por capítulo</h2>
+        <p class="lead">Hay <span data-retos-total></span> escenas repartidas en <span data-caps-total></span> capítulos: del aeropuerto al yate, de la Acrópolis a la pista. Nadie puede capturarlas todas; entre todos, sí.</p>
+        <div class="rt-global"><p class="rt-label">Progreso del grupo</p><p><b id="rtGlobal">0</b> de <span data-retos-total></span> escenas capturadas entre <span id="rtPeople">todos</span></p><div class="rt-bar"><i id="rtGlobalBar"></i></div></div>
+        <div class="rt-me"><span class="q-ring big" id="rtRing"><b id="rtLvl">1</b></span><div><p class="rt-label">Tu progreso</p><p class="rt-me-name" id="rtMeName"></p><p class="rt-me-txt" id="rtMeTxt"></p><div class="rt-bar"><i id="rtMeBar"></i></div></div></div>
+        <button class="btn btn-oro" type="button" id="rtPlay">Jugar un reto</button>
+      </div>
+      <div class="rt-board">
+        <h3>Tabla de posiciones</h3>
+        <ol id="rtBoard"></ol>
+        <p class="rt-empty" id="rtBoardEmpty">El primer reto cumplido abre la tabla.</p>
+      </div>
     </div>
-    <div class="rt-board">
-      <h3>Tabla de posiciones</h3>
-      <ol id="rtBoard"></ol>
-      <p class="rt-empty" id="rtBoardEmpty">El primer reto cumplido abre la tabla.</p>
-    </div>
+    <ol class="chapters" id="chapters"></ol>
   </div>
 </section>
 
@@ -515,51 +600,58 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
   <div class="wrap">
     <div class="album-head">
       <div>
-        <h2 id="albumTitle">Álbum compartido</h2>
-        <p class="lead" id="albumLead">Cargando las fotos de los pasajeros…</p>
+        <h2 id="albumTitle" tabindex="-1">Álbum compartido</h2>
+        <p class="lead" id="albumLead">Cargando las fotos y videos de los pasajeros…</p>
       </div>
       <div class="album-tools">
-        <div class="chips" role="group" aria-label="Filtrar fotos">
-          <button type="button" class="chip" data-filter="all" aria-pressed="true">Todas</button>
-          <button type="button" class="chip" data-filter="mine" aria-pressed="false">Mis fotos</button>
+        <div class="chips" role="group" aria-label="Filtrar álbum">
+          <button type="button" class="chip" data-who="all" aria-pressed="true">Todo</button>
+          <button type="button" class="chip" data-who="mine" aria-pressed="false">Lo mío</button>
+          <button type="button" class="chip" data-who="video" aria-pressed="false">Videos</button>
         </div>
+        <select class="chap-sel" id="chapSel" aria-label="Filtrar por capítulo"><option value="">Todos los capítulos</option></select>
         <p class="live" id="liveTxt"><i></i><span>Se actualiza solo</span></p>
       </div>
     </div>
     <div class="album-error" id="albumError" role="alert" hidden></div>
     <div class="grid" id="grid"></div>
     <div class="empty" id="empty" hidden>
-      <p id="emptyTxt">El álbum espera su primera foto. ¿La tomas tú?</p>
+      <p id="emptyTxt">El álbum espera su primera escena. ¿La capturas tú?</p>
       <button class="btn btn-oro" type="button" id="emptyCam">Abrir la cámara</button>
     </div>
-    <div class="more" id="moreWrap" hidden><button class="btn btn-soft" type="button" id="moreBtn">Ver más fotos</button></div>
+    <div class="more" id="moreWrap" hidden><button class="btn btn-soft" type="button" id="moreBtn">Ver más</button></div>
   </div>
 </section>
 
 <!-- Información -->
 <section class="info">
   <div class="wrap">
-    <h2>Antes de disparar</h2>
+    <h2>Antes de grabar</h2>
     <div class="info-grid">
       <div class="info-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
-        <h3>Cámara a bordo</h3>
-        <p>Funciona desde el navegador, sin instalar nada. La primera vez tu teléfono te pedirá permiso para usar la cámara.</p>
+        <h3>Fotos y videos</h3>
+        <p>Cambia entre Foto y Video en la cámara. Los videos en vivo duran hasta un minuto; desde tu galería puedes subir videos más largos.</p>
       </div>
       <div class="info-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="6"/><path d="M9 12h6"/></svg>
-        <h3>Sello de pasaporte</h3>
-        <p>Las fotos de la cámara llevan un sello dorado de Atenas en la esquina. Si prefieres la foto limpia, apágalo con el botón Sello.</p>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="6"/></svg>
+        <h3>Tu pasaporte de sellos</h3>
+        <p>Cada reto cumplido suma un sello a tu pasaporte y aparece sobre la foto en el álbum. Tus fotos y videos se guardan intactos, sin marcas.</p>
       </div>
       <div class="info-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 7h6l2 2h8v10H4z"/><path d="M12 12v5M9.5 14.5 12 12l2.5 2.5"/></svg>
         <h3>Todo llega a los novios</h3>
-        <p>Cada foto se guarda en una carpeta de Google Drive de Jenireé y Leandro, además de aparecer aquí para todos.</p>
+        <p>Cada archivo se guarda en la carpeta de Google Drive de Jenireé y Leandro, en su calidad original para los videos.</p>
       </div>
       <div class="info-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.6-7 10-7 10z"/></svg>
         <h3>Cuida a los demás</h3>
-        <p>Sube solo fotos que te gustaría ver en el álbum. Si alguien prefiere no aparecer, los novios pueden ocultar cualquier foto.</p>
+        <p>Pide permiso antes de grabar a alguien. Si alguien prefiere no aparecer, los novios pueden ocultar cualquier foto o video.</p>
+      </div>
+      <div class="info-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        <h3>Retos Atrevidos</h3>
+        <p>El último capítulo es para ligar y atreverse. Lo que subas ahí no sale en el álbum: solo lo ven los novios y se borra solo 24 horas después. Siempre entre adultos y con consentimiento.</p>
       </div>
     </div>
   </div>
@@ -573,8 +665,9 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
 </div>
 
 <!-- Entradas de archivo -->
-<input type="file" id="fileGallery" accept="image/*" multiple hidden>
+<input type="file" id="fileGallery" accept="image/*,video/*" multiple hidden>
 <input type="file" id="fileCapture" accept="image/*" capture="environment" hidden>
+<input type="file" id="fileVideoCapture" accept="video/*" capture="environment" hidden>
 
 <!-- Cámara: pantalla de inicio -->
 <div class="cam" id="cam" role="dialog" aria-modal="true" aria-label="Cámara del álbum" hidden>
@@ -582,14 +675,14 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
     <video id="camVideo" playsinline muted autoplay></video>
     <div class="cam-shade" aria-hidden="true"></div>
     <div class="cam-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-    <div class="cam-stamp" id="camStampPrev" aria-hidden="true"><span>JLO WEDDING</span><b>ATENAS</b><span id="stampDate"></span></div>
     <p class="cam-count" id="camCount" aria-live="assertive" hidden></p>
     <div class="cam-flash" id="camFlash"></div>
     <div class="cam-msg" id="camMsg" hidden>
       <h2 id="camMsgTitle"></h2>
       <p id="camMsgTxt"></p>
       <div class="cam-msg-actions" id="camActions">
-        <button type="button" class="btn btn-oro" id="camNative">Usar la cámara del teléfono</button>
+        <button type="button" class="btn btn-oro" id="camNative">Tomar foto con el teléfono</button>
+        <button type="button" class="btn btn-line" id="camNativeVid">Grabar video con el teléfono</button>
         <button type="button" class="btn btn-line" id="camRetry">Intentar de nuevo</button>
       </div>
     </div>
@@ -597,20 +690,22 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
   <div class="cam-top">
     <p class="cam-brand">Jenireé &amp; Leandro<small>Atenas, octubre de 2026</small></p>
     <div class="cam-tools">
-      <button type="button" class="cam-icon" id="camStamp" aria-pressed="true" aria-label="Sello dorado en la foto" title="Sello dorado">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5.5"/></svg>
-      </button>
       <button type="button" class="cam-icon" id="camTimer" aria-pressed="false" aria-label="Temporizador de 3 segundos" title="Temporizador 3 s">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 10v3.5l2.5 1.8M9.5 2.5h5"/></svg>
       </button>
     </div>
   </div>
+  <p class="cam-rec" id="camRec" hidden><i></i><span id="camRecTime">0:00</span></p>
   <div class="cam-quest" id="camQuest" hidden>
     <button type="button" class="qp" id="cqOpen"><small id="cqPts"></small><span id="cqTitle"></span></button>
     <button type="button" class="qx" id="cqClear" aria-label="Quitar el reto activo">×</button>
   </div>
   <div class="cam-bottom">
-    <button type="button" class="cam-album" id="camClose" aria-label="Ver el álbum compartido">
+    <div class="cam-modes" role="radiogroup" aria-label="Modo de la cámara">
+      <button type="button" class="cam-mode" role="radio" data-mode="foto" aria-checked="true">Foto</button>
+      <button type="button" class="cam-mode" role="radio" data-mode="video" aria-checked="false">Video</button>
+    </div>
+    <button type="button" class="cam-album" id="camClose" aria-label="Ver la historia y el álbum">
       <span class="cam-thumb" id="camThumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></span>
       <span class="cam-album-lbl" id="camAlbumLbl">Álbum</span>
     </button>
@@ -619,13 +714,14 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><path d="M9 13.5a3 3 0 0 1 5.3-1.9M15 12.5a3 3 0 0 1-5.3 1.9"/><path d="M14.6 9.8v1.9h-1.9M9.4 16.2v-1.9h1.9"/></svg>
     </button>
     <div class="cam-row">
-      <button type="button" class="cam-play" id="camPlay"><span class="q-ring" id="playRing"><b id="playLvl">1</b></span>Dinámica <small id="playCount"></small></button>
+      <button type="button" class="cam-play" id="camPlay" aria-label="Retos"><span class="cam-hint" id="camHint" aria-hidden="true" hidden>Toca aquí y empieza la historia</span><span class="q-ring" id="playRing"><b id="playLvl">1</b></span>Retos <small id="playCount"></small></button>
       <button type="button" class="cam-gallery" id="camGallery">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.5"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.5"/></svg>
         Subir de mi galería
       </button>
     </div>
   </div>
+
   <div class="quest" id="quest" role="dialog" aria-modal="true" aria-labelledby="qTitle" hidden>
     <div class="q-head">
       <div class="q-player">
@@ -634,13 +730,22 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
       </div>
       <button type="button" class="cam-icon" id="qClose" aria-label="Volver a la cámara">×</button>
     </div>
+    <div class="q-prog" id="qProg">
+      <div><p>Todo el grupo<b id="qpAll"></b></p><div class="q-bar"><i id="qpAllBar"></i></div></div>
+      <div class="me"><p>Tú<b id="qpMe"></b></p><div class="q-bar"><i id="qpMeBar"></i></div></div>
+      <p class="q-prog-ch" id="qpCh" hidden></p>
+    </div>
+    <div class="q-chaps-wrap">
+      <p id="qChapsLbl">¿En qué capítulo de la historia estás?</p>
+      <div class="q-chaps" id="qChaps" role="group" aria-labelledby="qChapsLbl"></div>
+    </div>
     <div class="q-body" id="qCardView">
       <article class="qcard" id="qCard">
         <div class="qcard-band"><span id="qRarity">Común</span><span id="qCat"></span></div>
         <div class="qcard-body">
           <h2 id="qTitle"></h2>
           <p id="qHint"></p>
-          <p class="qcard-pts" id="qCardPts"></p>
+          <div class="qcard-tags"><span id="qCardPts"></span><span class="vid" id="qVid" hidden>Reto en video</span><span class="priv" id="qPrivTag" hidden>Solo novios · 24 h</span></div>
         </div>
       </article>
       <div class="q-actions">
@@ -649,19 +754,41 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
           <button type="button" class="btn btn-line" id="qShuffle">Otro reto</button>
           <button type="button" class="btn btn-line" id="qGallery">Desde mi galería</button>
         </div>
-        <button type="button" class="linkbtn q-all" id="qAllBtn">Ver todos los retos</button>
+        <button type="button" class="linkbtn q-all" id="qAllBtn">Ver mi pasaporte</button>
+      </div>
+    </div>
+    <div class="q-gate" id="qGate" role="alertdialog" aria-labelledby="qGateTitle" aria-describedby="qGateTxt" hidden>
+      <article class="q-gate-card">
+        <div class="q-gate-band">CAPÍTULO 19 · ACCESO RESTRINGIDO</div>
+        <div class="q-gate-body">
+          <h2 id="qGateTitle">Retos Atrevidos</h2>
+          <p id="qGateTxt">Aquí se viene a ligar, a atreverse y a pasarla increíble. Antes de entrar:</p>
+          <ul>
+            <li>Lo que subas aquí no sale en el álbum ni en la pantalla. Solo lo ven Jenireé y Leandro.</li>
+            <li>Cada foto y video se elimina automáticamente 24 horas después de subirse.</li>
+            <li>Solo para mayores de edad.</li>
+            <li>Todos los que aparecen deben estar de acuerdo. Un no es un no, y se respeta con una sonrisa.</li>
+          </ul>
+        </div>
+      </article>
+      <div class="q-actions">
+        <button type="button" class="btn btn-vino" id="qGateOk">Acepto, quiero entrar</button>
+        <button type="button" class="btn btn-line" id="qGateOut">Salirme</button>
       </div>
     </div>
     <div class="q-body" id="qListView" hidden>
-      <div class="q-listhead"><h2>Todos los retos</h2><button type="button" class="linkbtn q-all" id="qBack">Volver</button></div>
+      <div class="q-listhead"><h2>Mi pasaporte</h2><button type="button" class="linkbtn q-all" id="qBack">Volver</button></div>
       <div id="qList"></div>
     </div>
   </div>
+
   <div class="cam-review" id="camReview" hidden>
-    <div class="cam-review-img"><img id="camShot" alt="La foto que acabas de tomar"></div>
+    <div class="cam-review-img"><img id="camShot" alt="La foto que acabas de tomar"><video id="camClip" playsinline controls loop hidden></video></div>
     <div class="cam-review-bar">
-      <input type="text" id="camName" maxlength="60" autocomplete="name" placeholder="Tu nombre, para firmar tus fotos" aria-label="Tu nombre" hidden>
-      <input type="text" id="camCaption" maxlength="200" placeholder="Un mensaje para los novios (opcional)" aria-label="Mensaje para la foto">
+      <p class="review-reto" id="reviewReto" hidden></p>
+      <p class="review-priv" id="reviewPriv" hidden>Privado: solo para los novios.</p>
+      <input type="text" id="camName" maxlength="60" autocomplete="name" placeholder="Tu nombre, para firmar lo que subes" aria-label="Tu nombre" hidden>
+      <input type="text" id="camCaption" maxlength="200" placeholder="Un mensaje para los novios (opcional)" aria-label="Mensaje">
       <div class="row">
         <button type="button" class="btn btn-line" id="camRetake">Repetir</button>
         <button type="button" class="btn btn-oro" id="camSend">Enviar al álbum</button>
@@ -677,7 +804,7 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
     <div class="pass-band"></div>
     <div class="namecard-body">
       <h2 class="form-title" id="nameTitle">¿Quién viaja con esta cámara?</h2>
-      <p>Tu nombre aparece junto a tus fotos en el álbum.</p>
+      <p>Tu nombre aparece junto a tus fotos y videos, y en la tabla de posiciones.</p>
       <label for="nameInput">Nombre y apellido<input type="text" id="nameInput" maxlength="60" autocomplete="name"></label>
       <div class="namecard-actions">
         <button type="submit" class="btn btn-oro">Guardar y abordar</button>
@@ -688,12 +815,15 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
 </div>
 
 <!-- Visor -->
-<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto del álbum" hidden>
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Escena del álbum" hidden>
   <div class="lb-top"><span id="lbCount"></span><button type="button" class="lb-x" id="lbClose" aria-label="Cerrar">×</button></div>
   <div class="lb-stage" id="lbStage">
-    <button type="button" class="lb-nav prev" id="lbPrev" aria-label="Foto anterior">‹</button>
+    <button type="button" class="lb-nav prev" id="lbPrev" aria-label="Anterior">‹</button>
     <img id="lbImg" alt="">
-    <button type="button" class="lb-nav next" id="lbNext" aria-label="Foto siguiente">›</button>
+    <video id="lbVid" controls playsinline hidden></video>
+    <iframe id="lbFrame" title="Video del álbum" allow="autoplay; fullscreen" allowfullscreen hidden></iframe>
+    <span class="seal big" id="lbSeal" aria-hidden="true" hidden></span>
+    <button type="button" class="lb-nav next" id="lbNext" aria-label="Siguiente">›</button>
   </div>
   <div class="lb-meta">
     <div><b id="lbName"></b><span id="lbTime"></span><p id="lbCap"></p></div>
@@ -704,20 +834,23 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
   </div>
 </div>
 
-<!-- Cinta de subida -->
+<!-- Cinta de subida, avisos y sello ganado -->
 <aside class="tray" id="tray" aria-live="polite" hidden>
   <div class="tray-head"><b id="trayTitle"></b><button type="button" class="linkbtn" id="trayRetry" hidden>Reintentar</button></div>
   <div class="tray-items" id="trayItems"></div>
 </aside>
 <div class="toast" id="toast" role="status" hidden></div>
-<div class="qwin" id="qwin" aria-live="assertive" hidden><div class="qwin-card"><div class="qwin-medal" id="qwinPts">+10</div><p class="qwin-k">Reto cumplido</p><h3 id="qwinTitle"></h3><p id="qwinLvl"></p></div></div>
+<div class="qwin" id="qwin" aria-live="assertive" hidden>
+  <div class="qwin-card"><span class="seal" id="qwinSeal"></span><p class="qwin-k" id="qwinK">Sello nuevo en tu pasaporte</p><h3 id="qwinTitle"></h3><p id="qwinLvl"></p></div>
+</div>
 
 <!-- Pantalla del salón -->
 <main class="screen" id="screen" aria-label="Presentación del álbum">
   <div class="scr-stage" id="scrStage">
     <div class="scr-slide" id="slA"><div class="scr-bg"></div><img alt=""></div>
     <div class="scr-slide" id="slB"><div class="scr-bg"></div><img alt=""></div>
-    <p class="scr-empty" id="scrEmpty">Escanea el código y sé el primero en el álbum</p>
+    <p class="scr-vid" id="scrVid" hidden>▶ Video</p>
+    <p class="scr-empty" id="scrEmpty">Escanea el código y escribe la primera escena</p>
   </div>
   <aside class="scr-side">
     <article class="scr-card">
@@ -725,16 +858,15 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
       <div class="pass-band"></div>
       <dl>
         <div><dt>Pasajero</dt><dd id="scrName">Bienvenidos</dd></div>
+        <div id="scrChWrap" hidden><dt id="scrChLbl">Escena</dt><dd id="scrCh"></dd></div>
         <div id="scrCapWrap" hidden><dt>Mensaje</dt><dd class="cap" id="scrCap"></dd></div>
-        <div id="scrChWrap" hidden><dt>Reto cumplido</dt><dd id="scrCh"></dd></div>
         <div><dt>Hora de llegada</dt><dd id="scrTime">--:--</dd></div>
-        <div><dt>Foto</dt><dd id="scrNum">0 de 0</dd></div>
-        <div><dt>Retos cumplidos entre todos</dt><dd id="scrRetos">0</dd></div>
+        <div><dt>Escenas capturadas entre todos</dt><dd id="scrRetos">0</dd></div>
       </dl>
     </article>
     <div class="scr-qr" id="scrQrWrap">
       <div class="qr" id="scrQr"></div>
-      <div><p>Escanea y sube tus fotos al álbum</p><small id="scrUrl"></small></div>
+      <div><p>Escanea y súmate a la historia</p><small id="scrUrl"></small></div>
     </div>
   </aside>
 </main>
@@ -742,11 +874,11 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
 <!-- Tarjeta QR imprimible -->
 <section class="qr-poster" id="qrPoster">
   <article class="qr-card">
-    <header class="pass-top"><span class="pass-brand">JLO<small>Wedding Air</small></span><span class="pass-kind">Álbum de a bordo</span></header>
+    <header class="pass-top"><span class="pass-brand">JLO<small>Wedding Air</small></span><span class="pass-kind">Nuestra historia</span></header>
     <div class="pass-band"></div>
     <div class="qr-card-body">
-      <h1>Escanea y comparte tus fotos</h1>
-      <p>Abre la cámara desde tu teléfono o sube fotos de tu galería. Aparecen al instante en el álbum de Jenireé y Leandro.</p>
+      <h1>Escanea y súmate a la historia</h1>
+      <p>Fotos, videos y más de 300 retos para contar juntos la boda de Jenireé y Leandro en Atenas.</p>
       <div class="qr-big" id="qrBig"></div>
       <p class="tag" data-hashtag></p>
       <p class="url" id="qrUrl"></p>
@@ -763,18 +895,22 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
    CONFIGURACIÓN: edita estos valores antes de publicar
    ========================================================= */
 var CONFIG = {
-  SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzYZDrNDJKQBCnPcWnmkvnFQFbzFPq1DpzcXy4wm1BvR2kBdKvSha_0uqUk3SexcpsCWQ/exec',            // URL /exec del Apps Script. Vacío = modo demostración
+  SCRIPT_URL: '',            // URL /exec del Apps Script. Vacío = modo demostración
   ACCESS_KEY: 'JLO2026',     // igual a CFG.ACCESS_KEY del Apps Script
   PUBLIC_URL: '',            // URL pública de esta página para los QR. Vacío = la URL actual
   HASHTAG: '#JLOenAtenas',
   TIMEZONE: 'Europe/Athens',
-  MAX_SIDE: 2048,            // lado mayor de la foto guardada, en px
-  QUALITY: 0.85,             // calidad JPEG
-  MAX_FILES: 15,             // fotos por selección desde la galería
-  PAGE_SIZE: 60,             // fotos que se muestran antes de "Ver más"
-  REFRESH_MS: 20000,         // actualización del álbum
-  SCREEN_REFRESH_MS: 12000,  // actualización en modo pantalla
-  SLIDE_MS: 7000             // tiempo por foto en modo pantalla
+  MAX_SIDE: 2048,            // fotos: lado mayor en px
+  QUALITY: 0.85,             // fotos: calidad JPEG
+  MAX_FILES: 15,             // archivos por selección desde la galería
+  MAX_VIDEO_MB: 400,         // tamaño máximo por video
+  MAX_REC_SECONDS: 60,       // duración máxima de video en vivo
+  VIDEO_BPS: 5000000,        // calidad de grabación en vivo (bits por segundo)
+  CHUNK_MB: 8,               // tamaño de cada parte al subir videos
+  PAGE_SIZE: 60,
+  REFRESH_MS: 20000,
+  SCREEN_REFRESH_MS: 12000,
+  SLIDE_MS: 7000
 };
 
 var params = new URLSearchParams(location.search);
@@ -782,7 +918,8 @@ var MODE = (params.get('modo') || '').toLowerCase();
 var KEY = params.get('k') || CONFIG.ACCESS_KEY;
 var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 var PLANE = 'M12 2c.8 0 1.5.7 1.5 1.5V9l7.5 4.5v2L13.5 13v5l2.5 1.8V21L12 20l-4 1v-1.2l2.5-1.8v-5L3 15.5v-2L10.5 9V3.5C10.5 2.7 11.2 2 12 2z';
-var LS = {name:'jlo_album_name', mine:'jlo_album_mine', stamp:'jlo_album_stamp', quest:'jlo_album_quest', done:'jlo_album_retos'};
+var LS = {name:'jlo_album_name', mine:'jlo_album_mine', mode:'jlo_album_mode', quest:'jlo_album_quest', done:'jlo_album_retos', chap:'jlo_album_chap', hint:'jlo_album_hint', atrev:'jlo_album_atrevidos_ok'};
+var MONTHS = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
 
 /* ---------- utilidades ---------- */
 function $(s, r){ return (r || document).querySelector(s); }
@@ -795,6 +932,9 @@ function rng(seed){ return function(){ seed = (seed + 0x6D2B79F5) >>> 0; var t =
 function lsGet(k, d){ try { var v = localStorage.getItem(k); return v == null ? d : v; } catch(e){ return d; } }
 function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
 function plural(n, one, many){ return n + ' ' + (n === 1 ? one : many); }
+function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+function uid(){ return 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 9); }
+function fmtDur(s){ s = Math.max(0, Math.round(s || 0)); return Math.floor(s / 60) + ':' + pad2(s % 60); }
 function clock(t){
   try { return new Date(t).toLocaleTimeString('es-ES', {timeZone:CONFIG.TIMEZONE, hour:'2-digit', minute:'2-digit', hour12:false}); }
   catch(e){ var d = new Date(t); return pad2(d.getHours()) + ':' + pad2(d.getMinutes()); }
@@ -803,11 +943,16 @@ function longDate(t){
   try { return new Date(t).toLocaleString('es-ES', {timeZone:CONFIG.TIMEZONE, weekday:'long', day:'numeric', month:'long', hour:'2-digit', minute:'2-digit', hour12:false}); }
   catch(e){ return new Date(t).toLocaleString(); }
 }
-function uid(){ return 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 9); }
-
+function dateShort(t){
+  try {
+    var o = {};
+    new Intl.DateTimeFormat('en-GB', {timeZone:CONFIG.TIMEZONE, day:'2-digit', month:'numeric'}).formatToParts(new Date(t)).forEach(function(p){ o[p.type] = p.value; });
+    return o.day + ' ' + MONTHS[+o.month - 1];
+  } catch(e){ var d = new Date(t); return pad2(d.getDate()) + ' ' + MONTHS[d.getMonth()]; }
+}
 function planeSVG(){ return '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="' + PLANE + '"/></svg>'; }
-function parthenonLines(w, h){
-  var L = [];
+function parthenonSVG(draw){
+  var L = [], w = 300, h = 130;
   function s(x1,y1,x2,y2){ L.push([x1*w, y1*h, x2*w, y2*h]); }
   s(.04,.30,.50,.02); s(.50,.02,.96,.30); s(.04,.30,.96,.30);
   s(.15,.27,.50,.09); s(.50,.09,.85,.27); s(.15,.27,.85,.27);
@@ -820,10 +965,7 @@ function parthenonLines(w, h){
   }
   s(.02,.84,.98,.84); s(0,.91,1,.91); s(-.02,.98,1.02,.98);
   s(.02,.84,.02,.91); s(.98,.84,.98,.91); s(0,.91,0,.98); s(1,.91,1,.98);
-  return L;
-}
-function parthenonSVG(draw){
-  var d = parthenonLines(300, 130).map(function(l){ return 'M' + l[0].toFixed(1) + ' ' + l[1].toFixed(1) + 'L' + l[2].toFixed(1) + ' ' + l[3].toFixed(1); }).join('');
+  var d = L.map(function(l){ return 'M' + l[0].toFixed(1) + ' ' + l[1].toFixed(1) + 'L' + l[2].toFixed(1) + ' ' + l[3].toFixed(1); }).join('');
   return '<svg viewBox="-8 -2 316 134" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path ' + (draw ? 'pathLength="1" ' : '') + 'vector-effect="non-scaling-stroke" d="' + d + '"/></svg>';
 }
 function barcodeHTML(str){
@@ -832,7 +974,476 @@ function barcodeHTML(str){
   return '<svg viewBox="0 0 ' + x + ' 40" preserveAspectRatio="none" aria-hidden="true">' + rects + '</svg><p>' + esc(str) + '</p>';
 }
 
-/* ---------- JSONP (lecturas) ---------- */
+/* =========================================================
+   LA HISTORIA: capítulos y retos
+   Formato de cada reto: 'rareza|título|pista'
+     rareza: 1 común, 2 especial, 3 legendario. Agrega "v" para reto en video (ej. '2v').
+   El ID de cada reto es clave-número (ej. yate-3). Para agregar retos, ponlos al
+   final de su capítulo: reordenar cambia los IDs de las fotos ya subidas.
+   ========================================================= */
+var CAPS = [
+  {k:'prep', n:'Preparativos', s:'MALETAS', h:'Todo empezó con un sí y una lista interminable de pendientes. Antes de despegar, cada maleta ya cuenta la historia.', r:[
+    '1|La maleta abierta, a medio empacar|El caos antes del orden.',
+    '1|El outfit de la boda listo para viajar|Colgado, doblado o en su funda.',
+    '2|Tu maleta cerrada con ayuda|Si alguien se sienta encima, cuenta doble.',
+    '1|Tu lista de pendientes|Con tachones incluidos.',
+    '1|Los zapatos que viajan a Atenas|También los que no cupieron.',
+    '1|Tu pasaporte listo|Tapa los datos personales.',
+    '2v|Video: cuenta a dónde vas|Dile a la cámara que te vas a una boda en Atenas.',
+    '1|La despedida de tu mascota|Ella también quería ir.',
+    '1|El último café en casa|Antes de salir rumbo al aeropuerto.',
+    '2|Quien te lleva al aeropuerto|Un aplauso para el chofer.',
+    '1|Tu kit de viaje|Almohada, audífonos y cargador.',
+    '2|La invitación de la boda|En papel o en tu pantalla.',
+    '1|Tu cara de "ya casi"|Emoción pura antes de salir.',
+    '2|La compra de último minuto para el viaje|Ese adaptador que casi olvidas.',
+    '2v|Video: tu deseo para los novios antes de viajar|Un mensaje corto desde casa.',
+    '1|El clima de Atenas en tu teléfono|Decidiendo si llevar abrigo.',
+    '3|Todos tus compañeros de viaje antes de salir|Familia, pareja o amigos, juntos en casa.',
+    '1|La puerta de tu casa al salir|El primer paso de la historia.'
+  ]},
+  {k:'aero', n:'El aeropuerto', s:'SALIDA', h:'Pasaportes en mano y el corazón acelerado: la aventura empezó oficialmente.', r:[
+    '1|El letrero de tu aeropuerto de salida|Para saber dónde empezó todo.',
+    '1|La pantalla de salidas con tu vuelo|Busca tu destino en el tablero.',
+    '1|Haciendo fila en el check-in|La paciencia también se fotografía.',
+    '1|Tu maleta en la banda|Nos vemos en Atenas, maleta.',
+    '2|Tu pase de abordar con la puerta|Tapa el código de barras.',
+    '1|El último antojo antes de abordar|Café, snack o postre.',
+    '2|Otro invitado en el mismo aeropuerto|Encuentro de la tribu JLO.',
+    '2v|Video: "¡Nos vamos a Atenas!"|Un grito con quienes viajan contigo.',
+    '1|Tu avión desde la sala de espera|Por la ventana de la puerta.',
+    '1|Pies y maletas en la sala de espera|La foto clásica de viajero.',
+    '2|El duty free|Perfume, chocolates o solo mirar.',
+    '1|Selfie con tu compañero de viaje|Primera foto oficial del viaje.',
+    '2|El momento de abordar|En la fila o en la manga.',
+    '1|Del otro lado de seguridad|Respira: lo difícil pasó.',
+    '3|Todo tu grupo con los pases en alto|Boletos al aire, sonrisas también.',
+    '1|Un avión despegando|Desde la terminal.',
+    '2v|Video: el llamado a abordar|Que se escuche tu vuelo.',
+    '1|Tu reloj a la hora de salida|El tiempo empieza a correr.'
+  ]},
+  {k:'vuelo', n:'En el aire', s:'A BORDO', h:'Horas de vuelo, películas, siestas y la emoción de ir juntos hacia el mismo lugar.', r:[
+    '1|Selfie en tu asiento|Cinturón abrochado.',
+    '1|La vista desde la ventanilla|Nubes, alas o mar.',
+    '1|La comida del avión|Pollo o pasta: para la historia.',
+    '1|Tu película de a bordo|La pantalla con lo que ves.',
+    '2|Tu compañero de asiento dormido|Con cariño y con permiso.',
+    '1|El mapa del vuelo|El avioncito cruzando el mapa.',
+    '2|Brindis a 10,000 metros|Con lo que sirvan.',
+    '1|Tus pies en el pasillo|Calcetines de viaje incluidos.',
+    '2|La escala|El aeropuerto intermedio de tu ruta.',
+    '2v|Video: el despegue|Desde la ventanilla.',
+    '2v|Video: el aterrizaje en Atenas|Aplausos opcionales.',
+    '1|El amanecer desde el avión|O el atardecer, según tu vuelo.',
+    '2|Otro invitado en tu mismo vuelo|Foto entre filas.',
+    '1|Tu kit de sobrevivencia en uso|Antifaz, almohada y audífonos.',
+    '1|Cara de muchas horas de vuelo|Sin filtro.',
+    '2|Las alas sobre Grecia|El primer vistazo del país.',
+    '3|Grecia desde el cielo|Islas, costa o montañas.',
+    '1|Tu libro o revista del viaje|Lo que te acompañó en el aire.'
+  ]},
+  {k:'llegada', n:'Llegada a Atenas', s:'LLEGADA', h:'Kalimera, Atenas. El primer respiro griego y los primeros reencuentros.', r:[
+    '1|El letrero de bienvenida en Atenas|Letras griegas de fondo.',
+    '1|Tu maleta apareciendo en la banda|El alivio en una foto.',
+    '1|La salida del aeropuerto|El primer aire griego.',
+    '1|En el Uber o taxi rumbo al hotel|Atenas desde la ventana.',
+    '2|La primera vista de la Acrópolis|Desde el carro, la calle o el hotel.',
+    '1|La entrada de tu hotel|Tu base en Atenas.',
+    '1|La llave de tu habitación|Oficialmente en casa.',
+    '1|La vista desde tu habitación|Balcón, ventana o terraza.',
+    '2|Tu maleta abierta en Atenas|El desorden llegó contigo.',
+    '2v|Video: tour rápido de tu habitación|Treinta segundos, estilo influencer.',
+    '1|Un letrero en griego que no entiendas|Intenta leerlo en voz alta.',
+    '2|El primer reencuentro con otro invitado|Abrazo de llegada.',
+    '1|Tu primera siesta griega|O la cama que la espera.',
+    '2|Una bandera de Costa Rica en Atenas|Pura vida al pie de la historia.',
+    '1|Tu primer freddo espresso|El café frío que toma toda Atenas.',
+    '2v|Video: tu primer "Kalimera"|Saluda a Atenas en griego.',
+    '3|Los novios dándote la bienvenida|Si te los encuentras, no lo dejes pasar.',
+    '1|El cielo de tu primer día|Azul griego.'
+  ]},
+  {k:'plaka', n:'Plaka, nuestro barrio', s:'PLAKA', h:'Nuestra casa en Atenas: callecitas, buganvilias, gatos y la Acrópolis vigilando desde arriba.', r:[
+    '1|Buganvilias en Plaka|Flores fucsia sobre paredes blancas.',
+    '1|Una puerta azul|Azul y blanco, como la bandera.',
+    '1|Un gato griego|Busca al más fotogénico.',
+    '1|La Plaza Filomousou Eterias|Nuestro punto de encuentro.',
+    '2|Las escaleras de Anafiotika|Casitas blancas bajo la Acrópolis.',
+    '1|Una callecita con escalones|Plaka tiene muchas.',
+    '1|Un balcón con flores|Mira hacia arriba.',
+    '1|Una iglesia bizantina|Pequeña, antigua y preciosa.',
+    '2|Plaka de noche|Luces cálidas y mesas en la calle.',
+    '1|Un farol antiguo|Detalles del barrio.',
+    '2|Selfie con la Acrópolis asomando|Entre techos y árboles.',
+    '1|Un mural o grafiti|Arte callejero ateniense.',
+    '2v|Video: caminando por Plaka|Diez segundos de callecitas.',
+    '1|Tu rincón favorito del barrio|El que te llevarías a casa.',
+    '2|Invitados paseando juntos|Encuentros casuales en Plaka.',
+    '1|Un olivo|El árbol de Atenea.',
+    '3|Anafiotika al atardecer|Luz dorada sobre casas blancas.',
+    '1|Persianas de colores|Verde, azul o amarillo.'
+  ]},
+  {k:'comida', n:'Sabores de Grecia', s:'MESA', h:'Porque en Grecia todo se celebra alrededor de una mesa larga, con pan, aceite de oliva y amigos.', r:[
+    '1|Tu primer souvlaki|Antes del primer mordisco.',
+    '1|Un gyros bien servido|Papas incluidas.',
+    '1|Ensalada griega|Feta, aceitunas y tomate.',
+    '1|Tzatziki con pan pita|Para untar sin miedo.',
+    '2|Moussaka|El clásico griego al horno.',
+    '1|Aceitunas griegas|Kalamata, si puedes.',
+    '1|Loukoumades|Buñuelitos con miel.',
+    '2|Baklava|Capas, nueces y miel.',
+    '1|Yogur griego con miel|El de verdad.',
+    '2|Brindis con ouzo|¡Yamas! Sorbo pequeño, gran foto.',
+    '1|Una mesa llena para compartir|Muchos platos al centro.',
+    '2|Pulpo a la parrilla|Un clásico del mar.',
+    '1|La carta en griego|Adivina qué pediste.',
+    '2v|Video: la primera probada|Tu reacción, sin actuar.',
+    '2|Una cena con otros invitados|Mesa larga, risas largas.',
+    '1|Un koulouri de la calle|El pan de ajonjolí de Atenas.',
+    '3|Un "¡Opa!" en el restaurante|Del mesero, de la mesa o tuyo.',
+    '1|Tu postre favorito del viaje|Guárdalo para la historia.'
+  ]},
+  {k:'compras', n:'De compras', s:'COMPRAS', h:'Sandalias, ojos griegos y tesoros de mercado: recuerdos para llevar la historia a casa.', r:[
+    '1|Un ojo griego|El amuleto contra la mala suerte.',
+    '1|Sandalias de cuero hechas a mano|Pruébatelas.',
+    '1|Esponjas naturales|Un clásico de Grecia.',
+    '1|Aceite de oliva para regalar|Para llevar a casa.',
+    '2|El mercado de Monastiraki|Tesoros y cachivaches.',
+    '1|Imanes para la refri|El souvenir infaltable.',
+    '1|Una camiseta que diga Athens|Mientras más turística, mejor.',
+    '2|Regateando con buen humor|Sonrisa incluida.',
+    '1|Joyería griega|Meandros, laureles o monedas.',
+    '1|Especias y tés griegos|Orégano, tomillo o té de montaña.',
+    '2|Tu bolsa de compras llena|Prueba de que no te contuviste.',
+    '1|Un souvenir para los novios|Lo que les comprarías.',
+    '2v|Video: muestra tu mejor compra|Unboxing en la acera.',
+    '1|La compra de emergencia para la boda|Ese detalle que faltaba.',
+    '1|Postales de Atenas|Escribe una a los novios.',
+    '2|De compras con otro invitado|Cómplices de tarjeta.',
+    '3|El souvenir más raro del viaje|Premio a la originalidad.'
+  ]},
+  {k:'tour', n:'El tour del sábado', s:'TOUR', h:'Sábado 3 de octubre: un autobús solo para nosotros y la Atenas clásica por delante.', r:[
+    '1|Llegando a la Plaza Filomousou Eterias|La puerta de embarque del tour.',
+    '1|El autobús del tour|Nuestro vuelo privado por Atenas.',
+    '2|Selfie con tu compañero de asiento del bus|Presentaciones oficiales.',
+    '1|El guía del tour|Nuestro capitán del día.',
+    '2|El Templo de Zeus Olímpico|Columnas gigantes.',
+    '1|El Arco de Adriano|La puerta entre dos Atenas.',
+    '2|Salto en el Estadio Panatenaico|Todos en el aire.',
+    '2|Foto de grupo en el Panatenaico|El lugar perfecto para salir todos.',
+    '2v|Video: carrera en el Panatenaico|Como en 1896.',
+    '2|Los evzones del Parlamento|Con respeto y a distancia.',
+    '2v|Video: el cambio de guardia|Cada hora en punto.',
+    '1|La Plaza Syntagma|Frente al Parlamento.',
+    '1|La Plaza Monastiraki|La Acrópolis asomando entre techos.',
+    '1|Tu parada fotográfica favorita|La que más te guste.',
+    '1|El grupo bajando del bus|Fila india de invitados.',
+    '2|Alguien que conociste en el tour|En el bus se hacen amigos.',
+    '3|Todo el bus en una sola foto|Misión casi imposible.',
+    '1|De regreso a Plaka|Aterrizaje del tour.'
+  ]},
+  {k:'acropolis', n:'La Acrópolis', s:'ACRÓPOLIS', h:'Subimos juntos a la roca sagrada. Veinticinco siglos de historia como telón de fondo de la nuestra.', r:[
+    '1|La Acrópolis de fondo|Desde abajo o desde lejos.',
+    '1|Tu entrada a la Acrópolis|El boleto antes de subir.',
+    '1|Subiendo la roca sagrada|Escalones y esfuerzo.',
+    '1|Los Propileos|La entrada monumental.',
+    '2|El Partenón completo|Todo en el cuadro.',
+    '2|Grupo frente al Partenón|Mínimo cinco invitados.',
+    '2|Imita a una cariátide|Pose de columna, mirada de mármol.',
+    '1|El Erecteión|El templo de las cariátides.',
+    '1|Atenas desde la cima|La ciudad a tus pies.',
+    '1|Posa como estatua griega|Serio, inmóvil y clásico.',
+    '2|El Teatro de Dioniso|El teatro más antiguo.',
+    '2|El Odeón de Herodes Ático|Arcos de piedra perfectos.',
+    '1|Un detalle del mármol|Textura de 2,500 años.',
+    '2v|Video: panorámica desde la Acrópolis|Un giro lento completo.',
+    '2v|Video: qué sientes al llegar arriba|Una frase, sin ensayar.',
+    '3|Los novios frente al Partenón|La foto de portada.',
+    '1|La bandera griega en la cima|Ondeando sobre la ciudad.',
+    '2|Selfie sudada y feliz|El sol de octubre no perdona.'
+  ]},
+  {k:'atenas', n:'Atenas eterna', s:'ATENAS', h:'Entre ruinas, terrazas y metro, Atenas nos regaló días y noches para explorarla juntos.', r:[
+    '1|Atardecer sobre Atenas|Donde el cielo se pone dorado.',
+    '2|El Monte Licabeto|El punto más alto de la ciudad.',
+    '1|El Ágora Antigua|Donde caminaba Sócrates.',
+    '1|El Templo de Hefesto|El mejor conservado.',
+    '2|La Biblioteca de Adriano|Columnas en pleno centro.',
+    '1|El Jardín Nacional|Un respiro verde.',
+    '1|El metro de Atenas|Algunas estaciones son museos.',
+    '2|Una terraza con vista a la Acrópolis|Ideal de noche.',
+    '2|La Acrópolis iluminada|De noche brilla dorada.',
+    '1|Un kiosco ateniense|Periptero, le dicen.',
+    '1|Tráfico de Atenas|Motos, bocinas y caos bonito.',
+    '2v|Video: Atenas de noche|Diez segundos de luces.',
+    '1|Un museo de Atenas|El que elijas visitar.',
+    '2|Un músico callejero|Buzuki, acordeón o guitarra.',
+    '1|Un rincón que nadie más fotografió|Tu hallazgo personal.',
+    '3|Atenas desde el Licabeto al anochecer|La ciudad encendiéndose.',
+    '1|Un brindis en un rooftop|Con vista, por supuesto.',
+    '2|Explorando con otros invitados|Aventura en grupo.'
+  ]},
+  {k:'yate', n:'Un día en el Egeo', s:'YATE', h:'Sal, sol y los mejores amigos a bordo. El mar Egeo también quiso estar en la historia.', r:[
+    '1|Llegando al puerto|Barcos blancos y mar azul.',
+    '1|El yate|Nuestro barco del día.',
+    '2|Subiendo a bordo|Primer paso en cubierta.',
+    '1|El azul del Egeo|Ese color que no se explica.',
+    '2|Selfie en la proa|Estilo Titanic, opcional.',
+    '2v|Video: el viento en cubierta|Pelo al aire.',
+    '2|Alguien saltando al mar|Clavado, bomba o de pie.',
+    '2v|Video: el primer chapuzón|Grito incluido.',
+    '1|Tus pies en cubierta|Con mar de fondo.',
+    '1|Un brindis a bordo|Copas arriba en el Egeo.',
+    '2|El capitán del yate|Nuestro piloto en el mar.',
+    '1|Una isla en el horizonte|Tierra a la vista.',
+    '2|Los novios en el yate|Juntos frente al mar.',
+    '2|Todos en cubierta|La tripulación completa.',
+    '1|Bloqueador y lentes de sol|El kit del día de mar.',
+    '3|Atardecer desde el yate|El sol cayendo en el Egeo.',
+    '1|Snacks a bordo|Fruta, quesos o lo que haya.',
+    '2|Alguien dormido al sol|Descanso bien ganado.'
+  ]},
+  {k:'listos', n:'Listos para el gran día', s:'LISTOS', h:'Trajes, peinados y nervios bonitos: la cuenta regresiva para el sí.', r:[
+    '1|Tu traje o vestido colgado|Listo para el gran día.',
+    '1|Tus zapatos de la boda|Los que vas a sufrir en la pista.',
+    '1|Maquillaje en proceso|Brochas en acción.',
+    '1|Peinado en proceso|Laca, plancha y paciencia.',
+    '2|Anudando la corbata|O pidiendo ayuda.',
+    '1|Tu perfume de la boda|El aroma del día.',
+    '1|Tus accesorios listos|Aretes, gemelos o reloj.',
+    '2|Tu look completo en el espejo|Selfie de cuerpo entero.',
+    '2|Ayudando a alguien a arreglarse|El cierre, el botón o el moño.',
+    '2v|Video: tu vuelta de pasarela|Muestra tu look.',
+    '1|La cuenta regresiva en el reloj|Cada minuto cuenta.',
+    '2|Los preparativos del novio|Si estás con Leandro, documenta.',
+    '3|Los preparativos de la novia|Si estás con Jenireé, documenta.',
+    '2|El ramo antes de la ceremonia|Recién llegado.',
+    '1|El lugar antes de que llegue la gente|Mesas, flores y luces.',
+    '2|Tu grupo listo para salir|Todos arreglados.',
+    '1|El transporte a la boda|Rumbo a la ceremonia.',
+    '2v|Video: tus nervios antes de la boda|Unas palabras rápidas.'
+  ]},
+  {k:'ceremonia', n:'La ceremonia', s:'SÍ ACEPTO', h:'Todo el viaje nos trajo hasta aquí: dos personas, una promesa y ustedes como testigos.', r:[
+    '1|El lugar de la ceremonia|Antes de que empiece.',
+    '1|Tu asiento en la ceremonia|Desde donde lo viviste.',
+    '2|El novio esperando|Los nervios en el altar.',
+    '3|La entrada de la novia|El momento en que todos voltean.',
+    '2|La cara del novio al verla|La foto que todos quieren.',
+    '2|Los anillos|Un detalle para toda la vida.',
+    '2|Una lágrima de emoción|Alguien que no pudo contenerse.',
+    '1|Las flores de la ceremonia|La decoración del altar.',
+    '2|Quien oficia la ceremonia|La voz de este momento.',
+    '3|El "sí, acepto"|Justo en el instante.',
+    '3|El primer beso de casados|Legendario: dura un segundo.',
+    '2v|Video: la salida de los recién casados|Aplausos y pétalos.',
+    '2|Pétalos o burbujas al aire|La lluvia de celebración.',
+    '1|Los invitados aplaudiendo|Desde tu lugar.',
+    '2|Los papás de los novios en la ceremonia|Emoción de familia.',
+    '1|Un detalle especial de la ceremonia|Algo que no quieras olvidar.',
+    '2|Los votos|Mientras los dicen, en silencio.',
+    '2|El primer abrazo a los recién casados|¿Quién fue el primero?'
+  ]},
+  {k:'novios', n:'Jenireé y Leandro', s:'NOVIOS', h:'Los protagonistas, vistos por los ojos de quienes más los quieren.', r:[
+    '2|Una foto con la novia|Jenireé, tú y la mejor sonrisa.',
+    '2|Una foto con el novio|Leandro, tú y un abrazo.',
+    '2|Tú con los novios|Los tres o más en la misma foto.',
+    '3|Los novios sin que se den cuenta|Una foto robada y natural.',
+    '2|Los novios riéndose|De verdad, sin posar.',
+    '2|La mirada entre los novios|Ese segundo que dice todo.',
+    '2|Las manos de los novios|Con anillos, claro.',
+    '1|El vestido de la novia en detalle|Encaje, cola o espalda.',
+    '1|El traje del novio en detalle|Gemelos, botonier o zapatos.',
+    '2v|Video: tu mensaje para los novios|Un consejo, un deseo o un recuerdo.',
+    '2v|Video: cómo conociste a los novios|Treinta segundos de historia.',
+    '2|Recrea una pose de los novios|Copia su foto favorita.',
+    '2|Los novios con la Acrópolis|Si la vista lo permite.',
+    '1|Los novios brindando|Copas arriba.',
+    '3|Un beso robado de los novios|En cualquier momento de la noche.',
+    '2|Los novios con sus papás|Tres generaciones de amor.',
+    '1|Los zapatos de la novia|Antes o después del baile.',
+    '2v|Video: los novios diciendo "gracias por venir"|Pídeselo y grábalo.'
+  ]},
+  {k:'tribu', n:'Los que nos acompañan', s:'TRIBU', h:'Cruzaron un océano por nosotros. Este capítulo es de ustedes.', r:[
+    '1|Los invitados de Costa Rica juntos|¡Todos los ticos en una foto!',
+    '2|El invitado que viajó más lejos|Averigua quién fue.',
+    '1|Selfie con alguien que acabas de conocer|Pregunta su nombre y su historia.',
+    '1|Tu mesa completa|Nadie fuera del cuadro.',
+    '2|Tres generaciones en una foto|Abuelos, papás e hijos.',
+    '2|Los primos juntos|Familia que viaja unida.',
+    '2|Los amigos de toda la vida|Los de la universidad o el colegio.',
+    '2|Los compañeros de trabajo de los novios|La oficina en Atenas.',
+    '1|La persona más elegante|Tú decides.',
+    '1|Los niños de la boda|Los más felices de la fiesta.',
+    '2|Una pareja de invitados enamorada|El amor se contagia.',
+    '2|Los más puntuales del viaje|Los que llegaron primero a todo.',
+    '2v|Video: presenta a quien viaja contigo|Nombre y una anécdota.',
+    '2v|Video: por qué viajaste hasta Atenas|La respuesta más sincera.',
+    '1|Un abrazo entre invitados|De esos largos.',
+    '3|Todos los invitados en una foto|La foto imposible.',
+    '2|Alguien enseñando una palabra en griego|Clase exprés.',
+    '1|La sonrisa más grande de la noche|Encuéntrala y dispara.'
+  ]},
+  {k:'fiesta', n:'La fiesta', s:'FIESTA', h:'Brindis, discursos y pastel: la celebración griega con acento tico.', r:[
+    '1|El salón de la fiesta|Luces, mesas y decoración.',
+    '1|El centro de mesa|Antes de que alguien se lo lleve.',
+    '2|La entrada de los novios a la fiesta|Aplausos de bienvenida.',
+    '2|Un brindis con los novios|Copas arriba.',
+    '1|Tu trago de la noche|Con buena luz.',
+    '1|El pastel de bodas|Entero, antes del corte.',
+    '2|El corte del pastel|Cuchillo en mano.',
+    '2v|Video: los discursos|Un momento emotivo o gracioso.',
+    '1|La cena servida|Tu plato favorito.',
+    '2|Alguien dando un discurso|Micrófono en mano.',
+    '2|¡Opa! Servilletas al aire|La tradición griega.',
+    '2|Un detalle de la decoración|Algo que te enamore.',
+    '1|Los recuerditos de la boda|El detalle para invitados.',
+    '1|El DJ o la banda|Los que no dejan a nadie sentado.',
+    '2|La mesa de postres|Antes del ataque.',
+    '3|El ramo en el aire|Justo en el lanzamiento.',
+    '2|Quien atrapó el ramo|Y su cara de sorpresa.',
+    '2v|Video: el brindis más largo de la noche|Grábalo completo si puedes.'
+  ]},
+  {k:'pista', n:'La pista de baile', s:'PISTA', h:'Sirtaki, trencito y pasos prohibidos: la noche en que todos bailamos.', r:[
+    '3|El primer baile de los novios|Los dos solos en la pista.',
+    '2|Bailando con Rosona|Sácala a la pista y que quede la prueba.',
+    '2v|Video: bailando con Rosona|Que se vean los pasos.',
+    '2|Alguien bailando sirtaki|Brazos en los hombros.',
+    '2v|Video: el sirtaki completo|Lento al inicio, rápido al final.',
+    '1|El trencito|Mínimo seis vagones.',
+    '1|El paso más prohibido de la pista|Sin juzgar. Solo documentar.',
+    '1|Alguien bailando descalzo|Los tacones cumplieron.',
+    '1|Foto grupal saltando en la pista|Todos en el aire.',
+    '2|Los novios bailando con sus papás|Un baile para siempre.',
+    '2|Un baile entre generaciones|Abuelos y nietos.',
+    '2v|Video: tu mejor paso de baile|Diez segundos de gloria.',
+    '1|La pista llena|Nadie sentado.',
+    '2|Un baile típico tico en Atenas|Punto guanacasteco o lo que salga.',
+    '2|Los novios en hombros|Si se atreven.',
+    '1|Las luces de la pista|Colores y movimiento.',
+    '3|El último baile de la noche|Los que cerraron la fiesta.',
+    '2v|Video: la canción que todos cantaron|Coro completo.'
+  ]},
+  {k:'adios', n:'Hasta pronto, Atenas', s:'DESPEDIDA', h:'El viaje termina, la historia no. Nos llevamos Atenas y nos llevamos a ustedes.', r:[
+    '1|La mañana después|Ojeras felices.',
+    '1|Tu desayuno después de la boda|Café doble.',
+    '2|Un recuerdo de la boda en tu cuarto|Flor, servilleta o pulsera.',
+    '2|Los novios al día siguiente|Recién casados de verdad.',
+    '1|Tu maleta de regreso|Más llena que al llegar.',
+    '1|La última vista de Atenas|Desde el hotel o el taxi.',
+    '2|Una última comida con otros invitados|Despedida en la mesa.',
+    '1|El aeropuerto de regreso|Hasta pronto, Grecia.',
+    '2v|Video: lo que más te gustó del viaje|En una frase.',
+    '2v|Video: tu despedida para los novios|Abrazo virtual incluido.',
+    '1|Tu pase de abordar de regreso|Tapa el código de barras.',
+    '2|La foto que resume tu viaje|Elige la que cuenta todo.',
+    '1|Llegando a casa|El viaje terminó; la historia no.',
+    '2|Tus souvenirs desempacados|Todo lo que trajiste.',
+    '3|Tus compañeros de viaje de regreso|El mismo grupo del inicio.',
+    '1|Una postal del viaje|Escrita o comprada.',
+    '2|Algo que aprendiste en griego|Escríbelo en un papel y fotografíalo.'
+  ]},
+  // Privado: solo lo ven los novios y se elimina a las 24 horas (lo hace el Apps Script)
+  {k:'atrevidos', p:1, n:'Atrevidos', s:'ATREVIDOS', h:'Lo que pasa en Atenas se queda con los novios. Una noche loca, ligues entre invitados y algún desconocido con acento griego.', r:[
+    '2|Una foto con el o la más sexy de la boda|Tú decides quién se lleva el título.',
+    '3|Beso de tres|Tres personas, un beso y cero arrepentimientos.',
+    '2|Intercambio de prenda|Cambia una prenda con alguien que te guste.',
+    '3|Bodyshot|Sal, limón y tequila, con quien diga que sí.',
+    '2|Selfie con un desconocido guapo en Atenas|Griego, turista o viajero, con su permiso.',
+    '2|Consigue el Instagram de alguien que te guste|La prueba: foto del momento, no de sus datos.',
+    '1|Guiñándole el ojo a tu crush|Que se note la intención.',
+    '2|Baile pegadito con alguien que acabas de conocer|Una canción lenta basta.',
+    '2v|Video: tu mejor frase para ligar|Pruébala con alguien de verdad.',
+    '2|Un beso en la mejilla de alguien que no conocías|Con permiso, siempre.',
+    '2|Brindis con los brazos entrelazados|Copas cruzadas, miradas también.',
+    '3|Un beso bajo la luna de Atenas|Con quien tú elijas.',
+    '1|Marca de labial en la mejilla de alguien|La evidencia no miente.',
+    '2|Tu número en una servilleta|Entrégaselo a alguien y captura el momento.',
+    '2|Tu pose más sexy con la Acrópolis de fondo|La diosa o el dios que llevas dentro.',
+    '2v|Video: un piropo o serenata para alguien de la fiesta|Diez segundos de valentía.',
+    '2|Dos solteros que hicieron match en el viaje|Sé cupido y documenta.',
+    '3|Un beso con alguien que conociste en Grecia|Kalimera, amor.',
+    '1|Tu outfit más atrevido del viaje|Sin miedo.',
+    '2|Selfie en la pista con tu crush de la boda|Que no se entere… o sí.',
+    '3|La puerta del cuarto del que te comiste|El número de habitación basta. Los detalles, a los novios.',
+    '2|Dos pares de zapatos junto a una cama|La foto que lo dice todo sin mostrar nada.',
+    '2|Dos cepillos de dientes en un solo baño|Evidencia de convivencia express.',
+    '2|Una prenda que no es tuya en tu cuarto|¿De quién será? Solo los novios lo sabrán.',
+    '2v|Video: el paseo de la vergüenza por Plaka al amanecer|Tacones en la mano, dignidad en el bolsillo.',
+    '1|Tu cara de "¿qué pasó anoche?"|Toalla en la cabeza y café en mano.',
+    '2|Desayuno para dos en el hotel|Y ninguno de los dos es tu pareja de viaje.',
+    '2|Selfie en el ascensor con tu ligue|Entre un piso y otro pasan cosas.',
+    '1|Captura de un "¿ya dormiste?" a las 3 a. m.|Tapa nombres y números.',
+    '2|El juguete más raro de un sex shop de Atenas|Solo la foto del estante, sin compromiso.',
+    '3|Un regalo atrevido para los novios|Envuelto, con dedicatoria y cara de inocente.',
+    '1|Esposas de peluche en la fiesta|Accesorio oficial de la noche loca.',
+    '2|Unas orejitas, un antifaz o un disfraz atrevido|El accesorio que nadie esperaba en una boda.',
+    '2v|Video: la botella gira|Juego de la botella con invitados. Lo que salga.',
+    '2v|Video: tu verdad más picante|Verdad o reto: elegiste verdad.',
+    '2v|Video: una ronda de "Yo nunca nunca"|Mínimo cuatro jugadores y un vaso cada uno.',
+    '3|Beso entre alguien del lado de la novia y alguien del lado del novio|Uniendo familias, literalmente.',
+    '2|Cupido en acción: dos invitados solteros bailando juntos|Tú los presentaste. Captura el resultado.',
+    '2|Arma una cita a ciegas entre dos invitados|Mesa, dos copas y tú de mesero.',
+    '2|Un beso con sabor a ouzo|Brinda primero. Lo demás, tú sabrás.',
+    '2|Tu número escrito con labial|En una servilleta, un brazo o un espejo.',
+    '2|Masaje con aceite de oliva griego|En los hombros, que es una boda.',
+    '2|Baile sensual en silla para alguien de la tribu|Con música y público.',
+    '3|Beso en el yate al atardecer|El Egeo como único testigo.',
+    '2v|Video: dirty dancing en cubierta|Sin caerse al mar.',
+    '2|Chapuzón nocturno con alguien especial|Piscina del hotel o mar. Con cuidado.',
+    '2|Recrea la portada de una novela romántica|Pelo al viento, camisa abierta y mirada intensa.',
+    '1|La mordida de labio más coqueta|Para tu crush, desde el otro lado de la pista.',
+    '2|Evidencia de un chupetón|Discreto o no tanto.',
+    '3|El que se ligó a alguien del tour|Conocidos en el bus, inseparables en la fiesta.',
+    '2|Intercambio de habitaciones por una noche|La llave de otro cuarto en tu mano.',
+    '2v|Video: tu confesión de la noche loca|Treinta segundos que solo verán los novios.',
+    '2|El casado más sexy de la boda|Foto con él. Si su esposa sale en el cuadro, vale doble de valentía.',
+    '2|La casada más hot de la boda|Foto con ella. Su esposo decide si posa o si mira de lejos.',
+    '2|La pareja casada que todavía se come a besos|Los que parecen recién casados sin serlo.',
+    '2|Foto que parece infidelidad pero no lo es|Ángulo sospechoso, contexto inocente. Que los novios adivinen.',
+    '3|La foto más comprometedora del viaje|Actuada, con la pareja cómplice detrás de cámara.',
+    '2|El "amigo" que abraza demasiado a una casada|Actúen celos exagerados. Oscar al mejor drama.',
+    '2v|Video: la pareja oficial descubre la foto sospechosa|Reacción de telenovela, en cámara lenta si se puede.',
+    '1|Alguien quitándose el anillo "para la foto"|Y volviéndoselo a poner antes de que alguien vea.',
+    '2|Dos casados haciendo la pose del "no me conoces"|Lentes oscuros y cero contacto visual.',
+    '2v|Video: "esto no es lo que parece"|La frase clásica, con la mejor cara de culpable.',
+    '2|El soltero más cotizado de la fiesta|Foto con él y con la fila de pretendientes.',
+    '1|Tu pareja durmiendo mientras tú sigues de fiesta|La coartada perfecta.',
+    '2|Tu primera vez haciendo un bodyshot|Tu cara lo dice todo.',
+    '2|La que nunca había bailado sirtaki en brazos de un griego|Y ahora no quiere soltarlo.',
+    '2|El que nunca había besado a alguien en otro país|Hasta hoy. Kalimera.',
+    '2v|Video: tu primera vez diciendo un piropo en griego|Pronunciación opcional, valentía obligatoria.',
+    '1|La primera vez que alguien te pidió el número en Grecia|Sonrisa de victoria incluida.',
+    '2|Tu primera vez en un jacuzzi con alguien que acabas de conocer|Burbujas y buena conversación.',
+    '2v|Video: la primera vez de alguien probando ouzo|La cara es el premio.',
+    '3|Alguien haciendo algo por primera vez esta noche|Que lo confiese en cámara, sin detalles.',
+    '2|El invitado con más ligues en el viaje|Pide su conteo oficial.',
+    '2|El ligue que nadie vio venir|Los más inesperados de la boda.',
+    '2|La tía o el tío más coqueto de la fiesta|Y su víctima favorita.',
+    '1|Alguien ligando con el mesero o la mesera|Propina en forma de sonrisa.',
+    '2v|Video: tu peor intento de ligue del viaje|Mientras más vergonzoso, más puntos de honor.',
+    '2|El soltero de oro y la soltera de oro|Súbelos juntos a la foto y deja que el destino haga lo suyo.',
+    '2|La soltera más cotizada de la fiesta|Foto con ella y con la fila de pretendientes.'
+  ]},
+  // Sorpréndeme: primero el mensaje de cada invitado para los novios; ya grabado, retos al azar
+  {k:'mensaje', x:1, n:'Mensaje para los novios', s:'MENSAJE', h:'Un mensaje de cada invitado para Jenireé y Leandro.', r:[
+    '3v|Tu mensaje para los novios|Graba un video con tus deseos, un consejo o un recuerdo para Jenireé y Leandro. Uno por invitado: el que más te salga del corazón.'
+  ]}
+];
+var MSG_ID = 'mensaje-1';
+function capLabel(ci){ var c = CAPS[ci]; return c.x ? c.n : 'Capítulo ' + (ci + 1) + ': ' + c.n; }
+var RETOS = [], RETO = {};
+CAPS.forEach(function(c, ci){
+  c.count = c.r.length;
+  c.r.forEach(function(s, i){
+    var a = s.split('|'), m = a[0];
+    var r = {id:c.k + '-' + (i + 1), c:ci, r:+m.charAt(0) || 1, v:m.indexOf('v') > 0, p:!!c.p, t:a[1], d:a[2] || ''};
+    RETOS.push(r); RETO[r.id] = r;
+  });
+});
+var PTS = {1:10, 2:25, 3:50}, RAREZA = {1:'Común', 2:'Especial', 3:'Legendario'};
+var LEVELS = [[0,'Pasajero'], [80,'Viajero frecuente'], [250,'Clase Olympia'], [600,'Explorador del Egeo'], [1200,'Semidiós del Olimpo'], [2200,'Leyenda de la Acrópolis'], [3500,'Dios del Olimpo']];
+function isPrivCh(id){ return !!(id && RETO[id] && RETO[id].p); }
+function sealInner(r, t){ return '<span>JLO ATENAS</span><b>' + esc(CAPS[r.c].s) + '</b><span>' + dateShort(t || Date.now()) + '</span>'; }
+
+/* ---------- JSONP ---------- */
 function jsonp(p, timeout){
   return new Promise(function(resolve, reject){
     var cb = '__jloAlb_' + Date.now() + '_' + Math.floor(Math.random() * 1e6);
@@ -847,14 +1458,48 @@ function jsonp(p, timeout){
   });
 }
 
+/* ---------- estado ---------- */
+var state = {
+  photos: [], name: lsGet(LS.name, ''),
+  mine: (function(){ try { return JSON.parse(lsGet(LS.mine, '[]')) || []; } catch(e){ return []; } })(),
+  who: 'all', chap: '', shown: CONFIG.PAGE_SIZE, previews: {}, local: {}, pc: {}, loaded: false, failed: false
+};
+var quest = {
+  active: lsGet(LS.quest, ''),
+  done: (function(){ try { return JSON.parse(lsGet(LS.done, '{}')) || {}; } catch(e){ return {}; } })(),
+  chap: lsGet(LS.chap, 'prep'), last: null
+};
+if (!RETO[quest.active]) quest.active = '';
+// Los retos arrancan en el capítulo 1 (Preparativos); "mix" es Sorpréndeme
+if (quest.chap !== 'mix' && !CAPS.some(function(c){ return c.k === quest.chap; })) quest.chap = 'prep';
+var demo = {photos: [], pc: {}};
+
+function isMine(id){ return state.mine.indexOf(id) >= 0; }
+function addMine(id){ if (!isMine(id)){ state.mine.push(id); lsSet(LS.mine, JSON.stringify(state.mine.slice(-1500))); } }
+
+// Miniaturas: fotos desde Drive; videos desde su portada (o la miniatura que genera Drive)
+function thumbId(p){ return p.v ? (p.pv || p.id) : p.id; }
+function thumb(p, size){
+  if (state.previews[p.id]) return state.previews[p.id];
+  return 'https://drive.google.com/thumbnail?id=' + encodeURIComponent(thumbId(p)) + '&sz=w' + size;
+}
+function setImg(img, p, size){
+  img.dataset.try = '0';
+  img.onload = function(){ img.classList.add('ok'); };
+  img.onerror = function(){
+    var n = +img.dataset.try + 1; img.dataset.try = n;
+    if (n === 1) img.src = 'https://lh3.googleusercontent.com/d/' + encodeURIComponent(thumbId(p)) + '=w' + size;
+    else if (n < 6) setTimeout(function(){ img.src = thumb(p, size) + '&r=' + n; }, 4000 * n);
+  };
+  img.src = thumb(p, size);
+}
+
 /* ---------- API ---------- */
-var demo = {photos: []};
 function apiList(){
-  if (!CONFIG.SCRIPT_URL) return Promise.resolve({ok:true, photos:demo.photos.slice()});
+  if (!CONFIG.SCRIPT_URL) return Promise.resolve({ok:true, photos:demo.photos.slice(), pc:demo.pc});
   return jsonp({action:'list', k:KEY}, 15000);
 }
 function apiCheck(cid){ return jsonp({action:'check', k:KEY, cid:cid}, 15000); }
-function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
 function verifyUpload(cid, tries){
   return wait(2500).then(function(){ return apiCheck(cid); }).then(function(res){
     if (res && res.ok && res.photo) return {ok:true, photo:res.photo};
@@ -862,55 +1507,88 @@ function verifyUpload(cid, tries){
     throw new Error('upload');
   });
 }
-function apiUpload(it){
+function postJSON(obj){
+  // POST "simple" (text/plain) para evitar el preflight de CORS en Apps Script
+  return fetch(CONFIG.SCRIPT_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify(obj), redirect:'follow'})
+    .then(function(r){ return r.json(); });
+}
+function demoSave(p){ if (isPrivCh(p.ch)) demo.pc[p.ch] = (demo.pc[p.ch] || 0) + 1; else demo.photos.unshift(p); }
+function apiPhoto(it){
   if (!CONFIG.SCRIPT_URL){
-    return wait(900).then(function(){
+    return wait(800).then(function(){
       var p = {id:'demo_' + it.cid, n:state.name || 'Invitado', c:it.caption || '', t:Date.now(), w:it.w, h:it.h, s:it.source, ch:it.ch || ''};
-      demo.photos.unshift(p); return {ok:true, photo:p};
+      demoSave(p); return {ok:true, photo:p};
     });
   }
-  var body = JSON.stringify({k:KEY, cid:it.cid, name:state.name || 'Invitado', caption:it.caption || '', source:it.source,
-    ch:it.ch || '', mime:'image/jpeg', w:it.w, h:it.h, data:it.data.split(',')[1], ua:navigator.userAgent.slice(0, 140)});
-  // POST "simple" (text/plain) para evitar preflight CORS en Apps Script.
-  // Si la respuesta no se puede leer, se confirma por JSONP con el ID de cliente.
-  return fetch(CONFIG.SCRIPT_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:body, redirect:'follow'})
-    .then(function(r){ return r.json(); })
+  return postJSON({k:KEY, cid:it.cid, name:state.name || 'Invitado', caption:it.caption || '', source:it.source, ch:it.ch || '',
+    mime:'image/jpeg', w:it.w, h:it.h, data:it.data.split(',')[1], ua:navigator.userAgent.slice(0, 140)})
     .then(function(res){ if (res && (res.ok || res.error)) return res; throw new Error('bad'); })
     .catch(function(){ return verifyUpload(it.cid, 3); });
 }
-
-/* ---------- estado ---------- */
-var state = {
-  photos: [], name: lsGet(LS.name, ''),
-  mine: (function(){ try { return JSON.parse(lsGet(LS.mine, '[]')) || []; } catch(e){ return []; } })(),
-  filter: 'all', shown: CONFIG.PAGE_SIZE, previews: {}, loaded: false, failed: false
-};
-function isMine(id){ return state.mine.indexOf(id) >= 0; }
-function addMine(id){ if (!isMine(id)){ state.mine.push(id); lsSet(LS.mine, JSON.stringify(state.mine.slice(-800))); } }
-
-function thumb(p, size){
-  if (state.previews[p.id]) return state.previews[p.id];
-  return 'https://drive.google.com/thumbnail?id=' + encodeURIComponent(p.id) + '&sz=w' + size;
+// Sube el video por partes directo a Google Drive (sesión reanudable)
+function putChunks(url, blob, onProg){
+  var CH = CONFIG.CHUNK_MB * 1024 * 1024, size = blob.size;
+  function send(start, tries){
+    return new Promise(function(resolve, reject){
+      var end = Math.min(start + CH, size), xhr = new XMLHttpRequest();
+      xhr.open('PUT', url);
+      xhr.setRequestHeader('Content-Range', 'bytes ' + start + '-' + (end - 1) + '/' + size);
+      xhr.upload.onprogress = function(e){ onProg((start + e.loaded) / size); };
+      xhr.onload = function(){
+        if (xhr.status === 200 || xhr.status === 201){
+          var f = {}; try { f = JSON.parse(xhr.responseText); } catch(e){}
+          resolve({done:true, file:f});
+        } else if (xhr.status === 308){
+          var rg = xhr.getResponseHeader('Range');
+          resolve({done:false, next: rg ? +rg.split('-')[1] + 1 : end});
+        } else reject(new Error('http' + xhr.status));
+      };
+      xhr.onerror = function(){ reject(new Error('network')); };
+      xhr.send(blob.slice(start, end));
+    }).then(function(r){ return r.done ? r.file : send(r.next, 3); }, function(err){
+      if (tries > 0) return wait(2500).then(function(){ return send(start, tries - 1); });
+      throw err;
+    });
+  }
+  return send(0, 3);
 }
-// Drive tarda unos segundos en generar miniaturas nuevas: probamos otra ruta y reintentamos
-function setImg(img, p, size){
-  img.dataset.try = '0';
-  img.onload = function(){ img.classList.add('ok'); };
-  img.onerror = function(){
-    var n = +img.dataset.try + 1; img.dataset.try = n;
-    if (n === 1) img.src = 'https://lh3.googleusercontent.com/d/' + encodeURIComponent(p.id) + '=w' + size;
-    else if (n < 5) setTimeout(function(){ img.src = thumb(p, size) + '&r=' + n; }, 3000 * n);
-  };
-  img.src = thumb(p, size);
+function uploadPoster(vid, dataUrl){
+  return postJSON({k:KEY, action:'poster', vid:vid, data:dataUrl.split(',')[1]})
+    .then(function(r){ return r && r.ok ? r.pv : ''; }).catch(function(){ return ''; });
+}
+function apiVideo(it, onProg){
+  var name = state.name || 'Invitado';
+  if (!CONFIG.SCRIPT_URL){
+    return new Promise(function(resolve){
+      var f = 0, iv = setInterval(function(){
+        f += .2; onProg(Math.min(1, f));
+        if (f >= 1){ clearInterval(iv); var p = {id:'demo_' + it.cid, n:name, c:it.caption || '', t:Date.now(), w:it.w, h:it.h, s:it.source, ch:it.ch || '', v:1, d:it.dur}; demoSave(p); resolve({ok:true, photo:p}); }
+      }, 250);
+    });
+  }
+  var step = it.fileId ? Promise.resolve({id:it.fileId}) :
+    jsonp({action:'initVideo', k:KEY, cid:it.cid, size:it.blob.size, mime:it.mime, origin:location.origin, name:name, ch:it.ch || ''}, 30000).then(function(r){
+      if (!r || !r.ok) throw new Error((r && r.error) || 'init');
+      if (r.photo) return {dup:r.photo};
+      return putChunks(r.uploadUrl, it.blob, onProg).then(function(file){ it.fileId = (file && file.id) || '?'; return {id:it.fileId}; });
+    });
+  return step.then(function(f){
+    if (f.dup) return {ok:true, photo:f.dup};
+    return jsonp({action:'finishVideo', k:KEY, cid:it.cid, fileId:f.id === '?' ? '' : f.id, name:name, caption:it.caption || '', ch:it.ch || '',
+      source:it.source, w:it.w, h:it.h, d:it.dur, ua:navigator.userAgent.slice(0, 120)}, 30000);
+  }).then(function(res){
+    if (!res || !res.ok) throw new Error((res && res.error) || 'finish');
+    if (!it.poster || res.photo.pv || isPrivCh(it.ch)) return res;
+    return uploadPoster(res.photo.id, it.poster).then(function(pv){ if (pv) res.photo.pv = pv; return res; });
+  });
 }
 
+/* ---------- datos del álbum ---------- */
 function setPhotos(list){
   var ids = {};
   list.forEach(function(p){ ids[p.id] = 1; });
-  // conserva por un rato las fotos propias recién subidas que aún no llegan del servidor
   var keep = state.photos.filter(function(p){ return !ids[p.id] && state.previews[p.id] && Date.now() - p.t < 180000; });
   state.photos = keep.concat(list).sort(function(a, b){ return b.t - a.t; });
-  // recupera retos propios desde el servidor (por ejemplo, si se abrió en otro momento)
   var fixed = false;
   state.photos.forEach(function(p){ if (p.ch && RETO[p.ch] && isMine(p.id) && !quest.done[p.ch]){ quest.done[p.ch] = p.id; fixed = true; } });
   if (fixed) saveQuest();
@@ -921,11 +1599,11 @@ function addPhoto(p){
   state.photos.sort(function(a, b){ return b.t - a.t; });
   paintAll();
 }
-
 function loadList(){
   return apiList().then(function(res){
     if (!res || !res.ok) throw new Error(res && res.error || 'bad');
     state.loaded = true; state.failed = false;
+    state.pc = res.pc || {};
     setPhotos(res.photos || []);
   }).catch(function(err){
     state.failed = true;
@@ -938,57 +1616,169 @@ function loadList(){
   });
 }
 
+/* ---------- retos: cálculos ---------- */
+function saveQuest(){ lsSet(LS.quest, quest.active); lsSet(LS.done, JSON.stringify(quest.done)); lsSet(LS.chap, quest.chap); }
+function doneIds(){ return Object.keys(quest.done).filter(function(id){ return RETO[id]; }); }
+function myPoints(){ return doneIds().reduce(function(a, id){ return a + PTS[RETO[id].r]; }, 0); }
+function levelOf(pts){
+  var i = 0; for (var k = 0; k < LEVELS.length; k++) if (pts >= LEVELS[k][0]) i = k;
+  var nx = LEVELS[i + 1];
+  return {i:i, name:LEVELS[i][1], next:nx ? nx[0] : 0, nextName:nx ? nx[1] : '', pct:nx ? Math.round((pts - LEVELS[i][0]) / (nx[0] - LEVELS[i][0]) * 100) : 100};
+}
+function pickReto(skip){
+  // Sorpréndeme nunca sirve retos Atrevidos: esos solo salen si eliges su capítulo
+  if (quest.chap === 'mix' && !quest.done[MSG_ID]) return RETO[MSG_ID];
+  function inChap(r){ return quest.chap === 'mix' ? !r.p && r.id !== MSG_ID : CAPS[r.c].k === quest.chap; }
+  var pool = RETOS.filter(function(r){ return inChap(r) && !quest.done[r.id] && r.id !== skip; });
+  if (!pool.length) pool = RETOS.filter(function(r){ return inChap(r) && r.id !== skip; });
+  if (!pool.length) pool = RETOS.filter(function(r){ return !r.p && r.id !== skip; });
+  var W = {1:6, 2:3, 3:1}, x = Math.random() * pool.reduce(function(a, r){ return a + W[r.r]; }, 0);
+  for (var i = 0; i < pool.length; i++){ x -= W[pool[i].r]; if (x <= 0) return pool[i]; }
+  return pool[pool.length - 1];
+}
+function retoStats(){
+  var claimed = {}, players = {}, chap = {};
+  CAPS.forEach(function(c){ chap[c.k] = {n:0, recent:[]}; });
+  state.photos.forEach(function(p){
+    var r = p.ch && RETO[p.ch]; if (!r) return;
+    var ck = CAPS[r.c].k;
+    if (!claimed[p.ch]){ claimed[p.ch] = 0; chap[ck].n++; }
+    claimed[p.ch]++;
+    if (chap[ck].recent.length < 4) chap[ck].recent.push(p);
+    if (!p.n || p.n === 'Invitado') return;
+    var pl = players[p.n] || (players[p.n] = {n:p.n, set:{}, pts:0, count:0});
+    if (!pl.set[p.ch]){ pl.set[p.ch] = 1; pl.pts += PTS[r.r]; pl.count++; }
+  });
+  // Retos privados: el servidor solo informa cuántas veces se cumplió cada uno, sin fotos ni nombres
+  Object.keys(state.pc || {}).forEach(function(id){
+    if (!RETO[id] || claimed[id]) return;
+    claimed[id] = state.pc[id]; chap[CAPS[RETO[id].c].k].n++;
+  });
+  doneIds().forEach(function(id){
+    if (!RETO[id].p || claimed[id]) return;
+    claimed[id] = 1; chap[CAPS[RETO[id].c].k].n++;
+  });
+  var board = Object.keys(players).map(function(k){ return players[k]; }).sort(function(a, b){ return b.pts - a.pts || b.count - a.count; });
+  return {claimed:claimed, board:board, chap:chap};
+}
+
 /* ---------- pintar ---------- */
 function paintAll(){
   if (state.loaded && !state.failed){ $('#albumError').hidden = true; $('#liveTxt').classList.remove('off'); }
-  paintPass(); paintBoard(); paintCamAlbum();
-  if (MODE === 'pantalla') screenUpdate(); else { paintGallery(); paintRetos(); paintPlay(); }
+  paintPass(); paintBoard(); paintCamAlbum(); paintPlay();
+  if (MODE === 'pantalla') screenUpdate(); else { paintGallery(); paintHistoria(); }
 }
-function guestCount(){ var g = {}; state.photos.forEach(function(p){ g[p.n] = 1; }); return Object.keys(g).length; }
+function counts(){
+  var g = {}, v = 0;
+  state.photos.forEach(function(p){ g[p.n] = 1; if (p.v) v++; });
+  return {total:state.photos.length, videos:v, photos:state.photos.length - v, guests:Object.keys(g).length};
+}
 function paintPass(){
-  var total = state.photos.length, guests = guestCount(), mine = state.photos.filter(function(p){ return isMine(p.id); }).length;
-  $('#pName').textContent = state.name || 'Tu nombre aquí';
-  $('#pTotal').textContent = total;
-  $('#pGuests').textContent = guests;
+  var c = counts(), mine = state.photos.filter(function(p){ return isMine(p.id); }).length;
+  var claimed = Object.keys(retoStats().claimed).length, L = levelOf(myPoints());
+  $('#pName').textContent = state.name && state.name !== 'Invitado' ? state.name : 'Tu nombre aquí';
+  $('#pScenes').textContent = claimed + '/' + RETOS.length;
+  $('#pGuests').textContent = c.guests;
+  $('#pPhotos').textContent = c.photos;
+  $('#pVideos').textContent = c.videos;
   $('#pMine').textContent = mine;
-  $('#pState').textContent = total ? 'En vuelo' : 'Abordando';
-  $('#pRetos').textContent = doneIds().length + '/' + RETOS.length;
+  $('#pSeals').textContent = doneIds().length;
+  $('#pLevel').textContent = L.name;
+  var line = plural(c.photos, 'foto', 'fotos') + ' y ' + plural(c.videos, 'video', 'videos') + ' de ' + plural(c.guests, 'pasajero', 'pasajeros');
   $('#heroStatus').innerHTML = !state.loaded ? (state.failed ? 'El álbum no responde ahora mismo.' : 'Abriendo el álbum…')
-    : total ? 'Álbum en vivo: <b>' + plural(total, 'foto', 'fotos') + '</b> de <b>' + plural(guests, 'pasajero', 'pasajeros') + '</b>'
-    : 'El álbum está listo para su primera foto.';
-  $('#albumLead').textContent = !state.loaded ? 'Cargando las fotos de los pasajeros…'
-    : total ? plural(total, 'foto', 'fotos') + ' de ' + plural(guests, 'pasajero', 'pasajeros') + '. Toca cualquiera para verla completa.'
-    : 'Todavía no hay fotos. La primera puede ser tuya.';
+    : c.total ? 'Historia en vivo: <b>' + esc(line) + '</b>' : 'La historia está lista para su primera escena.';
+  $('#albumLead').textContent = !state.loaded ? 'Cargando las fotos y videos de los pasajeros…'
+    : c.total ? line + '. Toca cualquiera para verla completa.' : 'Todavía no hay fotos ni videos. La primera escena puede ser tuya.';
 }
 
 var nodes = {}, gallerySig = '';
-function filtered(){ return state.filter === 'mine' ? state.photos.filter(function(p){ return isMine(p.id); }) : state.photos; }
+function filtered(){
+  return state.photos.filter(function(p){
+    if (state.who === 'mine' && !isMine(p.id)) return false;
+    if (state.who === 'video' && !p.v) return false;
+    if (state.chap){ var r = p.ch && RETO[p.ch]; if (!r || CAPS[r.c].k !== state.chap) return false; }
+    return true;
+  });
+}
 function photoNode(p){
-  var b = nodes[p.id];
-  if (b) return b;
-  b = document.createElement('button');
-  b.type = 'button'; b.className = 'photo' + (isMine(p.id) ? ' is-mine' : ''); b.dataset.id = p.id;
-  b.setAttribute('aria-label', 'Foto de ' + p.n + ', ' + clock(p.t) + (p.c ? ': ' + p.c : ''));
-  b.innerHTML = '<span class="ph-img"><img alt="" loading="lazy" decoding="async"></span><span class="ph-meta"><b></b><time></time></span>' + (p.ch && RETO[p.ch] ? '<span class="ph-ch"></span>' : '') + (p.c ? '<span class="ph-cap"></span>' : '');
+  var key = p.id + '|' + (p.pv || '');
+  if (nodes[key]) return nodes[key];
+  var r = p.ch && RETO[p.ch];
+  var b = document.createElement('button');
+  b.type = 'button'; b.className = 'photo'; b.dataset.id = p.id;
+  b.setAttribute('aria-label', (p.v ? 'Video' : 'Foto') + ' de ' + p.n + ', ' + clock(p.t) + (r ? '. Reto: ' + r.t : '') + (p.c ? '. ' + p.c : ''));
+  b.innerHTML = '<span class="ph-img"><img alt="" loading="lazy" decoding="async">' +
+    (p.v ? '<span class="ph-play">▶ ' + (p.d ? fmtDur(p.d) : 'Video') + '</span>' : '') +
+    (r ? '<span class="seal" aria-hidden="true">' + sealInner(r, p.t) + '</span>' : '') +
+    '</span><span class="ph-meta"><b></b><time></time></span>' + (r ? '<span class="ph-ch"></span>' : '') + (p.c ? '<span class="ph-cap"></span>' : '');
   $('.ph-meta b', b).textContent = p.n;
   $('.ph-meta time', b).textContent = clock(p.t);
+  if (r) $('.ph-ch', b).textContent = r.t;
   if (p.c) $('.ph-cap', b).textContent = p.c;
-  if (p.ch && RETO[p.ch]) $('.ph-ch', b).textContent = 'Reto: ' + RETO[p.ch].t;
   setImg($('img', b), p, 600);
-  nodes[p.id] = b;
+  nodes[key] = b;
   return b;
 }
 function paintGallery(){
   var list = filtered(), vis = list.slice(0, state.shown);
-  var sig = state.filter + '|' + state.shown + '|' + vis.map(function(p){ return p.id; }).join(',');
+  var sig = state.who + state.chap + '|' + state.shown + '|' + vis.map(function(p){ return p.id + (p.pv || ''); }).join(',');
   $('#empty').hidden = !(state.loaded && list.length === 0);
-  $('#emptyTxt').textContent = state.filter === 'mine' ? 'Aún no has subido fotos desde este teléfono.' : 'El álbum espera su primera foto. ¿La tomas tú?';
+  $('#emptyTxt').textContent = state.who === 'mine' ? 'Aún no has subido nada desde este teléfono.'
+    : state.who === 'video' ? 'Todavía no hay videos. ¿Grabas el primero?'
+    : state.chap ? 'Este capítulo todavía está en blanco. ¿Escribes la primera escena?'
+    : 'El álbum espera su primera escena. ¿La capturas tú?';
   $('#moreWrap').hidden = list.length <= state.shown;
   if (sig === gallerySig) return;
   gallerySig = sig;
   var grid = $('#grid'), frag = document.createDocumentFragment();
   vis.forEach(function(p){ var n = photoNode(p); n.classList.toggle('is-mine', isMine(p.id)); frag.appendChild(n); });
   grid.innerHTML = ''; grid.appendChild(frag);
+}
+
+var histSig = '';
+function paintHistoria(){
+  var st = retoStats(), T = RETOS.length, claimed = Object.keys(st.claimed).length;
+  var people = counts().guests;
+  $('#rtGlobal').textContent = claimed;
+  $('#rtPeople').textContent = people > 1 ? people + ' participantes' : 'todos';
+  $('#rtGlobalBar').style.width = (claimed / T * 100).toFixed(1) + '%';
+  $('#rtMeBar').style.width = (doneIds().length / T * 100).toFixed(1) + '%';
+  var pts = myPoints(), L = levelOf(pts);
+  $('#rtRing').style.setProperty('--p', L.pct); $('#rtLvl').textContent = L.i + 1;
+  $('#rtMeName').textContent = (state.name && state.name !== 'Invitado' ? state.name : 'Tu pasaporte') + ', nivel ' + (L.i + 1);
+  $('#rtMeTxt').textContent = L.name + '. ' + plural(doneIds().length, 'sello', 'sellos') + ' y ' + pts + ' pts.';
+  var top = st.board.slice(0, 10);
+  $('#rtBoardEmpty').hidden = top.length > 0;
+  $('#rtBoard').innerHTML = top.map(function(p, i){
+    return '<li class="' + (p.n === state.name ? 'me' : '') + '"><span class="rk">' + (i + 1) + '</span><b>' + esc(p.n) + '</b><span class="rs"><strong>' + p.pts + ' pts</strong>' + plural(p.count, 'sello', 'sellos') + '</span></li>';
+  }).join('');
+
+  var sig = CAPS.map(function(c){ var s = st.chap[c.k]; return s.n + ':' + s.recent.map(function(p){ return p.id + (p.pv || ''); }).join('.'); }).join('|') + '|' + doneIds().length;
+  if (sig === histSig) return;
+  histSig = sig;
+  var ol = $('#chapters'); ol.innerHTML = '';
+  CAPS.forEach(function(c, i){
+    if (c.x) return;
+    var s = st.chap[c.k];
+    var mine = RETOS.filter(function(r){ return r.c === i && quest.done[r.id]; }).length;
+    var li = document.createElement('li'); li.className = 'chap' + (c.p ? ' is-priv' : '');
+    li.innerHTML = '<p class="chap-n">Capítulo ' + (i + 1) + '</p><h3>' + esc(c.n) + '</h3><p class="chap-s">' + esc(c.h) + '</p>' +
+      '<div class="chap-strip"></div>' +
+      '<div class="chap-prog"><span><b>' + s.n + '</b> de ' + c.count + ' escenas</span><span>Tus sellos: ' + mine + '</span></div>' +
+      '<div class="chap-bar"><i style="width:' + (s.n / c.count * 100).toFixed(1) + '%"></i></div>' +
+      '<div class="chap-actions"><button type="button" class="linkbtn" data-play="' + c.k + '">Jugar este capítulo</button>' +
+      (s.n && !c.p ? '<button type="button" class="linkbtn" data-view="' + c.k + '">Ver sus escenas</button>' : '') + '</div>';
+    var strip = $('.chap-strip', li);
+    if (c.p) strip.innerHTML = '<p>Capítulo privado. Se abre desde Retos.</p>';
+    else if (s.recent.length){
+      s.recent.forEach(function(p){
+        var sp = document.createElement('span'); sp.className = 'chap-th' + (p.v ? ' is-video' : '');
+        var im = document.createElement('img'); im.alt = ''; im.loading = 'lazy'; sp.appendChild(im); setImg(im, p, 300);
+        strip.appendChild(sp);
+      });
+    } else strip.innerHTML = '<p>Esta página de la historia sigue en blanco.</p>';
+    ol.appendChild(li);
+  });
 }
 
 /* ---------- tablero ---------- */
@@ -1015,8 +1805,11 @@ function setFlap(el, text, instant){
 function shortName(n){ var parts = String(n || '').trim().split(/\s+/); return parts[0] + (parts[1] ? ' ' + parts[1].charAt(0) + '.' : ''); }
 function boardData(){
   var total = state.photos.length;
-  if (!total) return [['--:--', 'BIENVENIDOS', 'JLO 2026', 'ABORDANDO'], ['', 'TU FOTO AQUÍ', '', 'EN ESPERA'], ['', '', '', ''], ['', '', '', '']];
-  var rows = state.photos.slice(0, 4).map(function(p, i){ return [clock(p.t), shortName(p.n), 'FOTO ' + pad4(total - i), i === 0 ? 'EN VIVO' : (p.ch ? 'RETO' : 'ATERRIZÓ')]; });
+  if (!total) return [['--:--', 'BIENVENIDOS', 'JLO 2026', 'ABORDANDO'], ['', 'TU ESCENA AQUÍ', '', 'EN ESPERA'], ['', '', '', ''], ['', '', '', '']];
+  var rows = state.photos.slice(0, 4).map(function(p, i){
+    var r = p.ch && RETO[p.ch];
+    return [clock(p.t), shortName(p.n), r ? CAPS[r.c].s : 'N° ' + pad4(total - i), i === 0 ? 'EN VIVO' : (r ? 'SELLADO' : (p.v ? 'VIDEO' : 'ATERRIZÓ'))];
+  });
   while (rows.length < 4) rows.push(['', '', '', '']);
   return rows;
 }
@@ -1041,7 +1834,7 @@ function paintBoard(){
     row.s.classList.toggle('is-live', r[3] === 'EN VIVO' || r[3] === 'ABORDANDO');
   });
   var p = state.photos[0];
-  $('#boardSr').textContent = p ? 'Última foto del álbum: ' + p.n + ' a las ' + clock(p.t) + '.' : 'Álbum compartido de la boda de Jenireé y Leandro en Atenas.';
+  $('#boardSr').textContent = p ? 'Lo último en el álbum: ' + p.n + ' a las ' + clock(p.t) + '.' : 'Álbum compartido de la boda de Jenireé y Leandro en Atenas.';
 }
 
 /* ---------- nombre ---------- */
@@ -1056,7 +1849,7 @@ function askName(){
       lsSet(LS.name, state.name);
       m.hidden = true;
       if ($('#cam').hidden) document.body.classList.remove('noscroll');
-      paintPass();
+      paintPass(); if (MODE !== 'pantalla'){ histSig = ''; paintHistoria(); }
       if (last && last.focus) last.focus();
       resolve();
     }
@@ -1066,44 +1859,16 @@ function askName(){
 }
 function ensureName(){ return state.name ? Promise.resolve() : askName(); }
 
-/* ---------- procesamiento de imagen ---------- */
-var fontsReady = document.fonts ? Promise.all([
-  document.fonts.load('40px Marcellus'), document.fonts.load('600 40px "Barlow Condensed"')
-]).catch(function(){}) : Promise.resolve();
-
-var MONTHS = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
-function stampDate(){
-  var d = new Date();
-  try {
-    var parts = new Intl.DateTimeFormat('en-GB', {timeZone:CONFIG.TIMEZONE, day:'2-digit', month:'numeric', year:'numeric'}).formatToParts(d);
-    var o = {}; parts.forEach(function(p){ o[p.type] = p.value; });
-    return o.day + ' ' + MONTHS[+o.month - 1] + ' ' + o.year;
-  } catch(e){ return pad2(d.getDate()) + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear(); }
-}
-function drawStamp(x, w, h){
-  var r = Math.round(Math.min(w, h) * 0.12), cx = w - r * 1.4, cy = h - r * 1.4;
-  x.save();
-  x.translate(cx, cy); x.rotate(-0.21);
-  x.strokeStyle = '#E4C77F'; x.fillStyle = '#E4C77F'; x.globalAlpha = .93;
-  x.shadowColor = 'rgba(0,0,0,.45)'; x.shadowBlur = r * .12;
-  x.lineWidth = r * .07; x.beginPath(); x.arc(0, 0, r, 0, Math.PI * 2); x.stroke();
-  x.lineWidth = r * .03; x.beginPath(); x.arc(0, 0, r * .8, 0, Math.PI * 2); x.stroke();
-  x.textAlign = 'center'; x.textBaseline = 'middle';
-  x.font = '600 ' + Math.round(r * .19) + 'px "Barlow Condensed", "Arial Narrow", sans-serif'; x.fillText('JLO WEDDING', 0, -r * .42);
-  x.font = Math.round(r * .34) + 'px Marcellus, Georgia, serif'; x.fillText('ATENAS', 0, r * .03);
-  x.font = '600 ' + Math.round(r * .19) + 'px "Barlow Condensed", "Arial Narrow", sans-serif'; x.fillText(stampDate(), 0, r * .43);
-  x.restore();
-}
+/* ---------- procesamiento de fotos y videos (la imagen nunca se altera) ---------- */
 function renderJpeg(src, sw, sh, opt){
-  var scale = Math.min(1, CONFIG.MAX_SIDE / Math.max(sw, sh));
+  opt = opt || {};
+  var max = opt.max || CONFIG.MAX_SIDE, scale = Math.min(1, max / Math.max(sw, sh));
   var w = Math.max(1, Math.round(sw * scale)), h = Math.max(1, Math.round(sh * scale));
   var c = document.createElement('canvas'); c.width = w; c.height = h;
   var x = c.getContext('2d');
-  if (opt && opt.mirror){ x.translate(w, 0); x.scale(-1, 1); }
+  if (opt.mirror){ x.translate(w, 0); x.scale(-1, 1); }
   x.drawImage(src, 0, 0, w, h);
-  x.setTransform(1, 0, 0, 1, 0, 0);
-  if (opt && opt.stamp) drawStamp(x, w, h);
-  return {data:c.toDataURL('image/jpeg', CONFIG.QUALITY), w:w, h:h};
+  return {data:c.toDataURL('image/jpeg', opt.q || CONFIG.QUALITY), w:w, h:h};
 }
 function decodeFile(file){
   function viaImg(){
@@ -1119,301 +1884,315 @@ function decodeFile(file){
   }
   return viaImg();
 }
-function processFiles(files, source, stamp){
+// Lee duración, tamaño y una portada de un video (sin modificar el archivo)
+function videoMeta(blob){
+  return new Promise(function(resolve){
+    var url = URL.createObjectURL(blob), v = document.createElement('video'), done = false;
+    v.muted = true; v.playsInline = true; v.preload = 'auto';
+    function finish(poster){
+      if (done) return; done = true;
+      var o = {poster:poster || '', w:v.videoWidth || 0, h:v.videoHeight || 0, dur:isFinite(v.duration) ? Math.round(v.duration) : 0};
+      try { v.pause(); } catch(e){}
+      v.removeAttribute('src'); try { v.load(); } catch(e){}
+      URL.revokeObjectURL(url); resolve(o);
+    }
+    function grab(){
+      try { finish(v.videoWidth ? renderJpeg(v, v.videoWidth, v.videoHeight, {max:720, q:.8}).data : ''); } catch(e){ finish(''); }
+    }
+    v.onloadeddata = function(){
+      try { v.pause(); } catch(e){}
+      var t = isFinite(v.duration) && v.duration > 1 ? Math.min(1, v.duration / 3) : 0;
+      if (t > 0){ v.onseeked = grab; try { v.currentTime = t; } catch(e){ grab(); } } else grab();
+    };
+    v.onerror = function(){ finish(''); };
+    setTimeout(function(){ finish(''); }, 9000);
+    v.src = url;
+    var pr = v.play(); if (pr && pr.catch) pr.catch(function(){});
+  });
+}
+function isVideoFile(f){ return /^video\//.test(f.type) || /\.(mp4|mov|m4v|webm|3gp)$/i.test(f.name || ''); }
+function isImageFile(f){ return /^image\//.test(f.type) || (!f.type && /\.(jpe?g|png|heic|heif|webp|gif)$/i.test(f.name || '')); }
+function videoMime(f){ return f.type || (/\.mov$/i.test(f.name || '') ? 'video/quicktime' : /\.webm$/i.test(f.name || '') ? 'video/webm' : 'video/mp4'); }
+function processFiles(files, source){
   var list = Array.prototype.slice.call(files || []);
-  var images = list.filter(function(f){ return !f.type || /^image\//.test(f.type); });
-  if (images.length < list.length) toast('Por ahora el álbum solo recibe fotos, no videos.');
-  if (images.length > CONFIG.MAX_FILES){ toast('Subimos las primeras ' + CONFIG.MAX_FILES + '. Elige el resto en otra tanda.'); images = images.slice(0, CONFIG.MAX_FILES); }
-  if (!images.length) return;
-  var chain = fontsReady, ch = quest.active;
+  var media = list.filter(function(f){ return isVideoFile(f) || isImageFile(f); });
+  if (media.length < list.length) toast('Algunos archivos no son fotos ni videos y no se subieron.');
+  if (media.length > CONFIG.MAX_FILES){ toast('Subimos los primeros ' + CONFIG.MAX_FILES + '. Elige el resto en otra tanda.'); media = media.slice(0, CONFIG.MAX_FILES); }
+  if (!media.length) return;
+  // Con un reto Atrevido activo, toda la tanda va privada a los novios
+  var ch = quest.active, priv = isPrivCh(ch);
   if (ch) clearReto();
-  images.forEach(function(f){
-    chain = chain.then(function(){ return decodeFile(f); }).then(function(d){
-      var out = renderJpeg(d.src, d.w, d.h, {stamp:stamp}); d.done();
-      enqueue({data:out.data, w:out.w, h:out.h, caption:'', source:source, ch:ch});
-      ch = '';
-    }).catch(function(){ toast('Una foto no se pudo leer en este teléfono. Prueba con otra.'); });
+  var chain = Promise.resolve();
+  media.forEach(function(f){
+    chain = chain.then(function(){
+      if (isVideoFile(f)){
+        if (f.size > CONFIG.MAX_VIDEO_MB * 1048576){ toast('Un video pesa más de ' + CONFIG.MAX_VIDEO_MB + ' MB. Recórtalo y vuelve a intentarlo.'); return; }
+        return videoMeta(f).then(function(m){
+          enqueue({kind:'video', blob:f, mime:videoMime(f), poster:m.poster, w:m.w, h:m.h, dur:m.dur, caption:'', source:source, ch:ch});
+          if (!priv) ch = '';
+        });
+      }
+      return decodeFile(f).then(function(d){
+        var out = renderJpeg(d.src, d.w, d.h); d.done();
+        enqueue({kind:'foto', data:out.data, w:out.w, h:out.h, caption:'', source:source, ch:ch});
+        if (!priv) ch = '';
+      });
+    }).catch(function(){ toast('Un archivo no se pudo leer en este teléfono. Prueba con otro.'); });
   });
 }
 
 /* ---------- cola de subida ---------- */
-var queue = [], pumping = false, trayTimer = null;
-var ERRORS = {key:'La clave del álbum no coincide.', too_big:'La foto es demasiado grande.', invalid:'La foto llegó incompleta.'};
-function enqueue(it){ it.cid = uid(); it.status = 'pending'; queue.push(it); renderTray(); pump(); }
+var queue = [], pumping = false, trayTimer = null, trayRaf = 0;
+var ERRORS = {key:'La clave del álbum no coincide.', too_big:'El archivo es demasiado grande.', invalid:'El archivo llegó incompleto.',
+  origin:'Este dominio no está autorizado en el Apps Script.', drive:'Google Drive rechazó la subida.', not_found:'El video no terminó de subir.'};
+function enqueue(it){ it.cid = uid(); it.status = 'pending'; it.progress = 0; queue.push(it); renderTray(); pump(); }
 function pump(){
   if (pumping) return;
   var it = queue.filter(function(q){ return q.status === 'pending'; })[0];
   if (!it){ renderTray(); return; }
-  pumping = true; it.status = 'uploading'; renderTray();
-  apiUpload(it).then(function(res){
+  pumping = true; it.status = 'uploading'; it.progress = 0; renderTray();
+  var job = it.kind === 'video' ? apiVideo(it, function(f){ it.progress = f; trayLater(); }) : apiPhoto(it);
+  job.then(function(res){
     if (!res || !res.ok) throw new Error((res && res.error) || 'upload');
+    var p = res.photo;
     it.status = 'done';
-    if (it.ch && !res.photo.ch) res.photo.ch = it.ch;
-    state.previews[res.photo.id] = it.data;
-    addMine(res.photo.id);
-    addPhoto(res.photo);
-    if (it.ch) markDone(it.ch, res.photo.id);
+    if (it.ch && !p.ch) p.ch = it.ch;
+    if (isPrivCh(it.ch)){
+      // Atrevidos: no entra al álbum; solo suma el sello y el conteo del grupo
+      it.blob = null;
+      if (!quest.done[it.ch]) state.pc[it.ch] = (state.pc[it.ch] || 0) + 1;
+      markDone(it.ch, p.id);
+      toast('Enviado solo a los novios. Se borra en 24 horas.');
+      return;
+    }
+    if (it.kind === 'video'){
+      p.v = 1; if (!p.d) p.d = it.dur;
+      if (it.poster) state.previews[p.id] = it.poster;
+      state.local[p.id] = URL.createObjectURL(it.blob);
+      it.blob = null;
+    } else state.previews[p.id] = it.data;
+    addMine(p.id);
+    addPhoto(p);
+    if (it.ch) markDone(it.ch, p.id);
   }).catch(function(e){ it.status = 'error'; it.err = ERRORS[e && e.message] || ''; })
     .then(function(){ pumping = false; renderTray(); pump(); });
 }
+function trayLater(){ if (trayRaf) return; trayRaf = requestAnimationFrame(function(){ trayRaf = 0; renderTray(); }); }
 function renderTray(){
   var tray = $('#tray'), active = queue.filter(function(q){ return q.status !== 'gone'; });
   if (!active.length){ tray.hidden = true; return; }
   var n = {pending:0, uploading:0, done:0, error:0};
   active.forEach(function(q){ n[q.status]++; });
   var left = n.pending + n.uploading, errs = active.filter(function(q){ return q.status === 'error'; });
-  $('#trayTitle').textContent = left ? 'Subiendo ' + (n.done + n.error + 1) + ' de ' + active.length + '…'
-    : n.error ? (n.error === 1 ? '1 foto no subió. ' : n.error + ' fotos no subieron. ') + (errs[0].err || 'Revisa tu conexión.')
-    : (n.done === 1 ? 'Foto en el álbum' : n.done + ' fotos en el álbum');
+  var cur = active.filter(function(q){ return q.status === 'uploading'; })[0];
+  $('#trayTitle').textContent = left
+    ? 'Subiendo ' + (cur && cur.kind === 'video' ? 'video ' : '') + (n.done + n.error + 1) + ' de ' + active.length + (cur && cur.kind === 'video' ? '… ' + Math.round(cur.progress * 100) + '%' : '…')
+    : n.error ? (n.error === 1 ? '1 archivo no subió. ' : n.error + ' archivos no subieron. ') + (errs[0].err || 'Revisa tu conexión.')
+    : (n.done === 1 ? 'Listo en el álbum' : n.done + ' listos en el álbum');
   $('#trayRetry').hidden = !(n.error && !left);
-  $('#trayItems').innerHTML = active.map(function(q){ return '<span class="' + q.status + '"><img alt="" src="' + q.data + '"></span>'; }).join('');
+  $('#trayItems').innerHTML = active.map(function(q){
+    var src = q.kind === 'video' ? q.poster : q.data;
+    var label = q.kind === 'video' ? (q.status === 'uploading' ? Math.round(q.progress * 100) + '%' : '▶') : '';
+    return '<span class="' + q.status + '">' + (src ? '<img alt="" src="' + src + '">' : '') + (label ? '<em>' + label + '</em>' : '') + '</span>';
+  }).join('');
   tray.hidden = false;
   clearTimeout(trayTimer);
   if (!left && !n.error) trayTimer = setTimeout(function(){
-    queue.forEach(function(q){ if (q.status === 'done'){ q.status = 'gone'; q.data = null; } });
+    queue.forEach(function(q){ if (q.status === 'done'){ q.status = 'gone'; q.data = null; q.poster = null; } });
     renderTray();
   }, 3500);
 }
 window.addEventListener('beforeunload', function(e){
   if (queue.some(function(q){ return q.status === 'pending' || q.status === 'uploading'; })){ e.preventDefault(); e.returnValue = ''; }
 });
-
 var toastTimer = null;
 function toast(msg){
   var t = $('#toast'); t.textContent = msg; t.hidden = false;
-  clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.hidden = true; }, 3200);
+  clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.hidden = true; }, 3400);
 }
 
 /* ---------- dinámica de retos ---------- */
-var CATS = ['El viaje', 'Atenas', 'La ceremonia', 'La fiesta'];
-var PTS = {1:10, 2:25, 3:50}, RAREZA = {1:'Común', 2:'Especial', 3:'Legendario'};
-var LEVELS = [[0,'Pasajero'], [60,'Viajero frecuente'], [180,'Clase Olympia'], [360,'Semidiós del Olimpo'], [600,'Leyenda de la Acrópolis'], [900,'Dios del Olimpo']];
-// [id, categoría, rareza (1 común, 2 especial, 3 legendario), reto, pista]
-var RETOS = [
-  ['maleta',0,1,'La maleta lista para Atenas','Antes de cerrar el zíper. Si cabe todo, mejor.'],
-  ['pasaporte',0,1,'Pasaporte en mano en el aeropuerto','En tu aeropuerto de salida, con cara de viajero feliz.'],
-  ['pase',0,1,'Tu pase de abordar rumbo a Atenas','El real, el de tu vuelo. Tapa el código de barras.'],
-  ['avion-selfie',0,1,'Selfie a bordo del avión','Con antifaz, almohada o cara de muchas horas de vuelo.'],
-  ['ventanilla',0,1,'La vista desde la ventanilla','Nubes, alas o el primer vistazo de Grecia.'],
-  ['comida-avion',0,1,'La comida del avión','Pollo o pasta: que quede para la historia.'],
-  ['escala',0,2,'Encuentro con otro invitado en el camino','En una escala, una sala de espera o el mismo vuelo.'],
-  ['llegada',0,1,'Llegada al aeropuerto de Atenas','Con algún letrero en griego de fondo.'],
-  ['uber',0,1,'En el Uber o taxi rumbo al hotel','La primera Atenas vista desde el carro.'],
-  ['hotel',0,1,'La vista desde tu hotel','Balcón, ventana o terraza.'],
-  ['bandera',0,2,'Una bandera de Costa Rica en Atenas','Pura vida al pie de la historia.'],
-  ['acropolis',1,1,'La Acrópolis de fondo','Desde abajo, desde arriba o desde una terraza.'],
-  ['partenon-grupo',1,2,'Foto de grupo frente al Partenón','Mínimo cinco invitados en la misma foto.'],
-  ['cariatide',1,2,'Imita a una cariátide','Pose de columna y mirada de mármol.'],
-  ['estatua',1,1,'Posa como estatua griega','Serio, inmóvil y lo más clásico posible.'],
-  ['panatenaico',1,2,'Salto en el Estadio Panatenaico','Todos en el aire al mismo tiempo.'],
-  ['evzones',1,2,'Los evzones del Parlamento','Con respeto y a distancia: no se les toca.'],
-  ['gato',1,1,'Un gato griego','Atenas está llena. Encuentra al más fotogénico.'],
-  ['buganvilias',1,1,'Buganvilias en Plaka','Flores fucsia sobre paredes blancas.'],
-  ['anafiotika',1,2,'Las escaleras de Anafiotika','El barrio de casitas blancas bajo la Acrópolis.'],
-  ['puerta-azul',1,1,'Una puerta azul','Azul y blanco, como la bandera griega.'],
-  ['monastiraki',1,1,'La plaza Monastiraki','Con la Acrópolis asomando entre los techos.'],
-  ['souvlaki',1,1,'Tu primer souvlaki o gyros','Antes del primer mordisco.'],
-  ['freddo',1,1,'Un freddo espresso','El café frío que toma toda Atenas.'],
-  ['atardecer',1,2,'Atardecer sobre Atenas','Donde el cielo se pone dorado.'],
-  ['souvenir',1,1,'Tu souvenir favorito','Un imán, un ojo griego o algo inesperado.'],
-  ['ouzo',1,2,'Brindis con ouzo','¡Yamas! Sorbo pequeño, gran foto.'],
-  ['novia',2,2,'Una foto con la novia','Jenireé, tú y la mejor sonrisa.'],
-  ['novio',2,2,'Una foto con el novio','Leandro, tú y un abrazo.'],
-  ['pareja',2,2,'Tú con los novios','Los tres (o más) en la misma foto.'],
-  ['entrada-novia',2,3,'La entrada de la novia','Ese momento en que todos voltean.'],
-  ['anillos',2,2,'Los anillos','Un detalle para toda la vida.'],
-  ['beso',2,3,'El primer beso de casados','Legendario: dura un segundo.'],
-  ['emocion',2,2,'Una lágrima de emoción','Alguien que no pudo contenerse.'],
-  ['ramo',2,1,'El ramo de la novia','Flores, lazo y detalle.'],
-  ['zapatos',2,1,'Los zapatos de la fiesta','Los más altos, los más brillantes o los más cómodos.'],
-  ['papas',2,2,'Con los papás de los novios','Una foto con alguno de ellos.'],
-  ['generaciones',2,2,'Tres generaciones en una foto','Abuelos, papás e hijos juntos.'],
-  ['desconocido',2,1,'Selfie con alguien que acabas de conocer','Pregúntale su nombre y de dónde viene.'],
-  ['lejos',2,2,'El invitado que viajó más lejos','Averigua quién fue y retrátalo.'],
-  ['ticos',2,1,'Los invitados de Costa Rica juntos','¡Todos los ticos en una foto!'],
-  ['mesa',2,1,'Tu mesa completa','Nadie se queda fuera del cuadro.'],
-  ['centro-mesa',2,1,'El centro de mesa','Antes de que alguien se lo lleve.'],
-  ['espontanea',2,3,'Los novios sin que se den cuenta','Una foto robada, natural y de verdad.'],
-  ['elegante',2,1,'La persona más elegante','Tú decides quién.'],
-  ['primer-baile',3,3,'El primer baile de los novios','Luces, música y los dos solos en la pista.'],
-  ['rosona',3,2,'Bailando con Rosona','Sácala a la pista y que quede la prueba.'],
-  ['sirtaki',3,2,'Alguien bailando sirtaki','Brazos en los hombros, a la griega.'],
-  ['opa',3,2,'¡Opa! Servilletas al aire','La tradición griega en versión fiesta.'],
-  ['conga',3,1,'El trencito','Mínimo seis vagones.'],
-  ['paso',3,1,'El paso más prohibido de la pista','Sin juzgar. Solo documentar.'],
-  ['descalzo',3,1,'Alguien bailando descalzo','Los tacones ya cumplieron su misión.'],
-  ['brindis',3,2,'Un brindis con los novios','Copas arriba y en la misma foto.'],
-  ['pastel',3,1,'El pastel de bodas','Entero, antes del primer corte.'],
-  ['corte',3,2,'El corte del pastel','Los novios con el cuchillo en mano.'],
-  ['ramo-aire',3,3,'El ramo en el aire','Justo en el lanzamiento.'],
-  ['ramo-atrapa',3,2,'Quien atrapó el ramo','Y su cara de sorpresa.'],
-  ['barra',3,1,'Tu trago de la noche','En la barra, con buena luz.'],
-  ['musica',3,1,'El DJ o la banda','Los que no dejaron a nadie sentado.'],
-  ['salto-pista',3,1,'Foto grupal saltando en la pista','Todos en el aire.'],
-  ['recrear',3,2,'Recrea una pose de los novios','Copia su foto favorita con tu pareja o amigos.'],
-  ['sonrisa',3,1,'La sonrisa más grande de la noche','Encuéntrala y dispara.'],
-  ['ultimo-baile',3,3,'El último baile de la noche','Los valientes que cerraron la fiesta.']
-].map(function(a){ return {id:a[0], c:a[1], r:a[2], t:a[3], d:a[4]}; });
-var RETO = {}; RETOS.forEach(function(r){ RETO[r.id] = r; });
-var quest = {
-  active: lsGet(LS.quest, ''),
-  done: (function(){ try { return JSON.parse(lsGet(LS.done, '{}')) || {}; } catch(e){ return {}; } })(),
-  last: null
-};
-if (!RETO[quest.active]) quest.active = '';
-
-function saveQuest(){ lsSet(LS.quest, quest.active); lsSet(LS.done, JSON.stringify(quest.done)); }
-function doneIds(){ return Object.keys(quest.done).filter(function(id){ return RETO[id]; }); }
-function myPoints(){ return doneIds().reduce(function(a, id){ return a + PTS[RETO[id].r]; }, 0); }
-function levelOf(pts){
-  var i = 0; for (var k = 0; k < LEVELS.length; k++) if (pts >= LEVELS[k][0]) i = k;
-  var nx = LEVELS[i + 1];
-  return {i:i, name:LEVELS[i][1], next:nx ? nx[0] : 0, nextName:nx ? nx[1] : '', pct:nx ? Math.round((pts - LEVELS[i][0]) / (nx[0] - LEVELS[i][0]) * 100) : 100};
-}
-// Aleatorio ponderado: los comunes aparecen más que los legendarios
-function pickReto(skip){
-  var pool = RETOS.filter(function(r){ return !quest.done[r.id] && r.id !== skip; });
-  if (!pool.length) pool = RETOS.filter(function(r){ return r.id !== skip; });
-  var W = {1:6, 2:3, 3:1}, x = Math.random() * pool.reduce(function(a, r){ return a + W[r.r]; }, 0);
-  for (var i = 0; i < pool.length; i++){ x -= W[pool[i].r]; if (x <= 0) return pool[i]; }
-  return pool[pool.length - 1];
-}
-function retoStats(){
-  var claimed = {}, players = {};
-  state.photos.forEach(function(p){
-    var r = p.ch && RETO[p.ch]; if (!r) return;
-    claimed[p.ch] = (claimed[p.ch] || 0) + 1;
-    if (!p.n || p.n === 'Invitado') return;
-    var pl = players[p.n] || (players[p.n] = {n:p.n, set:{}, pts:0, count:0});
-    if (!pl.set[p.ch]){ pl.set[p.ch] = 1; pl.pts += PTS[r.r]; pl.count++; }
-  });
-  var board = Object.keys(players).map(function(k){ return players[k]; }).sort(function(a, b){ return b.pts - a.pts || b.count - a.count; });
-  return {claimed:claimed, board:board};
-}
-
 function openQuest(id){
   if ($('#cam').hidden) openCamera();
   if (id && RETO[id]) quest.last = RETO[id];
   else if (quest.active) quest.last = RETO[quest.active];
   else if (!quest.last || quest.done[quest.last.id]) quest.last = pickReto();
-  $('#qListView').hidden = true; $('#qCardView').hidden = false;
-  $('#quest').hidden = false; $('#quest').scrollTop = 0;
-  paintQuestHead(); paintQuestCard(true);
+  $('#quest').hidden = false;
+  if (lsGet(LS.hint, '') !== '1'){ lsSet(LS.hint, '1'); paintPlay(); }
+  paintQuestHead(); paintChapChips(); presentCard(true);
+}
+var prevChap = 'prep';
+function atrevOk(){ return lsGet(LS.atrev, '') === '1'; }
+function showQuestView(v){
+  $('#qCardView').hidden = v !== 'card'; $('#qListView').hidden = v !== 'list'; $('#qGate').hidden = v !== 'gate';
+  $('#quest').scrollTop = 0;
+}
+// La primera vez que alguien entra a Atrevidos ve el aviso y decide: Acepto o Salirme
+function presentCard(pop){
+  if (quest.last && quest.last.p && !atrevOk()){ showQuestView('gate'); setTimeout(function(){ $('#qGateOk').focus(); }, 60); return; }
+  showQuestView('card'); paintQuestCard(pop);
   setTimeout(function(){ $('#qAccept').focus(); }, 60);
 }
+function leaveAtrevidos(){
+  if (isPrivCh(quest.active)) clearReto();
+  quest.chap = prevChap && prevChap !== 'atrevidos' ? prevChap : 'prep'; saveQuest();
+  quest.last = pickReto(); paintChapChips(); paintQuestProgress(); presentCard(true);
+}
+function openChapter(k){ if (quest.chap !== 'atrevidos') prevChap = quest.chap; quest.chap = k; saveQuest(); openQuest(pickReto().id); }
 function closeQuest(){ $('#quest').hidden = true; if (!$('#cam').hidden) $('#shutter').focus(); }
 function paintQuestHead(){
   var pts = myPoints(), L = levelOf(pts), n = doneIds().length;
   $('#qRing').style.setProperty('--p', L.pct); $('#qLvl').textContent = L.i + 1;
   $('#qLvlName').textContent = L.name;
-  $('#qPts').textContent = pts + ' pts, ' + n + ' de ' + RETOS.length + ' retos';
+  $('#qPts').textContent = pts + ' pts. ' + plural(n, 'sello', 'sellos') + ' de ' + RETOS.length + ' en tu pasaporte';
   $('#qBar').style.width = L.pct + '%';
   $('#qNext').textContent = L.next ? 'Te faltan ' + (L.next - pts) + ' pts para ' + L.nextName : 'Llegaste al nivel máximo';
+  paintQuestProgress();
+}
+function paintQuestProgress(){
+  var st = retoStats(), T = RETOS.length, all = Object.keys(st.claimed).length, me = doneIds().length, people = counts().guests;
+  $('#qpAll').textContent = all + ' de ' + T + (people > 1 ? ' · ' + people + ' personas' : '');
+  $('#qpAllBar').style.width = (all / T * 100).toFixed(1) + '%';
+  $('#qpMe').textContent = plural(me, 'sello', 'sellos') + ' de ' + T;
+  $('#qpMeBar').style.width = (me / T * 100).toFixed(1) + '%';
+  var ci = -1; CAPS.forEach(function(c, i){ if (c.k === quest.chap) ci = i; });
+  $('#qpCh').hidden = ci < 0;
+  if (ci >= 0){
+    var c = CAPS[ci], mine = RETOS.filter(function(r){ return r.c === ci && quest.done[r.id]; }).length;
+    $('#qpCh').textContent = 'Capítulo ' + (ci + 1) + ', ' + c.n + ': el grupo lleva ' + st.chap[c.k].n + '/' + c.count + ' y tú ' + mine + '/' + c.count;
+  }
+}
+function paintChapChips(){
+  var sel = null;
+  $$('#qChaps button').forEach(function(b){ var on = b.dataset.chap === quest.chap; b.setAttribute('aria-pressed', on); if (on) sel = b; });
+  if (sel){ var box = $('#qChaps'); box.scrollLeft = Math.max(0, sel.offsetLeft - box.offsetLeft - 16); }
 }
 function paintQuestCard(pop){
   var r = quest.last, c = $('#qCard'), done = !!quest.done[r.id];
-  c.className = 'qcard r' + r.r;
-  $('#qRarity').textContent = RAREZA[r.r]; $('#qCat').textContent = CATS[r.c];
+  c.className = 'qcard r' + r.r + (r.p ? ' priv' : '');
+  $('#qPrivTag').hidden = !r.p;
+  $('#qRarity').textContent = RAREZA[r.r];
+  $('#qCat').textContent = r.id === MSG_ID ? 'Sorpréndeme' : capLabel(r.c);
+  // Mientras no lo grabe, Sorpréndeme se queda en el mensaje para los novios
+  var msgFirst = quest.chap === 'mix' && r.id === MSG_ID && !done;
+  $('#qShuffle').hidden = msgFirst;
+  $('#qShuffle').textContent = quest.chap === 'mix' ? 'Sorpréndeme otra vez' : 'Otro reto';
   $('#qTitle').textContent = r.t; $('#qHint').textContent = r.d;
-  $('#qCardPts').textContent = done ? 'Ya lo cumpliste' : '+' + PTS[r.r] + ' pts';
-  $('#qAccept').textContent = quest.active === r.id ? 'Volver a la cámara' : 'Aceptar el reto';
+  $('#qCardPts').textContent = done ? 'Ya tienes este sello' : '+' + PTS[r.r] + ' pts';
+  $('#qVid').hidden = !r.v;
+  $('#qAccept').textContent = quest.active === r.id ? 'Volver a la cámara' : (r.v ? 'Aceptar y grabar' : 'Aceptar el reto');
   if (pop && !RM){ c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); }
 }
 function paintQuestList(){
-  $('#qList').innerHTML = CATS.map(function(cat, ci){
+  var st = retoStats();
+  var order = CAPS.map(function(c, i){ return i; }).sort(function(a, b){ return (CAPS[b].x ? 1 : 0) - (CAPS[a].x ? 1 : 0); });
+  $('#qList').innerHTML = order.map(function(ci){ var cap = CAPS[ci];
     var items = RETOS.filter(function(r){ return r.c === ci; });
+    if (cap.p && !atrevOk()) return '<h3 class="q-cat">' + (ci + 1) + '. ' + esc(cap.n) + ' <span>' + items.length + ' retos privados</span></h3><div class="q-grid"><button type="button" class="qitem r2" data-id="' + items[0].id + '"><span class="qi-mark">🔒</span><span>Entrar a Atrevidos</span></button></div>';
     var d = items.filter(function(r){ return quest.done[r.id]; }).length;
-    return '<h3 class="q-cat">' + esc(cat) + ' <span>' + d + '/' + items.length + '</span></h3><div class="q-grid">' + items.map(function(r){
+    return '<h3 class="q-cat">' + (cap.x ? '' : (ci + 1) + '. ') + esc(cap.n) + ' <span>tú ' + d + ' · grupo ' + st.chap[cap.k].n + ' de ' + items.length + '</span></h3><div class="q-grid">' + items.map(function(r){
       var done = !!quest.done[r.id];
       return '<button type="button" class="qitem r' + r.r + (done ? ' done' : '') + '" data-id="' + r.id + '"' + (done ? ' aria-disabled="true"' : '') + '>' +
-        '<span class="qi-mark">' + (done ? '✓' : '+' + PTS[r.r]) + '</span><span>' + esc(r.t) + (done ? '<span class="sr-only"> (cumplido)</span>' : '') + '</span></button>';
+        '<span class="qi-mark">' + (done ? '✓' : '+' + PTS[r.r]) + '</span><span>' + esc(r.t) + (r.v && !/^Video/.test(r.t) ? '<em>video</em>' : '') +
+        (done ? '<span class="sr-only"> (sellado)</span>' : '') + '</span></button>';
     }).join('') + '</div>';
   }).join('');
 }
-function acceptReto(id){ quest.active = id; saveQuest(); paintQuestPill(); }
+function acceptReto(id){
+  quest.active = id; saveQuest(); paintQuestPill();
+  if (RETO[id] && RETO[id].v) setMode('video');
+}
 function clearReto(){ quest.active = ''; saveQuest(); paintQuestPill(); }
 function paintQuestPill(){
   var r = RETO[quest.active];
   $('#camQuest').hidden = !r;
-  if (r){ $('#cqTitle').textContent = r.t; $('#cqPts').textContent = 'Reto activo, +' + PTS[r.r] + ' pts'; }
+  if (r){ $('#cqTitle').textContent = r.t; $('#cqPts').textContent = 'Reto activo' + (r.v ? ' en video' : '') + ', +' + PTS[r.r] + ' pts'; }
 }
 function paintPlay(){
   var n = doneIds().length, L = levelOf(myPoints());
   $('#playRing').style.setProperty('--p', Math.round(n / RETOS.length * 100));
   $('#playLvl').textContent = L.i + 1;
   $('#playCount').textContent = n + '/' + RETOS.length;
-}
-function paintRetos(){
-  var st = retoStats(), claimed = Object.keys(st.claimed).length, T = RETOS.length;
-  $('#rtGlobal').textContent = claimed;
-  $('#rtGlobalBar').style.width = (claimed / T * 100).toFixed(1) + '%';
-  var pts = myPoints(), L = levelOf(pts);
-  $('#rtRing').style.setProperty('--p', L.pct); $('#rtLvl').textContent = L.i + 1;
-  $('#rtMeName').textContent = (state.name && state.name !== 'Invitado' ? state.name : 'Tu progreso') + ', nivel ' + (L.i + 1);
-  $('#rtMeTxt').textContent = L.name + '. ' + plural(doneIds().length, 'reto', 'retos') + ' y ' + pts + ' pts.';
-  var top = st.board.slice(0, 10);
-  $('#rtBoardEmpty').hidden = top.length > 0;
-  $('#rtBoard').innerHTML = top.map(function(p, i){
-    return '<li class="' + (p.n === state.name ? 'me' : '') + '"><span class="rk">' + (i + 1) + '</span><b>' + esc(p.n) + '</b><span class="rs"><strong>' + p.pts + ' pts</strong>' + plural(p.count, 'reto', 'retos') + '</span></li>';
-  }).join('');
-  var open = RETOS.filter(function(r){ return !st.claimed[r.id]; }).slice(0, 8);
-  $('#rtOpenWrap').hidden = !open.length;
-  $('#rtOpen').innerHTML = open.map(function(r){ return '<button type="button" data-id="' + r.id + '">' + esc(r.t) + '<b>+' + PTS[r.r] + '</b></button>'; }).join('');
+  $('#camHint').hidden = !!(n || quest.active || lsGet(LS.hint, '') === '1');
 }
 function markDone(ch, photoId){
   var r = RETO[ch]; if (!r) return;
   if (!quest.done[ch]){ var before = myPoints(); quest.done[ch] = photoId; saveQuest(); celebrate(r, before); }
-  paintPlay(); paintPass(); if (MODE !== 'pantalla') paintRetos();
+  paintPlay(); paintPass(); if (MODE !== 'pantalla') paintHistoria();
+  if (!$('#quest').hidden) paintQuestProgress();
 }
 var winTimer = null;
 function celebrate(r, before){
   var after = myPoints(), lb = levelOf(before), la = levelOf(after);
-  $('#qwinPts').textContent = '+' + PTS[r.r];
+  $('#qwinSeal').innerHTML = sealInner(r, Date.now());
   $('#qwinTitle').textContent = r.t;
-  $('#qwinLvl').textContent = la.i > lb.i ? 'Subiste a nivel ' + (la.i + 1) + ': ' + la.name : after + ' pts. ' + doneIds().length + ' de ' + RETOS.length + ' retos.';
-  var w = $('#qwin'), card = $('.qwin-card', w);
-  w.hidden = false; card.style.animation = 'none'; void card.offsetWidth; card.style.animation = '';
+  $('#qwinLvl').textContent = la.i > lb.i ? 'Subiste a nivel ' + (la.i + 1) + ': ' + la.name : '+' + PTS[r.r] + ' pts. ' + after + ' pts en total.';
+  var w = $('#qwin'), card = $('.qwin-card', w), seal = $('#qwinSeal');
+  w.hidden = false;
+  [card, seal].forEach(function(el){ el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; });
   if (navigator.vibrate) navigator.vibrate([40, 60, 40]);
-  clearTimeout(winTimer); winTimer = setTimeout(function(){ w.hidden = true; }, 3000);
+  clearTimeout(winTimer); winTimer = setTimeout(function(){ w.hidden = true; }, 3200);
 }
 function initQuest(){
+  $('#qChaps').innerHTML = CAPS.map(function(c, i){ return c.x ? '' : '<button type="button" data-chap="' + c.k + '"' + (c.p ? ' class="priv"' : '') + '>' + (i + 1) + '. ' + esc(c.n) + '</button>'; }).join('') +
+    '<button type="button" data-chap="mix">Sorpréndeme</button>';
+  $('#qChaps').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    if (quest.chap !== 'atrevidos') prevChap = quest.chap;
+    quest.chap = b.dataset.chap; saveQuest(); paintChapChips();
+    quest.last = pickReto(); paintQuestProgress(); presentCard(true);
+  });
   $('#camPlay').addEventListener('click', function(){ openQuest(); });
   $('#qClose').addEventListener('click', closeQuest);
   $('#qAccept').addEventListener('click', function(){ acceptReto(quest.last.id); closeQuest(); });
   $('#qShuffle').addEventListener('click', function(){ quest.last = pickReto(quest.last.id); paintQuestCard(true); });
   $('#qGallery').addEventListener('click', function(){ acceptReto(quest.last.id); closeQuest(); pickGallery(); });
-  $('#qAllBtn').addEventListener('click', function(){ paintQuestList(); $('#qCardView').hidden = true; $('#qListView').hidden = false; $('#quest').scrollTop = 0; $('#qBack').focus(); });
-  $('#qBack').addEventListener('click', function(){ $('#qListView').hidden = true; $('#qCardView').hidden = false; });
+  $('#qAllBtn').addEventListener('click', function(){ paintQuestList(); showQuestView('list'); $('#qBack').focus(); });
+  $('#qBack').addEventListener('click', function(){ presentCard(false); });
+  $('#qGateOk').addEventListener('click', function(){ lsSet(LS.atrev, '1'); presentCard(true); });
+  $('#qGateOut').addEventListener('click', leaveAtrevidos);
   $('#qList').addEventListener('click', function(e){
     var b = e.target.closest('.qitem'); if (!b || b.classList.contains('done')) return;
     quest.last = RETO[b.dataset.id];
-    $('#qListView').hidden = true; $('#qCardView').hidden = false; $('#quest').scrollTop = 0;
-    paintQuestCard(true); $('#qAccept').focus();
+    presentCard(true);
   });
   $('#cqOpen').addEventListener('click', function(){ openQuest(quest.active); });
   $('#cqClear').addEventListener('click', clearReto);
   $('#rtPlay').addEventListener('click', function(){ openQuest(); });
-  $('#rtOpen').addEventListener('click', function(e){ var b = e.target.closest('button[data-id]'); if (b) openQuest(b.dataset.id); });
+  $('#heroPlay').addEventListener('click', function(){ openQuest(); });
+  $('#chapters').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.play) openChapter(b.dataset.play);
+    if (b.dataset.view){
+      state.chap = b.dataset.view; state.who = 'all'; state.shown = CONFIG.PAGE_SIZE;
+      $('#chapSel').value = state.chap; paintChips(); paintGallery();
+      $('#album').scrollIntoView({behavior: RM ? 'auto' : 'smooth', block:'start'});
+    }
+  });
   paintQuestPill(); paintPlay();
 }
 
-/* ---------- cámara (pantalla de inicio) ---------- */
-var cam = {stream:null, facing:'environment', stamp: lsGet(LS.stamp, '1') !== '0', timer:false, busy:false, shot:null};
+/* ---------- cámara: fotos y videos ---------- */
+var cam = {stream:null, facing:'environment', timer:false, busy:false, mode: lsGet(LS.mode, 'foto') === 'video' ? 'video' : 'foto',
+  rec:null, recStart:0, recTick:null, recPoster:'', shot:null, clip:null};
+function canRecord(){ return typeof window.MediaRecorder === 'function'; }
 function openCamera(){
   $('#cam').hidden = false; document.body.classList.add('noscroll', 'cam-open');
-  $('#camReview').hidden = true; $('#stampDate').textContent = stampDate();
-  paintCamToggles(); paintCamAlbum();
+  $('#camReview').hidden = true;
+  paintCamToggles(); paintMode(); paintCamAlbum(); paintQuestPill();
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.isSecureContext){
-    camMsg('Usemos la cámara de tu teléfono', 'Este navegador no abre la cámara en vivo. Toma la foto con la cámara del teléfono y la subimos al álbum.', true);
+    camMsg('Usemos la cámara de tu teléfono', 'Este navegador no abre la cámara en vivo. Toma la foto o graba el video con la cámara del teléfono y lo subimos al álbum.', true);
     return;
   }
   startStream();
 }
 function closeCamera(){
+  if (cam.rec) stopRec(true);
   stopStream(); cam.busy = false;
-  $('#cam').hidden = true; document.body.classList.remove('noscroll', 'cam-open');
-  var t = $('#albumTitle'); t.setAttribute('tabindex', '-1');
-  $('#album').scrollIntoView({block:'start'}); t.focus({preventScroll:true});
+  $('#quest').hidden = true;
+  $('#cam').hidden = true; document.body.classList.remove('noscroll', 'cam-open', 'recording');
+  $('#historia').scrollIntoView({block:'start'});
+  $('#histTitle').setAttribute('tabindex', '-1'); $('#histTitle').focus({preventScroll:true});
 }
 function stopStream(){ if (cam.stream){ cam.stream.getTracks().forEach(function(t){ t.stop(); }); cam.stream = null; } $('#camVideo').srcObject = null; }
 function camMsg(title, txt, actions){
@@ -1425,7 +2204,12 @@ function camMsg(title, txt, actions){
 }
 function startStream(){
   stopStream(); camMsg('Preparando la cámara…', '', false);
-  navigator.mediaDevices.getUserMedia({audio:false, video:{facingMode:{ideal:cam.facing}, width:{ideal:2560}, height:{ideal:1440}}})
+  var video = cam.mode === 'video';
+  var wantAudio = video && canRecord();
+  function get(audio){
+    return navigator.mediaDevices.getUserMedia({audio:audio, video:{facingMode:{ideal:cam.facing}, width:{ideal:video ? 1920 : 2560}, height:{ideal:video ? 1080 : 1440}}});
+  }
+  get(wantAudio).catch(function(err){ if (wantAudio) return get(false); throw err; })
     .then(function(s){
       if ($('#cam').hidden){ s.getTracks().forEach(function(t){ t.stop(); }); return; }
       cam.stream = s;
@@ -1435,84 +2219,157 @@ function startStream(){
     .catch(function(err){
       var n = err && err.name;
       if (n === 'NotAllowedError' || n === 'SecurityError')
-        camMsg('La cámara está bloqueada', 'Permite el acceso a la cámara en los ajustes del navegador y vuelve a intentarlo, o usa la cámara del teléfono.', true);
+        camMsg('La cámara está bloqueada', 'Permite el acceso a la cámara (y al micrófono para videos) en los ajustes del navegador, o usa la cámara del teléfono.', true);
       else if (n === 'NotFoundError' || n === 'OverconstrainedError')
         camMsg('No encontramos la cámara', 'Prueba con la cámara del teléfono.', true);
       else
         camMsg('Usemos la cámara de tu teléfono', 'Este navegador no abre la cámara en vivo (pasa dentro de WhatsApp o Instagram). Usa la cámara del teléfono o abre esta página en Safari o Chrome.', true);
     });
 }
-function paintCamToggles(){
-  $('#camStamp').setAttribute('aria-pressed', cam.stamp);
-  $('#camTimer').setAttribute('aria-pressed', cam.timer);
-  $('#camStampPrev').hidden = !cam.stamp;
+function paintCamToggles(){ $('#camTimer').setAttribute('aria-pressed', cam.timer); }
+function paintMode(){
+  $$('.cam-mode').forEach(function(b){ b.setAttribute('aria-checked', b.dataset.mode === cam.mode); });
+  var sh = $('#shutter'); sh.classList.toggle('is-video', cam.mode === 'video');
+  sh.setAttribute('aria-label', cam.mode === 'video' ? 'Grabar video' : 'Tomar foto');
+}
+function setMode(m){
+  if (cam.rec || cam.mode === m) return;
+  cam.mode = m; lsSet(LS.mode, m); paintMode();
+  if (!$('#cam').hidden && navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.isSecureContext) startStream();
 }
 function paintCamAlbum(){
   var p = state.photos[0], t = $('#camThumb');
   if (p && t.dataset.id !== p.id){ t.dataset.id = p.id; t.innerHTML = '<img alt="">'; setImg($('img', t), p, 200); }
-  $('#camAlbumLbl').textContent = state.photos.length ? plural(state.photos.length, 'foto', 'fotos') : 'Álbum';
+  $('#camAlbumLbl').textContent = state.photos.length ? plural(state.photos.length, 'escena', 'escenas') : 'Álbum';
 }
 function shoot(){
+  if (cam.mode === 'video' && cam.rec){ stopRec(); return; }
   if (cam.busy || !cam.stream) return;
-  if (!cam.timer){ capture(); return; }
+  var go = cam.mode === 'video' ? startRec : capture;
+  if (!cam.timer){ go(); return; }
   cam.busy = true;
   var n = 3, el = $('#camCount'); el.hidden = false; el.textContent = n;
   var iv = setInterval(function(){
     n--;
     if (n > 0){ el.textContent = n; return; }
     clearInterval(iv); el.hidden = true; cam.busy = false;
-    if (!$('#cam').hidden) capture();
+    if (!$('#cam').hidden) go();
   }, 1000);
 }
 function capture(){
   var v = $('#camVideo');
   if (!v.videoWidth) return;
   var f = $('#camFlash'); f.classList.remove('go'); void f.offsetWidth; f.classList.add('go');
-  fontsReady.then(function(){
-    cam.shot = renderJpeg(v, v.videoWidth, v.videoHeight, {mirror:cam.facing === 'user', stamp:cam.stamp});
-    $('#camShot').src = cam.shot.data; $('#camCaption').value = '';
-    var nm = $('#camName'); nm.hidden = !!state.name; nm.value = '';
-    $('#camReview').hidden = false;
-    (state.name ? $('#camSend') : nm).focus();
-  });
+  cam.shot = renderJpeg(v, v.videoWidth, v.videoHeight, {mirror:cam.facing === 'user'});
+  $('#camShot').src = cam.shot.data;
+  showReview();
+}
+function pickRecMime(){
+  var list = ['video/mp4;codecs=avc1.42E01E,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm'];
+  for (var i = 0; i < list.length; i++) if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(list[i])) return list[i];
+  return '';
+}
+function startRec(){
+  if (!cam.stream) return;
+  if (!canRecord()){ $('#fileVideoCapture').click(); return; }
+  var v = $('#camVideo'), mime = pickRecMime(), rec, chunks = [];
+  try { rec = new MediaRecorder(cam.stream, mime ? {mimeType:mime, videoBitsPerSecond:CONFIG.VIDEO_BPS} : {videoBitsPerSecond:CONFIG.VIDEO_BPS}); }
+  catch(e){
+    try { rec = new MediaRecorder(cam.stream); }
+    catch(e2){ toast('Este navegador no graba video aquí. Usa la cámara del teléfono.'); $('#fileVideoCapture').click(); return; }
+  }
+  cam.recPoster = v.videoWidth ? renderJpeg(v, v.videoWidth, v.videoHeight, {max:720, q:.8}).data : '';
+  var vw = v.videoWidth, vh = v.videoHeight;
+  rec.ondataavailable = function(e){ if (e.data && e.data.size) chunks.push(e.data); };
+  rec.onstop = function(){
+    if (rec._discard) return;
+    var dur = Math.max(1, Math.round((Date.now() - cam.recStart) / 1000));
+    var type = (rec.mimeType || mime || 'video/webm').split(';')[0];
+    var blob = new Blob(chunks, {type:type});
+    if (!blob.size){ toast('No se grabó nada. Intenta de nuevo.'); return; }
+    cam.clip = {blob:blob, mime:type, url:URL.createObjectURL(blob), poster:cam.recPoster, w:vw, h:vh, dur:dur};
+    showReview();
+  };
+  rec.start(1000);
+  cam.rec = rec; cam.recStart = Date.now();
+  document.body.classList.add('recording'); $('#camRec').hidden = false; paintRecTime();
+  cam.recTick = setInterval(function(){
+    paintRecTime();
+    if ((Date.now() - cam.recStart) / 1000 >= CONFIG.MAX_REC_SECONDS) stopRec();
+  }, 250);
+  if (navigator.vibrate) navigator.vibrate(30);
+}
+function stopRec(discard){
+  var r = cam.rec; if (!r) return;
+  cam.rec = null; clearInterval(cam.recTick);
+  document.body.classList.remove('recording'); $('#camRec').hidden = true;
+  if (discard) r._discard = true;
+  try { r.stop(); } catch(e){}
+}
+function paintRecTime(){ $('#camRecTime').textContent = fmtDur((Date.now() - cam.recStart) / 1000) + ' / ' + fmtDur(CONFIG.MAX_REC_SECONDS); }
+function showReview(){
+  var isClip = !!cam.clip, clip = $('#camClip');
+  $('#camShot').hidden = isClip; clip.hidden = !isClip;
+  if (isClip){ clip.src = cam.clip.url; clip.muted = false; var pr = clip.play(); if (pr && pr.catch) pr.catch(function(){}); }
+  var r = RETO[quest.active];
+  $('#reviewReto').hidden = !r;
+  $('#reviewPriv').hidden = !(r && r.p);
+  if (r) $('#reviewReto').textContent = 'Reto: ' + r.t;
+  $('#camCaption').value = '';
+  var nm = $('#camName'); nm.hidden = !!state.name; nm.value = '';
+  $('#camReview').hidden = false;
+  (state.name ? $('#camSend') : nm).focus();
+}
+function discardReview(){
+  var clip = $('#camClip');
+  if (cam.clip){ clip.pause(); URL.revokeObjectURL(cam.clip.url); cam.clip = null; clip.removeAttribute('src'); }
+  cam.shot = null; $('#camShot').removeAttribute('src');
+  $('#camReview').hidden = true;
 }
 function sendShot(){
-  if (!cam.shot) return;
+  if (!cam.shot && !cam.clip) return;
   var nm = $('#camName');
   if (!nm.hidden){ state.name = nm.value.trim().slice(0, 60) || 'Invitado'; lsSet(LS.name, state.name); paintPass(); }
-  var ch = quest.active;
-  enqueue({data:cam.shot.data, w:cam.shot.w, h:cam.shot.h, caption:$('#camCaption').value.trim().slice(0, 200), source:'camara', ch:ch});
+  var ch = quest.active, cap = $('#camCaption').value.trim().slice(0, 200), isClip = !!cam.clip;
+  if (isClip){
+    var c = cam.clip;
+    enqueue({kind:'video', blob:c.blob, mime:c.mime, poster:c.poster, w:c.w, h:c.h, dur:c.dur, caption:cap, source:'camara', ch:ch});
+  } else {
+    enqueue({kind:'foto', data:cam.shot.data, w:cam.shot.w, h:cam.shot.h, caption:cap, source:'camara', ch:ch});
+  }
   if (ch) clearReto();
-  cam.shot = null; $('#camReview').hidden = true; $('#camShot').removeAttribute('src');
-  toast(ch ? 'Enviada. El reto se cumple al llegar al álbum.' : 'Enviada al álbum. Puedes tomar otra.');
+  discardReview();
+  toast(isPrivCh(ch) ? 'Enviando solo a los novios. Se borra en 24 horas.' : ch ? 'Enviado. Tu sello llega cuando entre al álbum.' : (isClip ? 'Video enviado. Puedes grabar otro.' : 'Foto enviada. Puedes tomar otra.'));
   $('#shutter').focus();
 }
-function nativeCapture(){ $('#fileCapture').click(); }
 function pickGallery(){ ensureName().then(function(){ $('#fileGallery').click(); }); }
 function initCamera(){
   $('#camClose').addEventListener('click', closeCamera);
   $('#shutter').addEventListener('click', shoot);
-  $('#camFlip').addEventListener('click', function(){ cam.facing = cam.facing === 'user' ? 'environment' : 'user'; startStream(); });
-  $('#camStamp').addEventListener('click', function(){ cam.stamp = !cam.stamp; lsSet(LS.stamp, cam.stamp ? '1' : '0'); paintCamToggles(); });
+  $$('.cam-mode').forEach(function(b){ b.addEventListener('click', function(){ setMode(b.dataset.mode); }); });
+  $('#camFlip').addEventListener('click', function(){ if (cam.rec) return; cam.facing = cam.facing === 'user' ? 'environment' : 'user'; startStream(); });
   $('#camTimer').addEventListener('click', function(){ cam.timer = !cam.timer; paintCamToggles(); });
   $('#camGallery').addEventListener('click', pickGallery);
-  $('#camRetake').addEventListener('click', function(){ cam.shot = null; $('#camReview').hidden = true; $('#shutter').focus(); });
+  $('#camRetake').addEventListener('click', function(){ discardReview(); $('#shutter').focus(); });
   $('#camSend').addEventListener('click', sendShot);
   $('#camName').addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); $('#camCaption').focus(); } });
   $('#camCaption').addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); sendShot(); } });
   $('#camRetry').addEventListener('click', startStream);
-  $('#camNative').addEventListener('click', nativeCapture);
-  $('#fileCapture').addEventListener('change', function(){ processFiles(this.files, 'camara', cam.stamp); this.value = ''; });
-  $('#fileGallery').addEventListener('change', function(){ processFiles(this.files, 'galeria', false); this.value = ''; });
+  $('#camNative').addEventListener('click', function(){ $('#fileCapture').click(); });
+  $('#camNativeVid').addEventListener('click', function(){ $('#fileVideoCapture').click(); });
+  $('#fileCapture').addEventListener('change', function(){ processFiles(this.files, 'camara'); this.value = ''; });
+  $('#fileVideoCapture').addEventListener('change', function(){ processFiles(this.files, 'camara'); this.value = ''; });
+  $('#fileGallery').addEventListener('change', function(){ processFiles(this.files, 'galeria'); this.value = ''; });
   document.addEventListener('keydown', function(e){
     if ($('#cam').hidden || !$('#nameModal').hidden) return;
     if (!$('#quest').hidden){ if (e.key === 'Escape') closeQuest(); return; }
-    if (e.key === 'Escape'){ if (!$('#camReview').hidden) $('#camRetake').click(); else closeCamera(); }
+    if (e.key === 'Escape'){ if (cam.rec) stopRec(); else if (!$('#camReview').hidden) discardReview(); else closeCamera(); }
     if ((e.key === ' ' || e.key === 'Enter') && $('#camReview').hidden && document.activeElement === document.body){ e.preventDefault(); shoot(); }
   });
   document.addEventListener('visibilitychange', function(){
-    if ($('#cam').hidden || !$('#camReview').hidden) return;
-    if (document.hidden) stopStream(); else if (!cam.stream) startStream();
+    if ($('#cam').hidden) return;
+    if (document.hidden){ if (cam.rec) stopRec(); if ($('#camReview').hidden) stopStream(); }
+    else if (!cam.stream && $('#camReview').hidden) startStream();
   });
 }
 
@@ -1524,16 +2381,30 @@ function openLightbox(id){
   $('#lb').hidden = false; document.body.classList.add('noscroll');
   paintLightbox(); $('#lbClose').focus();
 }
-function closeLightbox(){ $('#lb').hidden = true; document.body.classList.remove('noscroll'); if (lb.last && lb.last.focus) lb.last.focus(); }
+function resetLbMedia(){
+  var vid = $('#lbVid'), fr = $('#lbFrame');
+  vid.pause(); vid.removeAttribute('src'); vid.hidden = true;
+  if (!fr.hidden || fr.getAttribute('src')) fr.src = 'about:blank';
+  fr.hidden = true; $('#lbImg').hidden = true;
+}
+function closeLightbox(){ resetLbMedia(); $('#lb').hidden = true; document.body.classList.remove('noscroll'); if (lb.last && lb.last.focus) lb.last.focus(); }
 function paintLightbox(){
   var p = lb.list[lb.i]; if (!p) return;
-  var img = $('#lbImg'); img.classList.remove('ok'); setImg(img, p, 1600); img.alt = 'Foto de ' + p.n;
-  $('#lbName').textContent = p.n; $('#lbTime').textContent = longDate(p.t) + (p.ch && RETO[p.ch] ? '. Reto: ' + RETO[p.ch].t : '');
+  resetLbMedia();
+  var img = $('#lbImg'), vid = $('#lbVid'), fr = $('#lbFrame'), demoItem = p.id.indexOf('demo_') === 0;
+  if (p.v && state.local[p.id]){ vid.poster = state.previews[p.id] || ''; vid.src = state.local[p.id]; vid.hidden = false; }
+  else if (p.v && !demoItem){
+    fr.style.setProperty('--ar', p.w && p.h ? (p.w / p.h).toFixed(4) : '.5625');
+    fr.src = 'https://drive.google.com/file/d/' + encodeURIComponent(p.id) + '/preview'; fr.hidden = false;
+  } else { img.hidden = false; img.classList.remove('ok'); setImg(img, p, 1600); img.alt = (p.v ? 'Video' : 'Foto') + ' de ' + p.n; }
+  var r = p.ch && RETO[p.ch], seal = $('#lbSeal');
+  seal.hidden = !r; seal.innerHTML = r ? sealInner(r, p.t) : '';
+  $('#lbName').textContent = p.n;
+  $('#lbTime').textContent = longDate(p.t) + (r ? '. ' + (CAPS[r.c].x ? CAPS[r.c].n : 'Capítulo ' + (r.c + 1) + ': ' + r.t) : '');
   $('#lbCap').textContent = p.c || ''; $('#lbCap').hidden = !p.c;
   $('#lbCount').textContent = (lb.i + 1) + ' de ' + lb.list.length;
-  var real = p.id.indexOf('demo_') !== 0;
-  $('#lbDl').hidden = $('#lbOpen').hidden = !real;
-  if (real){
+  $('#lbDl').hidden = $('#lbOpen').hidden = demoItem;
+  if (!demoItem){
     $('#lbDl').href = 'https://drive.google.com/uc?export=download&id=' + encodeURIComponent(p.id);
     $('#lbOpen').href = 'https://drive.google.com/file/d/' + encodeURIComponent(p.id) + '/view';
   }
@@ -1558,6 +2429,16 @@ function initLightbox(){
     var dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
     if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) lbGo(dx < 0 ? 1 : -1);
   });
+}
+
+/* ---------- filtros del álbum ---------- */
+function paintChips(){ $$('.chip').forEach(function(c){ c.setAttribute('aria-pressed', c.dataset.who === state.who); }); }
+function initFilters(){
+  $('#chapSel').innerHTML = '<option value="">Todos los capítulos</option>' + CAPS.map(function(c, i){ return c.p ? '' : '<option value="' + c.k + '">' + (c.x ? '' : (i + 1) + '. ') + esc(c.n) + '</option>'; }).join('');
+  $$('.chip').forEach(function(ch){
+    ch.addEventListener('click', function(){ state.who = ch.dataset.who; state.shown = CONFIG.PAGE_SIZE; paintChips(); paintGallery(); });
+  });
+  $('#chapSel').addEventListener('change', function(){ state.chap = this.value; state.shown = CONFIG.PAGE_SIZE; paintGallery(); });
 }
 
 /* ---------- pase: inclinación ---------- */
@@ -1616,6 +2497,7 @@ function initScreenMode(){
 function screenUpdate(){
   var list = state.photos;
   $('#scrEmpty').hidden = list.length > 0;
+  $('#scrRetos').textContent = Object.keys(retoStats().claimed).length + ' de ' + RETOS.length;
   if (!list.length) return;
   if (list[0].id !== scr.top){ scr.top = list[0].id; scr.i = -1; screenNext(); restartSlides(); }
 }
@@ -1631,20 +2513,22 @@ function screenNext(){
 function showSlide(p, url){
   scr.layer = 1 - scr.layer;
   var on = scr.layer ? $('#slB') : $('#slA'), off = scr.layer ? $('#slA') : $('#slB');
-  $('img', on).src = url; $('img', on).alt = 'Foto de ' + p.n;
+  $('img', on).src = url; $('img', on).alt = (p.v ? 'Video' : 'Foto') + ' de ' + p.n;
   $('.scr-bg', on).style.backgroundImage = 'url("' + url.replace(/"/g, '%22') + '")';
   on.classList.add('on'); off.classList.remove('on');
+  $('#scrVid').hidden = !p.v;
   $('#scrName').textContent = p.n; $('#scrTime').textContent = clock(p.t);
   $('#scrCap').textContent = p.c || ''; $('#scrCapWrap').hidden = !p.c;
-  $('#scrNum').textContent = (state.photos.length - scr.i) + ' de ' + state.photos.length;
-  var rr = p.ch && RETO[p.ch]; $('#scrChWrap').hidden = !rr; if (rr) $('#scrCh').textContent = rr.t;
-  $('#scrRetos').textContent = Object.keys(retoStats().claimed).length + ' de ' + RETOS.length;
+  var r = p.ch && RETO[p.ch];
+  $('#scrChWrap').hidden = !r;
+  if (r){ $('#scrChLbl').textContent = capLabel(r.c); $('#scrCh').textContent = r.t; }
 }
 
 /* ---------- arranque ---------- */
 function init(){
   $$('[data-hashtag]').forEach(function(el){ el.textContent = CONFIG.HASHTAG; });
   $$('[data-retos-total]').forEach(function(el){ el.textContent = RETOS.length; });
+  $$('[data-caps-total]').forEach(function(el){ el.textContent = CAPS.filter(function(c){ return !c.x; }).length; });
   if (MODE === 'qr'){ initQRMode(); return; }
 
   $$('[data-plane]').forEach(function(el){ el.innerHTML = planeSVG(); });
@@ -1658,30 +2542,23 @@ function init(){
     return;
   }
 
-  tilt(); initCamera(); initQuest(); initLightbox();
+  tilt(); initFilters(); initCamera(); initQuest(); initLightbox();
   $('#heroCam').addEventListener('click', openCamera);
   $('#emptyCam').addEventListener('click', openCamera);
   $('#heroUpload').addEventListener('click', pickGallery);
   $('#nameEdit').addEventListener('click', askName);
   $('#moreBtn').addEventListener('click', function(){ state.shown += CONFIG.PAGE_SIZE; paintGallery(); });
-  $$('.chip').forEach(function(ch){
-    ch.addEventListener('click', function(){
-      state.filter = ch.dataset.filter; state.shown = CONFIG.PAGE_SIZE;
-      $$('.chip').forEach(function(c){ c.setAttribute('aria-pressed', c === ch); });
-      paintGallery();
-    });
-  });
   $('#trayRetry').addEventListener('click', function(){ queue.forEach(function(q){ if (q.status === 'error') q.status = 'pending'; }); pump(); });
 
   paintAll(); loadList();
-  // La experiencia arranca en la cámara. Con #album en la URL se abre directo el álbum.
-  if (location.hash !== '#album') openCamera();
+  // La experiencia arranca en la cámara. Con #album o #historia en la URL se abre directo la página.
+  if (location.hash !== '#album' && location.hash !== '#historia') openCamera();
   setInterval(function(){ if (!document.hidden) loadList(); }, CONFIG.REFRESH_MS);
   document.addEventListener('visibilitychange', function(){ if (!document.hidden) loadList(); });
 
   if (!CONFIG.SCRIPT_URL){
     var d = document.createElement('div'); d.className = 'demo-banner';
-    d.textContent = 'Modo demostración: las fotos no se guardan hasta conectar Apps Script.';
+    d.textContent = 'Modo demostración: nada se guarda hasta conectar Apps Script.';
     document.body.appendChild(d);
   }
 }
