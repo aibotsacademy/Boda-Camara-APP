@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Fotos & Retos | Boda Jenireé &amp; Leandro, Atenas Grecia</title>
+<title>Nuestra historia en Atenas | Jenireé &amp; Leandro</title>
 <meta name="description" content="Fotos, videos y retos: la historia de Jenireé y Leandro en Atenas, contada con quienes nos acompañan.">
-<meta property="og:title" content="Fotos & Retos | Boda Jenireé &amp; Leandro, Atenas Grecia">
+<meta property="og:title" content="Nuestra historia en Atenas | Jenireé & Leandro">
 <meta property="og:description" content="Escanea, graba y cumple retos. Cada foto y cada video es una escena de nuestra historia.">
 <meta property="og:image" content="https://bodalbum.theaihumans.com/picswedding.png">
 <meta property="og:image:width" content="1200">
@@ -510,9 +510,10 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-GBYCNR6PYD');
 </script>
+</head>
+<body>
 
 <!-- Tablero de llegadas -->
 <header class="board" aria-label="Tablero de llegadas del álbum">
@@ -1492,6 +1493,44 @@ var LEVELS = [[0,'Pasajero'], [80,'Viajero frecuente'], [250,'Clase Olympia'], [
 function isPrivCh(id){ return !!(id && RETO[id] && RETO[id].p); }
 function sealInner(r, t){ return '<span>JLO ATENAS</span><b>' + esc(CAPS[r.c].s) + '</b><span>' + dateShort(t || Date.now()) + '</span>'; }
 
+/* ---------- Google Analytics ----------
+   Nunca se envían nombres, mensajes ni archivos: solo IDs de retos, capítulos y tipo de acción. */
+function track(ev, params){
+  try { if (typeof window.gtag === 'function') window.gtag('event', ev, params || {}); } catch(e){}
+}
+function retoParams(r){
+  if (!r) return {};
+  var c = CAPS[r.c];
+  return {reto_id:r.id, chapter:c.k, chapter_number:c.x ? 0 : r.c + 1, rarity:RAREZA[r.r], points:PTS[r.r], is_video:r.v ? 1 : 0, is_private:r.p ? 1 : 0};
+}
+function chapParams(k){
+  var i = -1; CAPS.forEach(function(c, j){ if (c.k === k) i = j; });
+  return i < 0 ? {chapter:k || 'mix', chapter_number:0} : {chapter:k, chapter_number:CAPS[i].x ? 0 : i + 1, is_private:CAPS[i].p ? 1 : 0};
+}
+// Clics en botones fijos: un evento por botón, con el contexto del reto cuando aplica
+var CLICK_EVENTS = {
+  heroCam:'hero_camera', heroPlay:'hero_retos', heroUpload:'hero_upload', rtPlay:'historia_retos', nameEdit:'name_edit',
+  emptyCam:'empty_album_camera', moreBtn:'album_load_more', trayRetry:'upload_retry', qrPrint:'qr_print',
+  camPlay:'camera_retos_button', camClose:'camera_to_album', camFlip:'camera_flip', camTimer:'camera_timer',
+  camGallery:'camera_gallery', camRetake:'review_retake', camNative:'camera_native_photo', camNativeVid:'camera_native_video', camRetry:'camera_retry',
+  qClose:'retos_close', qShuffle:'reto_shuffle', qGallery:'reto_from_gallery', qAllBtn:'passport_open', qBack:'passport_back',
+  cqOpen:'reto_pill_open', cqClear:'reto_clear', lbClose:'lightbox_close', lbPrev:'lightbox_prev', lbNext:'lightbox_next',
+  lbDl:'download_click', lbOpen:'open_original_click', nameSkip:'name_skip'
+};
+var RETO_CLICKS = {qShuffle:1, qGallery:1, cqOpen:1, cqClear:1};
+function initClickTracking(){
+  document.addEventListener('click', function(e){
+    var el = e.target.closest && e.target.closest('[id]');
+    if (!el || !CLICK_EVENTS[el.id]) return;
+    var p = {};
+    if (el.id === 'cqOpen' || el.id === 'cqClear') p = retoParams(RETO[quest.active]);
+    else if (RETO_CLICKS[el.id]) p = retoParams(quest.last);
+    if (el.id === 'camPlay') p.first_time = doneIds().length ? 0 : 1;
+    if (el.id === 'camTimer') p.enabled = cam.timer ? 0 : 1;
+    track(CLICK_EVENTS[el.id], p);
+  }, true);
+}
+
 /* ---------- JSONP ---------- */
 function jsonp(p, timeout){
   return new Promise(function(resolve, reject){
@@ -1894,6 +1933,7 @@ function askName(){
     m.hidden = false; document.body.classList.add('noscroll');
     setTimeout(function(){ inp.focus(); }, 50);
     function done(v){
+      track('name_saved', {skipped:(v || '').trim() ? 0 : 1});
       state.name = (v || '').trim().slice(0, 60) || 'Invitado';
       lsSet(LS.name, state.name);
       m.hidden = true;
@@ -1968,6 +2008,7 @@ function processFiles(files, source){
   if (media.length < list.length) toast('Algunos archivos no son fotos ni videos y no se subieron.');
   if (media.length > CONFIG.MAX_FILES){ toast('Subimos los primeros ' + CONFIG.MAX_FILES + '. Elige el resto en otra tanda.'); media = media.slice(0, CONFIG.MAX_FILES); }
   if (!media.length) return;
+  track('files_selected', {source:source, photos:media.filter(isImageFile).length, videos:media.filter(isVideoFile).length, with_reto:quest.active ? 1 : 0});
   // Con un reto Atrevido activo, toda la tanda va privada a los novios
   var ch = quest.active, priv = isPrivCh(ch);
   if (ch) clearReto();
@@ -2006,6 +2047,7 @@ function pump(){
     var p = res.photo;
     it.status = 'done';
     if (it.ch && !p.ch) p.ch = it.ch;
+    track('upload_success', Object.assign({kind:it.kind, source:it.source, with_caption:it.caption ? 1 : 0}, retoParams(RETO[it.ch])));
     if (isPrivCh(it.ch)){
       // Atrevidos: no entra al álbum; solo suma el sello y el conteo del grupo
       it.blob = null;
@@ -2023,7 +2065,7 @@ function pump(){
     addMine(p.id);
     addPhoto(p);
     if (it.ch) markDone(it.ch, p.id);
-  }).catch(function(e){ it.status = 'error'; it.err = ERRORS[e && e.message] || ''; })
+  }).catch(function(e){ it.status = 'error'; it.err = ERRORS[e && e.message] || ''; track('upload_error', {kind:it.kind, source:it.source, error:(e && e.message) || 'unknown'}); })
     .then(function(){ pumping = false; renderTray(); pump(); });
 }
 function trayLater(){ if (trayRaf) return; trayRaf = requestAnimationFrame(function(){ trayRaf = 0; renderTray(); }); }
@@ -2086,8 +2128,9 @@ function showQuestView(v){
 }
 // La primera vez que alguien entra a Atrevidos ve el aviso y decide: Acepto o Salirme
 function presentCard(pop){
-  if (quest.last && quest.last.p && !atrevOk(CAPS[quest.last.c].k)){ paintGate(quest.last); showQuestView('gate'); setTimeout(function(){ $('#qGateOk').focus(); }, 60); return; }
+  if (quest.last && quest.last.p && !atrevOk(CAPS[quest.last.c].k)){ paintGate(quest.last); showQuestView('gate'); track('private_gate_view', chapParams(CAPS[quest.last.c].k)); setTimeout(function(){ $('#qGateOk').focus(); }, 60); return; }
   showQuestView('card'); paintQuestCard(pop);
+  track('reto_view', retoParams(quest.last));
   setTimeout(function(){ $('#qAccept').focus(); }, 60);
 }
 function leaveAtrevidos(){
@@ -2156,6 +2199,7 @@ function paintQuestList(){
   }).join('');
 }
 function acceptReto(id){
+  track('reto_accept', retoParams(RETO[id]));
   quest.active = id; saveQuest(); paintQuestPill();
   if (RETO[id] && RETO[id].v) setMode('video');
 }
@@ -2174,7 +2218,12 @@ function paintPlay(){
 }
 function markDone(ch, photoId){
   var r = RETO[ch]; if (!r) return;
-  if (!quest.done[ch]){ var before = myPoints(); quest.done[ch] = photoId; saveQuest(); celebrate(r, before); }
+  if (!quest.done[ch]){
+    var before = myPoints(); quest.done[ch] = photoId; saveQuest(); celebrate(r, before);
+    var lb0 = levelOf(before), la0 = levelOf(myPoints());
+    track('reto_complete', Object.assign({total_seals:doneIds().length, total_points:myPoints()}, retoParams(r)));
+    if (la0.i > lb0.i) track('level_up', {level:la0.i + 1, level_name:la0.name});
+  }
   paintPlay(); paintPass(); if (MODE !== 'pantalla') paintHistoria();
   if (!$('#quest').hidden) paintQuestProgress();
 }
@@ -2196,6 +2245,7 @@ function initQuest(){
   $('#qChaps').addEventListener('click', function(e){
     var b = e.target.closest('button'); if (!b) return;
     if (!isPrivChap(quest.chap)) prevChap = quest.chap;
+    track('chapter_select', Object.assign({source:'retos_chips'}, chapParams(b.dataset.chap)));
     quest.chap = b.dataset.chap; saveQuest(); paintChapChips();
     quest.last = pickReto(); paintQuestProgress(); presentCard(true);
   });
@@ -2206,10 +2256,11 @@ function initQuest(){
   $('#qGallery').addEventListener('click', function(){ acceptReto(quest.last.id); closeQuest(); pickGallery(); });
   $('#qAllBtn').addEventListener('click', function(){ paintQuestList(); showQuestView('list'); $('#qBack').focus(); });
   $('#qBack').addEventListener('click', function(){ presentCard(false); });
-  $('#qGateOk').addEventListener('click', function(){ lsSet('jlo_album_' + CAPS[quest.last.c].k + '_ok', '1'); presentCard(true); });
-  $('#qGateOut').addEventListener('click', leaveAtrevidos);
+  $('#qGateOk').addEventListener('click', function(){ track('private_gate_accept', chapParams(CAPS[quest.last.c].k)); lsSet('jlo_album_' + CAPS[quest.last.c].k + '_ok', '1'); presentCard(true); });
+  $('#qGateOut').addEventListener('click', function(){ track('private_gate_exit', chapParams(CAPS[quest.last.c].k)); leaveAtrevidos(); });
   $('#qList').addEventListener('click', function(e){
     var b = e.target.closest('.qitem'); if (!b || b.classList.contains('done')) return;
+    track('passport_reto_click', retoParams(RETO[b.dataset.id]));
     quest.last = RETO[b.dataset.id];
     presentCard(true);
   });
@@ -2219,7 +2270,8 @@ function initQuest(){
   $('#heroPlay').addEventListener('click', function(){ openQuest(); });
   $('#chapters').addEventListener('click', function(e){
     var b = e.target.closest('button'); if (!b) return;
-    if (b.dataset.play) openChapter(b.dataset.play);
+    if (b.dataset.play){ track('chapter_play', Object.assign({source:'historia'}, chapParams(b.dataset.play))); openChapter(b.dataset.play); }
+    if (b.dataset.view) track('chapter_view_scenes', chapParams(b.dataset.view));
     if (b.dataset.view){
       state.chap = b.dataset.view; state.who = 'all'; state.shown = CONFIG.PAGE_SIZE;
       $('#chapSel').value = state.chap; paintChips(); paintGallery();
@@ -2234,6 +2286,7 @@ var cam = {stream:null, facing:'environment', timer:false, busy:false, mode: lsG
   rec:null, recStart:0, recTick:null, recPoster:'', shot:null, clip:null};
 function canRecord(){ return typeof window.MediaRecorder === 'function'; }
 function openCamera(){
+  track('camera_open', {mode:cam.mode});
   $('#cam').hidden = false; document.body.classList.add('noscroll', 'cam-open');
   $('#camReview').hidden = true;
   paintCamToggles(); paintMode(); paintCamAlbum(); paintQuestPill();
@@ -2275,6 +2328,7 @@ function startStream(){
     })
     .catch(function(err){
       var n = err && err.name;
+      track('camera_error', {error:n || 'unknown', mode:cam.mode});
       if (n === 'NotAllowedError' || n === 'SecurityError')
         camMsg('La cámara está bloqueada', 'Permite el acceso a la cámara (y al micrófono para videos) en los ajustes del navegador, o usa la cámara del teléfono.', true);
       else if (n === 'NotFoundError' || n === 'OverconstrainedError')
@@ -2314,6 +2368,7 @@ function shoot(){
   }, 1000);
 }
 function capture(){
+  track('photo_capture', {facing:cam.facing, timer:cam.timer ? 1 : 0, with_reto:quest.active ? 1 : 0});
   var v = $('#camVideo');
   if (!v.videoWidth) return;
   var f = $('#camFlash'); f.classList.remove('go'); void f.offsetWidth; f.classList.add('go');
@@ -2348,6 +2403,7 @@ function startRec(){
     showReview();
   };
   rec.start(1000);
+  track('video_record_start', {facing:cam.facing, with_reto:quest.active ? 1 : 0});
   cam.rec = rec; cam.recStart = Date.now();
   document.body.classList.add('recording'); $('#camRec').hidden = false; paintRecTime();
   cam.recTick = setInterval(function(){
@@ -2361,6 +2417,7 @@ function stopRec(discard){
   cam.rec = null; clearInterval(cam.recTick);
   document.body.classList.remove('recording'); $('#camRec').hidden = true;
   if (discard) r._discard = true;
+  track(discard ? 'video_record_discard' : 'video_record_stop', {seconds:Math.round((Date.now() - cam.recStart) / 1000)});
   try { r.stop(); } catch(e){}
 }
 function paintRecTime(){ $('#camRecTime').textContent = fmtDur((Date.now() - cam.recStart) / 1000) + ' / ' + fmtDur(CONFIG.MAX_REC_SECONDS); }
@@ -2388,6 +2445,7 @@ function sendShot(){
   var nm = $('#camName');
   if (!nm.hidden){ state.name = nm.value.trim().slice(0, 60) || 'Invitado'; lsSet(LS.name, state.name); paintPass(); }
   var ch = quest.active, cap = $('#camCaption').value.trim().slice(0, 200), isClip = !!cam.clip;
+  track('review_send', Object.assign({kind:isClip ? 'video' : 'foto', with_reto:ch ? 1 : 0, with_caption:cap ? 1 : 0}, retoParams(RETO[ch])));
   if (isClip){
     var c = cam.clip;
     enqueue({kind:'video', blob:c.blob, mime:c.mime, poster:c.poster, w:c.w, h:c.h, dur:c.dur, caption:cap, source:'camara', ch:ch});
@@ -2403,7 +2461,7 @@ function pickGallery(){ ensureName().then(function(){ $('#fileGallery').click();
 function initCamera(){
   $('#camClose').addEventListener('click', closeCamera);
   $('#shutter').addEventListener('click', shoot);
-  $$('.cam-mode').forEach(function(b){ b.addEventListener('click', function(){ setMode(b.dataset.mode); }); });
+  $$('.cam-mode').forEach(function(b){ b.addEventListener('click', function(){ if (b.dataset.mode !== cam.mode) track('camera_mode', {mode:b.dataset.mode}); setMode(b.dataset.mode); }); });
   $('#camFlip').addEventListener('click', function(){ if (cam.rec) return; cam.facing = cam.facing === 'user' ? 'environment' : 'user'; startStream(); });
   $('#camTimer').addEventListener('click', function(){ cam.timer = !cam.timer; paintCamToggles(); });
   $('#camGallery').addEventListener('click', pickGallery);
@@ -2433,6 +2491,8 @@ function initCamera(){
 /* ---------- visor ---------- */
 var lb = {list:[], i:0, last:null};
 function openLightbox(id){
+  var tp = state.photos.filter(function(x){ return x.id === id; })[0];
+  if (tp) track('lightbox_open', Object.assign({kind:tp.v ? 'video' : 'foto', filter:state.who, is_mine:isMine(id) ? 1 : 0}, retoParams(RETO[tp.ch])));
   lb.list = filtered().slice(); lb.i = Math.max(0, lb.list.map(function(p){ return p.id; }).indexOf(id));
   lb.last = document.activeElement;
   $('#lb').hidden = false; document.body.classList.add('noscroll');
@@ -2493,9 +2553,9 @@ function paintChips(){ $$('.chip').forEach(function(c){ c.setAttribute('aria-pre
 function initFilters(){
   $('#chapSel').innerHTML = '<option value="">Todos los capítulos</option>' + CAPS.map(function(c, i){ return c.p ? '' : '<option value="' + c.k + '">' + (c.x ? '' : (i + 1) + '. ') + esc(c.n) + '</option>'; }).join('');
   $$('.chip').forEach(function(ch){
-    ch.addEventListener('click', function(){ state.who = ch.dataset.who; state.shown = CONFIG.PAGE_SIZE; paintChips(); paintGallery(); });
+    ch.addEventListener('click', function(){ track('album_filter', {filter:ch.dataset.who}); state.who = ch.dataset.who; state.shown = CONFIG.PAGE_SIZE; paintChips(); paintGallery(); });
   });
-  $('#chapSel').addEventListener('change', function(){ state.chap = this.value; state.shown = CONFIG.PAGE_SIZE; paintGallery(); });
+  $('#chapSel').addEventListener('change', function(){ track('album_chapter_filter', chapParams(this.value)); state.chap = this.value; state.shown = CONFIG.PAGE_SIZE; paintGallery(); });
 }
 
 /* ---------- pase: inclinación ---------- */
@@ -2531,6 +2591,7 @@ function drawQR(el, size){
   });
 }
 function initQRMode(){
+  track('qr_card_view');
   document.body.classList.add('mode-qr');
   $('#qrUrl').textContent = albumUrl().replace(/^https?:\/\//, '');
   drawQR($('#qrBig'), 480).catch(function(){ $('#qrBig').textContent = 'No se pudo generar el código. Revisa tu conexión.'; });
@@ -2540,6 +2601,7 @@ function initQRMode(){
 /* ---------- pantalla del salón ---------- */
 var scr = {i:-1, top:null, timer:null, layer:0};
 function initScreenMode(){
+  track('screen_mode_start');
   document.body.classList.add('mode-screen');
   $('#scrUrl').textContent = albumUrl().replace(/^https?:\/\//, '');
   drawQR($('#scrQr'), 224).catch(function(){ $('#scrQrWrap').hidden = true; });
@@ -2599,6 +2661,7 @@ function init(){
     return;
   }
 
+  initClickTracking();
   tilt(); initFilters(); initCamera(); initQuest(); initLightbox();
   $('#heroCam').addEventListener('click', openCamera);
   $('#emptyCam').addEventListener('click', openCamera);
