@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Fotos & Retos | Jeniréé &amp; Leandro</title>
+<title>Fotos & Retos | Boda Jenireé &amp; Leandro, Atenas Grecia</title>
 <meta name="description" content="Fotos, videos y retos: la historia de Jenireé y Leandro en Atenas, contada con quienes nos acompañan.">
-<meta property="og:title" content="Fotos & Retos | Jeniréé & Leandro">
+<meta property="og:title" content="Fotos & Retos | Boda Jenireé &amp; Leandro, Atenas Grecia">
 <meta property="og:description" content="Escanea, graba y cumple retos. Cada foto y cada video es una escena de nuestra historia.">
 <meta property="og:image" content="https://bodalbum.theaihumans.com/picswedding.png">
 <meta property="og:image:width" content="1200">
@@ -650,8 +650,8 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
       </div>
       <div class="info-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-        <h3>Retos Atrevidos</h3>
-        <p>El último capítulo es para ligar y atreverse. Lo que subas ahí no sale en el álbum: solo lo ven los novios y se borra solo 24 horas después. Siempre entre adultos y con consentimiento.</p>
+        <h3>Atrevidos y El confesionario</h3>
+        <p>Dos capítulos privados: uno para ligar y atreverse, otro para confesar chismes a cámara. Lo que subas ahí no sale en el álbum: solo lo ven los novios y se borra solo 24 horas después.</p>
       </div>
     </div>
   </div>
@@ -759,10 +759,10 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
     </div>
     <div class="q-gate" id="qGate" role="alertdialog" aria-labelledby="qGateTitle" aria-describedby="qGateTxt" hidden>
       <article class="q-gate-card">
-        <div class="q-gate-band">CAPÍTULO 19 · ACCESO RESTRINGIDO</div>
+        <div class="q-gate-band" id="qGateBand">ACCESO RESTRINGIDO</div>
         <div class="q-gate-body">
           <h2 id="qGateTitle">Retos Atrevidos</h2>
-          <p id="qGateTxt">Aquí se viene a ligar, a atreverse y a pasarla increíble. Antes de entrar:</p>
+          <p id="qGateTxt"></p>
           <ul>
             <li>Lo que subas aquí no sale en el álbum ni en la pantalla. Solo lo ven Jenireé y Leandro.</li>
             <li>Cada foto y video se elimina automáticamente 24 horas después de subirse.</li>
@@ -895,7 +895,7 @@ body.mode-qr .qr-poster{display:flex;flex-direction:column;align-items:center;ga
    CONFIGURACIÓN: edita estos valores antes de publicar
    ========================================================= */
 var CONFIG = {
-  SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzr5AoH8rMYdiTBbLafRZ-x1mBPgL9qeVtWNqtjH8de1_avmnRiJLKZa_Sxg5eVidSauA/exec',            // URL /exec del Apps Script. Vacío = modo demostración
+  SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzSfce8btDQu71h4KI0QduMpwK-usImF24Hxz9kHB00vLxil52KPkLuiHveS82KuYFDrQ/exec',            // URL /exec del Apps Script. Vacío = modo demostración
   ACCESS_KEY: 'JLO2026',     // igual a CFG.ACCESS_KEY del Apps Script
   PUBLIC_URL: '',            // URL pública de esta página para los QR. Vacío = la URL actual
   HASHTAG: '#JLOenAtenas',
@@ -1341,7 +1341,7 @@ var CAPS = [
     '2|Algo que aprendiste en griego|Escríbelo en un papel y fotografíalo.'
   ]},
   // Privado: solo lo ven los novios y se elimina a las 24 horas (lo hace el Apps Script)
-  {k:'atrevidos', p:1, n:'Atrevidos', s:'ATREVIDOS', h:'Lo que pasa en Atenas se queda con los novios. Una noche loca, ligues entre invitados y algún desconocido con acento griego.', r:[
+  {k:'atrevidos', p:1, gate:'Aquí se viene a ligar, a atreverse y a pasarla increíble. Antes de entrar:', n:'Atrevidos', s:'ATREVIDOS', h:'Lo que pasa en Atenas se queda con los novios. Una noche loca, ligues entre invitados y algún desconocido con acento griego.', r:[
     '2|Una foto con el o la más sexy de la boda|Tú decides quién se lleva el título.',
     '3|Beso de tres|Tres personas, un beso y cero arrepentimientos.',
     '2|Intercambio de prenda|Cambia una prenda con alguien que te guste.',
@@ -1446,6 +1446,31 @@ var CAPS = [
     '2|Alguien que sepa decir "te amo" en griego|Que te lo enseñe.',
     '2v|Video: presenta a alguien que acabas de conocer como si fuera famoso|Anúncialo como la estrella de la noche.',
     '2|Quien tiene la historia más loca del viaje|Que te la cuente y posen con cara de asombro.'
+  ]},
+  // Privado como Atrevidos: solo lo ven los novios y se elimina a las 24 horas
+  {k:'confesionario', p:1, gate:'Siéntate, mira a la cámara y confiesa. Lo que se dice aquí solo lo escuchan los novios. Antes de entrar:', n:'El confesionario', s:'CONFESIÓN', h:'Chismes, sospechas y opiniones polémicas, dichos mirando a la cámara. Lo que se confiesa aquí solo lo escuchan los novios.', r:[
+    '2v|¿Ya detectaste algún romance que nadie más haya notado?|Cuéntalo mirando a la cámara. Nombres opcionales.',
+    '1v|¿Qué fue lo primero que pensaste cuando viste a los novios?|La primera impresión, sin filtro.',
+    '1v|Resume todo lo que pasó esta noche en una frase|Una sola. Que valga.',
+    '2v|¿Quién va a decir mañana "yo no me acuerdo de eso"?|Tu candidato y el porqué.',
+    '2v|Si organizaras una cita entre dos invitados, ¿a quiénes juntarías?|Explica tu plan de cupido.',
+    '2v|¿Quién está coqueteando y cree que nadie se ha dado cuenta?|Tú sí te diste cuenta.',
+    '2v|Confiesa: ¿ya viste a alguien y pensaste "wow"?|No hace falta decir quién… pero ayuda.',
+    '2v|¿Quién se está comportando como protagonista de reality?|Justifica tu respuesta.',
+    '2v|Si esta boda fuera un reality, ¿quién sería el villano?|Con cariño, pero con argumentos.',
+    '3v|Suelta una opinión polémica sobre esta boda|Los novios la aguantan. Tú atrévete.',
+    '3v|Cuenta algo que descubriste hoy y que probablemente no deberías saber|Lo que se dice aquí, aquí se queda.',
+    '2v|¿Quién es el más coqueto o la más coqueta de esta boda?|Da tu veredicto.',
+    '2v|¿Quién tiene una historia que NO puede contar delante de su familia?|Tú no la cuentes. Solo señala.',
+    '2v|¿Quién tendría más exes apareciendo en la playa?|Como en el reality.',
+    '3v|¿Quién juega de santo o de santa, pero tú sabes que tiene historial?|Sin pruebas, pero con certeza.',
+    '1v|¿Quién va a llorar más en la ceremonia?|Tu apuesta, antes de que pase.',
+    '2v|¿Qué pareja de invitados crees que es la próxima en casarse?|Predicción oficial.',
+    '1v|Tu predicción para los novios en diez años|Hijos, perros, países… lo que veas.',
+    '2v|El chisme más grande del viaje, sin nombres|Que los novios adivinen de quién es.',
+    '1v|¿Quién bailó peor esta noche?|Con amor y sin piedad.',
+    '2v|Confiesa tu mayor oso del viaje|Los novios juran no reírse. Mucho.',
+    '2v|¿Qué le dirías a tu ex si estuviera en esta boda?|Diez segundos. Sin groserías… o con pocas.'
   ]},
   // Sorpréndeme: primero el mensaje de cada invitado para los novios; ya grabado, retos al azar
   {k:'mensaje', x:1, n:'Mensaje para los novios', s:'MENSAJE', h:'Un mensaje de cada invitado para Jenireé y Leandro.', r:[
@@ -2047,23 +2072,31 @@ function openQuest(id){
   paintQuestHead(); paintChapChips(); presentCard(true);
 }
 var prevChap = 'prep';
-function atrevOk(){ return lsGet(LS.atrev, '') === '1'; }
+// Aceptación del aviso por capítulo privado (Atrevidos, El confesionario)
+function atrevOk(k){ return lsGet('jlo_album_' + k + '_ok', '') === '1'; }
+function isPrivChap(k){ return CAPS.some(function(c){ return c.k === k && c.p; }); }
+function paintGate(r){
+  var ci = r.c, c = CAPS[ci];
+  $('#qGateBand').textContent = 'CAPÍTULO ' + (ci + 1) + ' · ACCESO RESTRINGIDO';
+  $('#qGateTitle').textContent = c.n;
+  $('#qGateTxt').textContent = c.gate || 'Antes de entrar:';
+}
 function showQuestView(v){
   $('#qCardView').hidden = v !== 'card'; $('#qListView').hidden = v !== 'list'; $('#qGate').hidden = v !== 'gate';
   $('#quest').scrollTop = 0;
 }
 // La primera vez que alguien entra a Atrevidos ve el aviso y decide: Acepto o Salirme
 function presentCard(pop){
-  if (quest.last && quest.last.p && !atrevOk()){ showQuestView('gate'); setTimeout(function(){ $('#qGateOk').focus(); }, 60); return; }
+  if (quest.last && quest.last.p && !atrevOk(CAPS[quest.last.c].k)){ paintGate(quest.last); showQuestView('gate'); setTimeout(function(){ $('#qGateOk').focus(); }, 60); return; }
   showQuestView('card'); paintQuestCard(pop);
   setTimeout(function(){ $('#qAccept').focus(); }, 60);
 }
 function leaveAtrevidos(){
   if (isPrivCh(quest.active)) clearReto();
-  quest.chap = prevChap && prevChap !== 'atrevidos' ? prevChap : 'prep'; saveQuest();
+  quest.chap = prevChap && !isPrivChap(prevChap) ? prevChap : 'prep'; saveQuest();
   quest.last = pickReto(); paintChapChips(); paintQuestProgress(); presentCard(true);
 }
-function openChapter(k){ if (quest.chap !== 'atrevidos') prevChap = quest.chap; quest.chap = k; saveQuest(); openQuest(pickReto().id); }
+function openChapter(k){ if (!isPrivChap(quest.chap)) prevChap = quest.chap; quest.chap = k; saveQuest(); openQuest(pickReto().id); }
 function closeQuest(){ $('#quest').hidden = true; if (!$('#cam').hidden) $('#shutter').focus(); }
 function paintQuestHead(){
   var pts = myPoints(), L = levelOf(pts), n = doneIds().length;
@@ -2113,7 +2146,7 @@ function paintQuestList(){
   var order = CAPS.map(function(c, i){ return i; }).sort(function(a, b){ return (CAPS[b].x ? 1 : 0) - (CAPS[a].x ? 1 : 0); });
   $('#qList').innerHTML = order.map(function(ci){ var cap = CAPS[ci];
     var items = RETOS.filter(function(r){ return r.c === ci; });
-    if (cap.p && !atrevOk()) return '<h3 class="q-cat">' + (ci + 1) + '. ' + esc(cap.n) + ' <span>' + items.length + ' retos privados</span></h3><div class="q-grid"><button type="button" class="qitem r2" data-id="' + items[0].id + '"><span class="qi-mark">🔒</span><span>Entrar a Atrevidos</span></button></div>';
+    if (cap.p && !atrevOk(cap.k)) return '<h3 class="q-cat">' + (ci + 1) + '. ' + esc(cap.n) + ' <span>' + items.length + ' retos privados</span></h3><div class="q-grid"><button type="button" class="qitem r2" data-id="' + items[0].id + '"><span class="qi-mark">🔒</span><span>Entrar a ' + esc(cap.n) + '</span></button></div>';
     var d = items.filter(function(r){ return quest.done[r.id]; }).length;
     return '<h3 class="q-cat">' + (cap.x ? '' : (ci + 1) + '. ') + esc(cap.n) + ' <span>tú ' + d + ' · grupo ' + st.chap[cap.k].n + ' de ' + items.length + '</span></h3><div class="q-grid">' + items.map(function(r){
       var done = !!quest.done[r.id];
@@ -2163,7 +2196,7 @@ function initQuest(){
     '<button type="button" data-chap="mix">Sorpréndeme</button>';
   $('#qChaps').addEventListener('click', function(e){
     var b = e.target.closest('button'); if (!b) return;
-    if (quest.chap !== 'atrevidos') prevChap = quest.chap;
+    if (!isPrivChap(quest.chap)) prevChap = quest.chap;
     quest.chap = b.dataset.chap; saveQuest(); paintChapChips();
     quest.last = pickReto(); paintQuestProgress(); presentCard(true);
   });
@@ -2174,7 +2207,7 @@ function initQuest(){
   $('#qGallery').addEventListener('click', function(){ acceptReto(quest.last.id); closeQuest(); pickGallery(); });
   $('#qAllBtn').addEventListener('click', function(){ paintQuestList(); showQuestView('list'); $('#qBack').focus(); });
   $('#qBack').addEventListener('click', function(){ presentCard(false); });
-  $('#qGateOk').addEventListener('click', function(){ lsSet(LS.atrev, '1'); presentCard(true); });
+  $('#qGateOk').addEventListener('click', function(){ lsSet('jlo_album_' + CAPS[quest.last.c].k + '_ok', '1'); presentCard(true); });
   $('#qGateOut').addEventListener('click', leaveAtrevidos);
   $('#qList').addEventListener('click', function(e){
     var b = e.target.closest('.qitem'); if (!b || b.classList.contains('done')) return;
